@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Presentation_Layer
+namespace Presentation_Layer.Custom_Controls
 {
-    public partial class Form1 : Form
+    public partial class AddNewPerson : UserControl
     {
-        public Form1()
+        public AddNewPerson()
         {
             InitializeComponent();
         }
