@@ -32,6 +32,7 @@
             this.peopleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showAllPeopleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCountriesList1 = new Presentation_Layer.Custom_Controls.ShowCountriesList();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,22 +60,31 @@
             // addNewPersonToolStripMenuItem
             // 
             this.addNewPersonToolStripMenuItem.Name = "addNewPersonToolStripMenuItem";
-            this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.addNewPersonToolStripMenuItem.Text = "Add New Person";
             this.addNewPersonToolStripMenuItem.Click += new System.EventHandler(this.addNewPersonToolStripMenuItem_Click_1);
             // 
             // showAllPeopleToolStripMenuItem
             // 
             this.showAllPeopleToolStripMenuItem.Name = "showAllPeopleToolStripMenuItem";
-            this.showAllPeopleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showAllPeopleToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.showAllPeopleToolStripMenuItem.Text = "Show all People";
             this.showAllPeopleToolStripMenuItem.Click += new System.EventHandler(this.showAllPeopleToolStripMenuItem_Click);
+            // 
+            // showCountriesList1
+            // 
+            this.showCountriesList1.Location = new System.Drawing.Point(219, 216);
+            this.showCountriesList1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.showCountriesList1.Name = "showCountriesList1";
+            this.showCountriesList1.Size = new System.Drawing.Size(417, 85);
+            this.showCountriesList1.TabIndex = 2;
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 519);
+            this.Controls.Add(this.showCountriesList1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
@@ -95,6 +105,7 @@
         private System.Windows.Forms.ToolStripMenuItem peopleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addNewPersonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showAllPeopleToolStripMenuItem;
+        private Custom_Controls.ShowCountriesList showCountriesList1;
     }
 }
 

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BL;
 
@@ -16,11 +11,12 @@ namespace Presentation_Layer
         public MainScreen()
         {
             InitializeComponent();
+            FillComboBox();
         }
 
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void addNewPersonToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -28,7 +24,7 @@ namespace Presentation_Layer
             AddNewPerson addNew = new AddNewPerson();
             addNew.MdiParent = this;
             addNew.Show();
-            
+
         }
 
         private void showAllPeopleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -37,5 +33,17 @@ namespace Presentation_Layer
             ShowAllPeople.MdiParent = this;
             ShowAllPeople.Show();
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        public void FillComboBox()
+        {
+            
+        }
+
+
     }
 }
