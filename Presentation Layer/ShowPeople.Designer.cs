@@ -1,6 +1,6 @@
 ﻿namespace Presentation_Layer
 {
-    partial class AddNewPerson
+    partial class ShowPeople
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.DgvPeopleList = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvPeopleList)).BeginInit();
             this.SuspendLayout();
             // 
-            // AddNewPerson
+            // DgvPeopleList
+            // 
+            this.DgvPeopleList.BackgroundColor = System.Drawing.Color.White;
+            this.DgvPeopleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvPeopleList.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.DgvPeopleList.Location = new System.Drawing.Point(0, 141);
+            this.DgvPeopleList.Name = "DgvPeopleList";
+            this.DgvPeopleList.Size = new System.Drawing.Size(800, 309);
+            this.DgvPeopleList.TabIndex = 0;
+            // 
+            // ShowPeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 493);
-            this.Name = "AddNewPerson";
-            this.Text = "AddNewPerson";
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DgvPeopleList);
+            this.Name = "ShowPeople";
+            this.Text = "ShowPeople";
+            ((System.ComponentModel.ISupportInitialize)(this.DgvPeopleList)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView DgvPeopleList;
     }
 }

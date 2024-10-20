@@ -8,6 +8,6 @@ namespace DAL.Settings
 {
     public class ConnectionString
     {
-        public static string connectionString = "Server=.;database =ContactsDB;Trusted_Connection=True";
+        public static string connectionString = "Server=.;database =Driving_License_Management_System;Trusted_Connection=True";
     }
 }
