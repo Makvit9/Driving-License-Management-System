@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Presentation_Layer.Custom_Controls
 {
-    public partial class AddNewPerson : UserControl
+    public partial class AddNewPersonCard : UserControl
     {
-        public AddNewPerson()
+        public AddNewPersonCard()
         {
             InitializeComponent();
         }

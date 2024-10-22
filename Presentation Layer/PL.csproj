@@ -61,11 +61,11 @@
     <Compile Include="AddNewPerson.Designer.cs">
       <DependentUpon>AddNewPerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom Controls\AddNewPerson.cs">
+    <Compile Include="Custom Controls\AddNewPersonCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom Controls\AddNewPerson.Designer.cs">
-      <DependentUpon>AddNewPerson.cs</DependentUpon>
+    <Compile Include="Custom Controls\AddNewPersonCard.Designer.cs">
+      <DependentUpon>AddNewPersonCard.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom Controls\ShowCountriesList.cs">
       <SubType>UserControl</SubType>
@@ -90,8 +90,8 @@
     <EmbeddedResource Include="AddNewPerson.resx">
       <DependentUpon>AddNewPerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom Controls\AddNewPerson.resx">
-      <DependentUpon>AddNewPerson.cs</DependentUpon>
+    <EmbeddedResource Include="Custom Controls\AddNewPersonCard.resx">
+      <DependentUpon>AddNewPersonCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\ShowCountriesList.resx">
       <DependentUpon>ShowCountriesList.cs</DependentUpon>

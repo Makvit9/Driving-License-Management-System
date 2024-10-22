@@ -85,5 +85,37 @@ namespace DAL
 
             return IsFound;
         }
+    
+        public static int GetCountryID(string countryName)
+        {
+            int ID = -1;
+
+            SqlConnection connection = new SqlConnection(ConnectionString.connectionString);
+
+            string Query = "SELECT ID FROM Countries where CountryName = @countryName";
+
+            SqlCommand cmd = new SqlCommand(Query, connection);
+
+            try
+            {
+                connection.Open();
+
+
+            }
+            catch (Exception)
+            {
+
+                return -1;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return ID;
+        }
+    
+    
+    
     }
 }
