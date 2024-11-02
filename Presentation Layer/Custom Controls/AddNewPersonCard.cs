@@ -31,6 +31,24 @@ namespace Presentation_Layer.Custom_Controls
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnAddPerson_Click(object sender, EventArgs e)
+        {
+
+            if (radioButton1.Checked)
+            {
+
+                BL.Person person = new Person(FirstNametxt.Text, SecondNametxt.Text, ThirdNametxt.Text, LastNametxt.Text,
+                    NationalNotxt.Text, DateOfBirthtxt.Value, 'M', 
+                    Phonetxt.Text, Emailtxt.Text,CountriesList.Name,AddressRtxt.Text);
+                person.Save();        
+            }
+        }
+
 
         //private void btnAddPerson_Click(object sender, EventArgs e)
         //{

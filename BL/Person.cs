@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Net;
 using System.Security.Policy;
 using DAL;
@@ -8,9 +9,9 @@ namespace BL
 {
     public class Person
     {
-        enum enMode { Addnew =  1, Update = 2};
+       public enum enMode { Addnew =  0, Update = 1};
 
-
+        private int PersonID { get; set; }
         private string FirstName { get; }
         private string SecondName { get; }
     
@@ -19,12 +20,17 @@ namespace BL
         private string NationalNumber { get; }
 
         private DateTime DateOfBirth { get; }
-        private byte Gender { get; }
+        private char Gender { get; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string Nationality { get; }
+        public string CountryName { get; }
         public string Address { get; }
 
+        public string ImagePath { get; }
+
+        public enMode Mode = enMode.Addnew;
+          
+        
         Person()
         {
             FirstName = "";
@@ -33,16 +39,17 @@ namespace BL
             LastName = "";
             NationalNumber ="" ;
             DateOfBirth = DateTime.Now;
-            Gender = 0;
+            Gender = ' ';
             Phone = "";
             Email = "";
-            Nationality = "";
+            CountryName = "";
             Address = "";
+            Mode = enMode.Addnew;
         }
 
-        Person(string firstname, string secondname, string thirdname, string finalname,
-            string nationalNumber, DateTime dateofbirth, byte gender, string phone,
-            string email, string nationality, string address)
+        public Person(string firstname, string secondname, string thirdname, string finalname,
+            string nationalNumber, DateTime dateofbirth, char gender, string phone,
+            string email, string countryName, string address)
         {
             FirstName = firstname;
             SecondName = secondname;
@@ -53,11 +60,58 @@ namespace BL
             Gender = gender;
             Phone = phone;
             Email = email;
-            Nationality = nationality;
+            CountryName = countryName;
             Address = address;
+
+            Mode = enMode.Update;
+
+        }
+        
+        
+        public static DataTable GetAllPeople()
+        {
+            return PersonDAL.GetAllPeople();
+        }
+        
+        
+        
+        private bool _AddNewPerson()
+        {
+                this.PersonID = PersonDAL.AddNewPerson(this.FirstName, this.SecondName,
+                this.ThirdName, this.LastName, this.NationalNumber, this.DateOfBirth,
+                this.Gender, this.Phone, this.Email, this.CountryName,
+                this.Address, this.ImagePath);
+
+            return (this.PersonID != -1);
         }
 
+        public bool Save()
+        {
+            switch (Mode)
+            {
+                case enMode.Addnew:
+                    if (_AddNewPerson())
+                    {
 
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case enMode.Update:
+                    break;
+                    //return _UpdateContact();
+
+            }
+
+
+
+
+            return false;
+        }
 
     }
 }

@@ -53,13 +53,10 @@
             this.AddressRtxt = new System.Windows.Forms.RichTextBox();
             this.ProfilePic = new System.Windows.Forms.PictureBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnAddPerson = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.PersonID = new System.Windows.Forms.Label();
             this.CountriesList = new Presentation_Layer.Custom_Controls.ShowCountriesList();
             ((System.ComponentModel.ISupportInitialize)(this.ProfilePic)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -234,6 +231,7 @@
             this.radioButton1.Size = new System.Drawing.Size(51, 19);
             this.radioButton1.TabIndex = 8;
             this.radioButton1.TabStop = true;
+            this.radioButton1.Tag = "M";
             this.radioButton1.Text = "Male";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -245,6 +243,7 @@
             this.radioButton2.Size = new System.Drawing.Size(63, 19);
             this.radioButton2.TabIndex = 9;
             this.radioButton2.TabStop = true;
+            this.radioButton2.Tag = "F";
             this.radioButton2.Text = "Female";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
@@ -283,7 +282,7 @@
             this.ProfilePic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ProfilePic.Image = ((System.Drawing.Image)(resources.GetObject("ProfilePic.Image")));
             this.ProfilePic.InitialImage = ((System.Drawing.Image)(resources.GetObject("ProfilePic.InitialImage")));
-            this.ProfilePic.Location = new System.Drawing.Point(670, 46);
+            this.ProfilePic.Location = new System.Drawing.Point(607, 46);
             this.ProfilePic.Name = "ProfilePic";
             this.ProfilePic.Size = new System.Drawing.Size(132, 141);
             this.ProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -293,32 +292,13 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(704, 190);
+            this.linkLabel1.Location = new System.Drawing.Point(641, 190);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(59, 15);
             this.linkLabel1.TabIndex = 25;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Set image";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(21, 111);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 15);
-            this.label13.TabIndex = 26;
-            this.label13.Text = "Person ID:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(345, 10);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(167, 30);
-            this.label14.TabIndex = 28;
-            this.label14.Text = "Add New Person";
             // 
             // label11
             // 
@@ -332,12 +312,13 @@
             // 
             // btnAddPerson
             // 
-            this.btnAddPerson.Location = new System.Drawing.Point(670, 232);
+            this.btnAddPerson.Location = new System.Drawing.Point(486, 336);
             this.btnAddPerson.Name = "btnAddPerson";
-            this.btnAddPerson.Size = new System.Drawing.Size(132, 51);
+            this.btnAddPerson.Size = new System.Drawing.Size(95, 41);
             this.btnAddPerson.TabIndex = 31;
-            this.btnAddPerson.Text = "Add";
+            this.btnAddPerson.Text = "Save";
             this.btnAddPerson.UseVisualStyleBackColor = true;
+            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
             // 
             // groupBox1
             // 
@@ -369,30 +350,21 @@
             this.groupBox1.Controls.Add(this.Phonetxt);
             this.groupBox1.Controls.Add(this.DateOfBirthtxt);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Location = new System.Drawing.Point(14, 139);
+            this.groupBox1.Location = new System.Drawing.Point(12, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(832, 361);
+            this.groupBox1.Size = new System.Drawing.Size(770, 414);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(670, 289);
+            this.button1.Location = new System.Drawing.Point(385, 336);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 51);
+            this.button1.Size = new System.Drawing.Size(95, 41);
             this.button1.TabIndex = 32;
-            this.button1.Text = "Close";
+            this.button1.Text = "Exit";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // PersonID
-            // 
-            this.PersonID.AutoSize = true;
-            this.PersonID.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PersonID.Location = new System.Drawing.Point(87, 109);
-            this.PersonID.Name = "PersonID";
-            this.PersonID.Size = new System.Drawing.Size(33, 17);
-            this.PersonID.TabIndex = 33;
-            this.PersonID.Text = "N/A";
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // CountriesList
             // 
@@ -407,19 +379,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.PersonID);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "AddNewPersonCard";
-            this.Size = new System.Drawing.Size(856, 547);
+            this.Size = new System.Drawing.Size(783, 422);
             ((System.ComponentModel.ISupportInitialize)(this.ProfilePic)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -449,13 +417,10 @@
         private System.Windows.Forms.RichTextBox AddressRtxt;
         private System.Windows.Forms.PictureBox ProfilePic;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
         private ShowCountriesList CountriesList;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnAddPerson;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label PersonID;
     }
 }
