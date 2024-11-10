@@ -30,61 +30,70 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.peopleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addNewPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showAllPeopleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showCountriesList1 = new Presentation_Layer.Custom_Controls.ShowCountriesList();
+            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.driversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.peopleToolStripMenuItem});
+            this.peopleToolStripMenuItem,
+            this.usersToolStripMenuItem,
+            this.applicationsToolStripMenuItem,
+            this.testsToolStripMenuItem,
+            this.driversToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(933, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1168, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // peopleToolStripMenuItem
             // 
-            this.peopleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addNewPersonToolStripMenuItem,
-            this.showAllPeopleToolStripMenuItem});
+            this.peopleToolStripMenuItem.Image = global::Presentation_Layer.Properties.Resources.People;
             this.peopleToolStripMenuItem.Name = "peopleToolStripMenuItem";
-            this.peopleToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.peopleToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.peopleToolStripMenuItem.Text = "People";
+            this.peopleToolStripMenuItem.Click += new System.EventHandler(this.peopleToolStripMenuItem_Click);
             // 
-            // addNewPersonToolStripMenuItem
+            // usersToolStripMenuItem
             // 
-            this.addNewPersonToolStripMenuItem.Name = "addNewPersonToolStripMenuItem";
-            this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.addNewPersonToolStripMenuItem.Text = "Add New Person";
-            this.addNewPersonToolStripMenuItem.Click += new System.EventHandler(this.addNewPersonToolStripMenuItem_Click_1);
+            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.usersToolStripMenuItem.Text = "Users";
+            this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
-            // showAllPeopleToolStripMenuItem
+            // applicationsToolStripMenuItem
             // 
-            this.showAllPeopleToolStripMenuItem.Name = "showAllPeopleToolStripMenuItem";
-            this.showAllPeopleToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.showAllPeopleToolStripMenuItem.Text = "Show all People";
-            this.showAllPeopleToolStripMenuItem.Click += new System.EventHandler(this.showAllPeopleToolStripMenuItem_Click);
+            this.applicationsToolStripMenuItem.Name = "applicationsToolStripMenuItem";
+            this.applicationsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.applicationsToolStripMenuItem.Text = "Applications";
+            this.applicationsToolStripMenuItem.Click += new System.EventHandler(this.applicationsToolStripMenuItem_Click);
             // 
-            // showCountriesList1
+            // testsToolStripMenuItem
             // 
-            this.showCountriesList1.Location = new System.Drawing.Point(219, 216);
-            this.showCountriesList1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.showCountriesList1.Name = "showCountriesList1";
-            this.showCountriesList1.Size = new System.Drawing.Size(417, 85);
-            this.showCountriesList1.TabIndex = 2;
+            this.testsToolStripMenuItem.Name = "testsToolStripMenuItem";
+            this.testsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.testsToolStripMenuItem.Text = "Tests";
+            this.testsToolStripMenuItem.Click += new System.EventHandler(this.testsToolStripMenuItem_Click);
+            // 
+            // driversToolStripMenuItem
+            // 
+            this.driversToolStripMenuItem.Name = "driversToolStripMenuItem";
+            this.driversToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.driversToolStripMenuItem.Text = "Drivers";
+            this.driversToolStripMenuItem.Click += new System.EventHandler(this.driversToolStripMenuItem_Click);
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 519);
-            this.Controls.Add(this.showCountriesList1);
+            this.ClientSize = new System.Drawing.Size(1168, 667);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
@@ -92,6 +101,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "MainScreen";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainScreen_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -103,9 +113,10 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem peopleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addNewPersonToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showAllPeopleToolStripMenuItem;
-        private Custom_Controls.ShowCountriesList showCountriesList1;
+        private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem applicationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem driversToolStripMenuItem;
     }
 }
 

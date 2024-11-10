@@ -61,16 +61,16 @@
     <Compile Include="AddNewPerson.Designer.cs">
       <DependentUpon>AddNewPerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom Controls\AddNewPerson.cs">
+    <Compile Include="User Controls\AddNewPersonCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom Controls\AddNewPerson.Designer.cs">
-      <DependentUpon>AddNewPerson.cs</DependentUpon>
+    <Compile Include="User Controls\AddNewPersonCard.Designer.cs">
+      <DependentUpon>AddNewPersonCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom Controls\ShowCountriesList.cs">
+    <Compile Include="User Controls\ShowCountriesList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom Controls\ShowCountriesList.Designer.cs">
+    <Compile Include="User Controls\ShowCountriesList.Designer.cs">
       <DependentUpon>ShowCountriesList.cs</DependentUpon>
     </Compile>
     <Compile Include="MainScreen.cs">
@@ -79,8 +79,19 @@
     <Compile Include="MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagePeople.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagePeople.Designer.cs">
+      <DependentUpon>ManagePeople.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ShowPeople.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,24 +101,23 @@
     <EmbeddedResource Include="AddNewPerson.resx">
       <DependentUpon>AddNewPerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom Controls\AddNewPerson.resx">
-      <DependentUpon>AddNewPerson.cs</DependentUpon>
+    <EmbeddedResource Include="User Controls\AddNewPersonCard.resx">
+      <DependentUpon>AddNewPersonCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom Controls\ShowCountriesList.resx">
+    <EmbeddedResource Include="User Controls\ShowCountriesList.resx">
       <DependentUpon>ShowCountriesList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManagePeople.resx">
+      <DependentUpon>ManagePeople.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="ShowPeople.resx">
       <DependentUpon>ShowPeople.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,6 +139,24 @@
       <Project>{61bf873f-6a7c-404f-a919-28a81bbbf1f6}</Project>
       <Name>BL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\People.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Female User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Male User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\DVLD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Add\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

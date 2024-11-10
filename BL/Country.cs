@@ -40,6 +40,7 @@ namespace BL
         // TODO
         //
         // This function must update the combo box based on the text you enter, 
+        // Current State, not finished 
         public static Country Find(string countryName)
         {
             int ID = -1;

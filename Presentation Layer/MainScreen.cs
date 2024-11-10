@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using BL;
 
@@ -14,24 +15,10 @@ namespace Presentation_Layer
             FillComboBox();
         }
 
-        private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addNewPersonToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            AddNewPerson addNew = new AddNewPerson();
-            addNew.MdiParent = this;
-            addNew.Show();
-
-        }
 
         private void showAllPeopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form ShowAllPeople = new Form();
-            ShowAllPeople.MdiParent = this;
-            ShowAllPeople.Show();
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -44,6 +31,45 @@ namespace Presentation_Layer
             
         }
 
+        private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form ShowAll = new ManagePeople();
+            ShowAll.MdiParent = this;
 
+            ShowAll.Show();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            menuStrip1.Show();
+        }
+
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Coming Soon");
+        }
+
+        private void applicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Coming Soon");
+
+        }
+
+        private void testsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Coming Soon");
+
+        }
+
+        private void driversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Coming Soon");
+
+        }
     }
 }

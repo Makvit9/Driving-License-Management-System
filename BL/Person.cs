@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data;
 using System.Net;
+using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 using System.Security.Policy;
 using DAL;
 
@@ -8,24 +11,29 @@ namespace BL
 {
     public class Person
     {
-        enum enMode { Addnew =  1, Update = 2};
+       public enum enMode { Addnew =  0, Update = 1};
 
-
-        private string FirstName { get; }
-        private string SecondName { get; }
+        public int PersonID { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
     
-        private string ThirdName { get; }
-        private string LastName { get; }
-        private string NationalNumber { get; }
+        public string ThirdName { get; set; }
+        public string LastName { get;set; }
+        public string NationalNumber { get;set; }
 
-        private DateTime DateOfBirth { get; }
-        private byte Gender { get; }
+        public DateTime DateOfBirth { get;set; }
+        public char Gender { get;set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string Nationality { get; }
-        public string Address { get; }
+        public int CountryID { get; set; }
+        public string Address { get; set; }
 
-        Person()
+        public string ImagePath { get; set; }
+
+        public enMode Mode = enMode.Addnew;
+          
+        
+        public Person()
         {
             FirstName = "";
             SecondName = "";
@@ -33,16 +41,17 @@ namespace BL
             LastName = "";
             NationalNumber ="" ;
             DateOfBirth = DateTime.Now;
-            Gender = 0;
+            Gender = ' ';
             Phone = "";
             Email = "";
-            Nationality = "";
+            CountryID = -1;
             Address = "";
+            Mode = enMode.Addnew;
         }
 
-        Person(string firstname, string secondname, string thirdname, string finalname,
-            string nationalNumber, DateTime dateofbirth, byte gender, string phone,
-            string email, string nationality, string address)
+        public Person(string firstname, string secondname, string thirdname, string finalname,
+            string nationalNumber, DateTime dateofbirth, char gender, string phone,
+            string email, int countryId, string address)
         {
             FirstName = firstname;
             SecondName = secondname;
@@ -53,11 +62,91 @@ namespace BL
             Gender = gender;
             Phone = phone;
             Email = email;
-            Nationality = nationality;
+            CountryID = countryId;
             Address = address;
+
+            Mode = enMode.Update;
+
+        }
+        
+        
+        public static DataTable GetAllPeople()
+        {
+            return PersonDAL.GetAllPeople();
+        }
+        
+        
+        
+        private bool _AddNewPerson()
+        {
+                this.PersonID = PersonDAL.AddNewPerson(this.FirstName, this.SecondName,
+                this.ThirdName, this.LastName, this.NationalNumber, this.DateOfBirth,
+                this.Gender, this.Phone, this.Email, this.CountryID,
+                this.Address, this.ImagePath);
+
+            return (this.PersonID != -1);
+        }
+
+        public static Person Find(int PersonID)
+        {
+            string firstname = "", secondname = "", thirdname = "", lastname = "", nationalnumber = "";
+            string phone = "", email = "", picturepath = "",address = "";
+            int countryid = -1;
+            char gender = ' ';
+            DateTime dateofbirth = DateTime.Now;
+
+            if (PersonDAL.GetPersonInfoByID(PersonID, ref firstname, ref secondname, ref thirdname,
+                ref lastname, ref nationalnumber, ref dateofbirth,
+                ref gender, ref phone, ref email, ref countryid,
+                ref address, ref picturepath))
+
+                return new Person(firstname, secondname, thirdname, lastname, nationalnumber, dateofbirth
+                    , gender, phone, email, countryid, address);
+
+
+
+            return null;        
         }
 
 
+        public bool Save()
+        {
+            switch (Mode)
+            {
+                case enMode.Addnew:
+                    if (_AddNewPerson())
+                    {
 
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case enMode.Update:
+                    break;
+                    //return _UpdateContact();
+
+            }
+
+
+
+
+            return false;
+        }
+
+
+        public static bool IsPersonExist(string NationalNumber)
+        {
+            return PersonDAL.IsPersonExist(NationalNumber);
+        }
+
+        public static bool DeletePerson(int PersonID)
+        {
+
+            return PersonDAL.RemovePerson(PersonID);
+        }
     }
 }
