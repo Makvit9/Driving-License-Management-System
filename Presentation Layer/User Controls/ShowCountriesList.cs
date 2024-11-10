@@ -13,10 +13,23 @@ namespace Presentation_Layer.Custom_Controls
 {
     public partial class ShowCountriesList : UserControl
     {
+
+        public event Action<int> EvIndexSelected;
+
+        protected virtual void IndexSelected(int Index)
+        {
+            Action<int> pass = EvIndexSelected;
+            if (EvIndexSelected != null)
+            {
+                pass(Index);
+            }
+        }
+
         public ShowCountriesList()
         {
             InitializeComponent();
             FillComboBox();
+           
         }
 
         private void FillComboBox()
@@ -34,12 +47,17 @@ namespace Presentation_Layer.Custom_Controls
 
                 comboBox1.Items.Add(country);
             }
-
+            comboBox1.SelectedIndex = 114;
         }
-
+        
         private void comboBox1_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void comboBox1_Leave(object sender, EventArgs e)
+        {
+            EvIndexSelected(comboBox1.SelectedIndex + 1);
         }
     }
 }

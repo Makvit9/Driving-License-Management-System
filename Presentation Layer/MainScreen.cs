@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using BL;
 
@@ -41,6 +42,34 @@ namespace Presentation_Layer
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             menuStrip1.Show();
+        }
+
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Coming Soon");
+        }
+
+        private void applicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Coming Soon");
+
+        }
+
+        private void testsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Coming Soon");
+
+        }
+
+        private void driversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Coming Soon");
+
         }
     }
 }
