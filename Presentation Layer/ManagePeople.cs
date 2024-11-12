@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BL;
 using Syncfusion.Windows.Forms.Interop;
+using Syncfusion.Windows.Forms.Tools;
 namespace Presentation_Layer
 {
     public partial class ManagePeople : Form
@@ -37,20 +38,22 @@ namespace Presentation_Layer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form AddNew = new AddNewPerson(-1);
+            Form AddNew = new AddEditPerson(-1);
             AddNew.ShowDialog();
             showAllPeople();
         }
 
         private void aToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form ShowInfo = new ShowPersonInfo((int)dataGridView1.CurrentRow.Cells[0].Value);
+            ShowInfo.ShowDialog();
         }
 
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form Add = new AddNewPerson(-1);
+            Form Add = new AddEditPerson(-1);
             Add.Show();
+            showAllPeople();
         }
 
         private void dataGridView1_MouseUp(object sender, MouseEventArgs e)
@@ -114,7 +117,7 @@ namespace Presentation_Layer
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form EditPerson = new AddNewPerson((int)dataGridView1.CurrentRow.Cells[0].Value);
+            Form EditPerson = new AddEditPerson((int)dataGridView1.CurrentRow.Cells[0].Value);
             EditPerson.ShowDialog();
         }
     }

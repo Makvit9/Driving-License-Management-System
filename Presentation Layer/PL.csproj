@@ -55,17 +55,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEditPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditPerson.Designer.cs">
+      <DependentUpon>AddEditPerson.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddNewPerson.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddNewPerson.Designer.cs">
       <DependentUpon>AddNewPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShowPersonInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowPersonInfo.Designer.cs">
+      <DependentUpon>ShowPersonInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Controls\AddNewPersonCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="User Controls\AddNewPersonCard.Designer.cs">
       <DependentUpon>AddNewPersonCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\PersonInfoCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\PersonInfoCard.Designer.cs">
+      <DependentUpon>PersonInfoCard.cs</DependentUpon>
     </Compile>
     <Compile Include="User Controls\ShowCountriesList.cs">
       <SubType>UserControl</SubType>
@@ -92,17 +110,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ShowPeople.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ShowPeople.Designer.cs">
-      <DependentUpon>ShowPeople.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="AddEditPerson.resx">
+      <DependentUpon>AddEditPerson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddNewPerson.resx">
       <DependentUpon>AddNewPerson.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShowPersonInfo.resx">
+      <DependentUpon>ShowPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Controls\AddNewPersonCard.resx">
       <DependentUpon>AddNewPersonCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\PersonInfoCard.resx">
+      <DependentUpon>PersonInfoCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\ShowCountriesList.resx">
       <DependentUpon>ShowCountriesList.cs</DependentUpon>
@@ -117,9 +138,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ShowPeople.resx">
-      <DependentUpon>ShowPeople.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

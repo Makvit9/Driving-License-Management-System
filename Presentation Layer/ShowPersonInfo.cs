@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Presentation_Layer
 {
-    public partial class ShowPeople : Form
+    public partial class ShowPersonInfo : Form
     {
-        public ShowPeople()
+        public ShowPersonInfo(int PersonID)
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
