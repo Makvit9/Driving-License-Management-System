@@ -79,6 +79,12 @@
     <Compile Include="User Controls\AddNewPersonCard.Designer.cs">
       <DependentUpon>AddNewPersonCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Controls\FindPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Controls\FindPerson.Designer.cs">
+      <DependentUpon>FindPerson.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Controls\PersonInfoCard.cs">
       <SubType>UserControl</SubType>
     </Compile>

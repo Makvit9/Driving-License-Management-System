@@ -23,16 +23,25 @@ namespace Presentation_Layer
 
         private void showAllPeople()
         {
+            // This needs to be changed. No need for the picture path to be displayed 
             dataGridView1.DataSource = Person.GetAllPeople();
             dataGridView1.MouseUp += dataGridView1_MouseUp;
         }
 
-       
+       private void PrepareFilter()
+        {
+            
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                ComboFilter.Items.Add(column.Name);
+            }
+        }
 
         private void Manage_People_Load(object sender, EventArgs e)
         {
             showAllPeople();
-            ComboFilter.SelectedIndex = 0;
+            PrepareFilter();
+
 
         }
 
@@ -90,28 +99,13 @@ namespace Presentation_Layer
             }
         }
         enum enFilterOptions { PersonID = 0, FirstName = 1, NationalNumber = 2};
-       
-        
+
+        enFilterOptions Option;
         
         // This is activated when you change the index 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch ((enFilterOptions)ComboFilter.SelectedIndex)
-            {
-                case enFilterOptions.PersonID:
-                    dataGridView1.Sort(dataGridView1["PersonID", 0].OwningColumn, ListSortDirection.Ascending);
-                    break;
-
-                case enFilterOptions.FirstName:
-                    dataGridView1.Sort(dataGridView1["FirstName", 0].OwningColumn, ListSortDirection.Ascending);
-
-                    break;
-
-                case enFilterOptions.NationalNumber:
-                    dataGridView1.Sort(dataGridView1["NationalNumber", 0].OwningColumn, ListSortDirection.Ascending);
-
-                    break;
-            }
+            Option = (enFilterOptions)ComboFilter.SelectedIndex;
 
         }
 
@@ -119,6 +113,27 @@ namespace Presentation_Layer
         {
             Form EditPerson = new AddEditPerson((int)dataGridView1.CurrentRow.Cells[0].Value);
             EditPerson.ShowDialog();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            switch (Option)
+            {
+                case enFilterOptions.PersonID:
+                    //dataGridView1.Sort(dataGridView1["PersonID", 0].OwningColumn, ListSortDirection.Ascending);
+                    
+                    break;
+
+                case enFilterOptions.FirstName:
+                    //dataGridView1.Sort(dataGridView1["FirstName", 0].OwningColumn, ListSortDirection.Ascending);
+
+                    break;
+
+                case enFilterOptions.NationalNumber:
+                    //dataGridView1.Sort(dataGridView1["NationalNumber", 0].OwningColumn, ListSortDirection.Ascending);
+
+                    break;
+            }
         }
     }
 }
