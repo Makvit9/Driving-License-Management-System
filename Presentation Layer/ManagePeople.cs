@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BL;
 using Syncfusion.Windows.Forms.Interop;
+
 using Syncfusion.Windows.Forms.Tools;
+
 namespace Presentation_Layer
 {
     public partial class ManagePeople : Form
@@ -23,10 +25,13 @@ namespace Presentation_Layer
 
         private void showAllPeople()
         {
+
             // This needs to be changed. No need for the picture path to be displayed 
+
             dataGridView1.DataSource = Person.GetAllPeople();
             dataGridView1.MouseUp += dataGridView1_MouseUp;
         }
+
 
        private void PrepareFilter()
         {
@@ -37,32 +42,50 @@ namespace Presentation_Layer
             }
         }
 
+       
+
+
         private void Manage_People_Load(object sender, EventArgs e)
         {
             showAllPeople();
+
             PrepareFilter();
+
+
+            ComboFilter.SelectedIndex = 0;
 
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             Form AddNew = new AddEditPerson(-1);
+
+            Form AddNew = new AddNewPerson(-1);
+
             AddNew.ShowDialog();
             showAllPeople();
         }
 
         private void aToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             Form ShowInfo = new ShowPersonInfo((int)dataGridView1.CurrentRow.Cells[0].Value);
             ShowInfo.ShowDialog();
+
         }
 
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             Form Add = new AddEditPerson(-1);
             Add.Show();
             showAllPeople();
+
+            Form Add = new AddNewPerson(-1);
+            Add.Show();
+
         }
 
         private void dataGridView1_MouseUp(object sender, MouseEventArgs e)
@@ -101,6 +124,8 @@ namespace Presentation_Layer
         enum enFilterOptions { PersonID = 0, FirstName = 1, NationalNumber = 2};
 
         enFilterOptions Option;
+       
+        
         
         // This is activated when you change the index 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,6 +152,15 @@ namespace Presentation_Layer
                 case enFilterOptions.FirstName:
                     //dataGridView1.Sort(dataGridView1["FirstName", 0].OwningColumn, ListSortDirection.Ascending);
 
+            switch ((enFilterOptions)ComboFilter.SelectedIndex)
+            {
+                case enFilterOptions.PersonID:
+                    dataGridView1.Sort(dataGridView1["PersonID", 0].OwningColumn, ListSortDirection.Ascending);
+                    break;
+
+                case enFilterOptions.FirstName:
+                    dataGridView1.Sort(dataGridView1["FirstName", 0].OwningColumn, ListSortDirection.Ascending);
+
                     break;
 
                 case enFilterOptions.NationalNumber:
@@ -134,6 +168,19 @@ namespace Presentation_Layer
 
                     break;
             }
+
+                    dataGridView1.Sort(dataGridView1["NationalNumber", 0].OwningColumn, ListSortDirection.Ascending);
+
+                    break;
+            }
+
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form EditPerson = new AddNewPerson((int)dataGridView1.CurrentRow.Cells[0].Value);
+            EditPerson.ShowDialog();
+
         }
     }
 }

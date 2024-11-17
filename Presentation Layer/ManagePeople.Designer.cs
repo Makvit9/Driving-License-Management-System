@@ -39,7 +39,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.ComboFilter = new System.Windows.Forms.ComboBox();
+
             this.textBox1 = new System.Windows.Forms.TextBox();
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -129,6 +131,7 @@
             // 
             // ComboFilter
             // 
+
             this.ComboFilter.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ComboFilter.FormattingEnabled = true;
             this.ComboFilter.Location = new System.Drawing.Point(71, 123);
@@ -145,13 +148,30 @@
             this.textBox1.TabIndex = 5;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+
+            this.ComboFilter.FormattingEnabled = true;
+            this.ComboFilter.Items.AddRange(new object[] {
+            "Person ID",
+            "Name",
+            "National Number"});
+            this.ComboFilter.Location = new System.Drawing.Point(71, 123);
+            this.ComboFilter.Name = "ComboFilter";
+            this.ComboFilter.Size = new System.Drawing.Size(185, 21);
+            this.ComboFilter.TabIndex = 4;
+            this.ComboFilter.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+
             // ManagePeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1064, 681);
             this.Controls.Add(this.textBox1);
+
+            this.ClientSize = new System.Drawing.Size(1064, 681);
+
             this.Controls.Add(this.ComboFilter);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -182,6 +202,8 @@
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox ComboFilter;
+
         private System.Windows.Forms.TextBox textBox1;
+
     }
 }
