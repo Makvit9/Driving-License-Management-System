@@ -39,6 +39,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.ComboFilter = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -51,11 +52,12 @@
             this.dataGridView1.CausesValidation = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 150);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 168);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1045, 513);
+            this.dataGridView1.Size = new System.Drawing.Size(1064, 513);
             this.dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -128,22 +130,29 @@
             // 
             // ComboFilter
             // 
+            this.ComboFilter.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ComboFilter.FormattingEnabled = true;
-            this.ComboFilter.Items.AddRange(new object[] {
-            "Person ID",
-            "Name",
-            "National Number"});
             this.ComboFilter.Location = new System.Drawing.Point(71, 123);
             this.ComboFilter.Name = "ComboFilter";
-            this.ComboFilter.Size = new System.Drawing.Size(185, 21);
+            this.ComboFilter.Size = new System.Drawing.Size(134, 21);
             this.ComboFilter.TabIndex = 4;
-            this.ComboFilter.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(222, 123);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(181, 20);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // ManagePeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ComboFilter);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -174,5 +183,6 @@
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox ComboFilter;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

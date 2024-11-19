@@ -55,22 +55,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddNewPerson.cs">
+    <Compile Include="People Screens\AddEditPerson.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddNewPerson.Designer.cs">
-      <DependentUpon>AddNewPerson.cs</DependentUpon>
+    <Compile Include="People Screens\AddEditPerson.Designer.cs">
+      <DependentUpon>AddEditPerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Controls\AddNewPersonCard.cs">
+    <Compile Include="People Screens\ManagePeople.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People Screens\ManagePeople.Designer.cs">
+      <DependentUpon>ManagePeople.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People Screens\ShowPersonInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People Screens\ShowPersonInfo.Designer.cs">
+      <DependentUpon>ShowPersonInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People Screens\User Controls\PersonInfoCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User Controls\AddNewPersonCard.Designer.cs">
-      <DependentUpon>AddNewPersonCard.cs</DependentUpon>
+    <Compile Include="People Screens\User Controls\PersonInfoCard.Designer.cs">
+      <DependentUpon>PersonInfoCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Controls\ShowCountriesList.cs">
+    <Compile Include="People Screens\User Controls\ShowCountriesList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User Controls\ShowCountriesList.Designer.cs">
+    <Compile Include="People Screens\User Controls\ShowCountriesList.Designer.cs">
       <DependentUpon>ShowCountriesList.cs</DependentUpon>
     </Compile>
     <Compile Include="MainScreen.cs">
@@ -78,12 +90,6 @@
     </Compile>
     <Compile Include="MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ManagePeople.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ManagePeople.Designer.cs">
-      <DependentUpon>ManagePeople.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,20 +104,23 @@
     <Compile Include="ShowPeople.Designer.cs">
       <DependentUpon>ShowPeople.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddNewPerson.resx">
-      <DependentUpon>AddNewPerson.cs</DependentUpon>
+    <EmbeddedResource Include="People Screens\AddEditPerson.resx">
+      <DependentUpon>AddEditPerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Controls\AddNewPersonCard.resx">
-      <DependentUpon>AddNewPersonCard.cs</DependentUpon>
+    <EmbeddedResource Include="People Screens\ManagePeople.resx">
+      <DependentUpon>ManagePeople.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Controls\ShowCountriesList.resx">
+    <EmbeddedResource Include="People Screens\ShowPersonInfo.resx">
+      <DependentUpon>ShowPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People Screens\User Controls\PersonInfoCard.resx">
+      <DependentUpon>PersonInfoCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People Screens\User Controls\ShowCountriesList.resx">
       <DependentUpon>ShowCountriesList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ManagePeople.resx">
-      <DependentUpon>ManagePeople.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

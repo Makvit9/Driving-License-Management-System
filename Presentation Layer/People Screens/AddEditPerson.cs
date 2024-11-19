@@ -1,17 +1,42 @@
 ﻿using BL;
+using Presentation_Layer.Properties;
 using System;
 using System.ComponentModel;
-using System.Windows.Forms;
-using System.IO;
-using Presentation_Layer.Properties;
 using System.Drawing;
+using System.IO;
 using System.Text.RegularExpressions;
-using System.Runtime.Remoting;
+using System.Windows.Forms;
 
-namespace Presentation_Layer.Custom_Controls
+namespace Presentation_Layer
 {
-    public partial class AddNewPersonCard : UserControl
+    public partial class AddEditPerson : Form
     {
+        public enum enmode { AddNew = 0, Update = 1 };
+        private enmode _mode;
+        int _PersonID;
+        Person _Person1;
+        public AddEditPerson()
+        {
+            InitializeComponent();
+        }
+
+        public AddEditPerson(int PersonID)
+        {
+            InitializeComponent();
+
+
+            _PersonID = PersonID;
+            if (PersonID == -1)
+            {
+                _mode = enmode.AddNew;
+            }
+            else
+            {
+                _mode = enmode.Update;
+                linklblRemove.Visible = true;
+            }
+
+        }
 
         public delegate void CloseTheForm();
         public event CloseTheForm Current;
@@ -29,13 +54,8 @@ namespace Presentation_Layer.Custom_Controls
                 pass(person);
             }
         }
-        public AddNewPersonCard()
-        {
-            InitializeComponent();
 
-
-        }
-        public AddNewPersonCard(Person person)
+        public AddEditPerson(Person person)
         {
             ActivateEditMode(person);
         }
@@ -49,20 +69,52 @@ namespace Presentation_Layer.Custom_Controls
             Phonetxt.Text = person.Phone;
             Emailtxt.Text = person.Email;
             NationalNotxt.Text = person.NationalNumber;
+            ProfilePic.ImageLocation = person.ImagePath;
         }
         private void AddNewPersonCard_Load(object sender, EventArgs e)
         {
             //Default Profile Picture
             ProfilePic.Image = SetProfilePicture(Resources.user);
-
             //Default Date
             DateOfBirthtxt.MaxDate = MaximumDate();
             DateOfBirthtxt.MinDate = MinimumDate();
 
+            if (_mode == enmode.AddNew)
+            {
+                lblMode.Text = "Add New Person";
+                _Person1 = new Person();
+                return;
+            }
+
+            _Person1 = Person.Find(_PersonID);
+
+            if (_Person1 == null)
+            {
+                MessageBox.Show($"This form will be closed because there's no Person with ID: {_PersonID} ");
+                this.Close();
+                return;
+            }
+
+            lblMode.Text = $"Edit Person ";
+            lblPersonID.Text = _PersonID.ToString();
+
+            _PerpareForEdit();
 
 
 
+        }
 
+        private void _PerpareForEdit()
+        {
+            FirstNametxt.Text = _Person1.FirstName;
+            SecondNametxt.Text = _Person1.SecondName;
+            ThirdNametxt.Text = _Person1.ThirdName;
+            LastNametxt.Text = _Person1.LastName;
+            DateOfBirthtxt.Value = _Person1.DateOfBirth;
+            Phonetxt.Text = _Person1.Phone;
+            Emailtxt.Text = _Person1.Email;
+            NationalNotxt.Text = _Person1.NationalNumber;
+            ProfilePic.ImageLocation = _Person1.ImagePath;
         }
 
         private Image SetProfilePicture(Bitmap Picture)
@@ -108,18 +160,17 @@ namespace Presentation_Layer.Custom_Controls
 
             if (ProfilePicturePicker.ShowDialog() == DialogResult.OK)
             {
-                SaveImage(ProfilePicturePicker.FileName);
+                ProfilePic.ImageLocation = SaveImage(ProfilePicturePicker.FileName);
 
             }
-            ProfilePic.ImageLocation = ProfilePicturePicker.FileName;
-
+          
         }
 
-        public void SaveImage(string Imagepath)
+        public string SaveImage(string Imagepath)
         {
 
             PictureName = Guid.NewGuid();
-            //TODO: Needs to be changed to be more generic
+          
             string NewPath = $"C:\\Pictures";
             string NewPicturePath = $"{NewPath}\\{PictureName}.jpg";
 
@@ -129,16 +180,20 @@ namespace Presentation_Layer.Custom_Controls
             }
             File.Copy(Imagepath, NewPicturePath);
 
-            Imagepath = NewPicturePath;
+
+
+            linklblRemove.Visible = true;
+            return NewPicturePath;
+
+            
 
         }
 
 
         private void createNewPerson(char gender)
         {
-            if (EvPassPersonInfo != null)
-            {
-                EvPassPersonInfo(new Person
+           
+                Person p = new Person
 
                 {
                     FirstName = FirstNametxt.Text,
@@ -151,15 +206,17 @@ namespace Presentation_Layer.Custom_Controls
                     Phone = Phonetxt.Text,
                     Email = Emailtxt.Text,
                     CountryID = Convert.ToInt32(CountriesList.Tag),
-                    Address = AddressRtxt.Text
-                }
-                );
-            }
+                    Address = AddressRtxt.Text,
+                    ImagePath = ProfilePic.ImageLocation
+                };
+                p.Save();
+            
         }
+
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-
-
+            // Here should do it differently. like the 
 
             if (btnMale.Checked)
             {
@@ -184,19 +241,17 @@ namespace Presentation_Layer.Custom_Controls
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Current?.Invoke();
+            this.Close();
         }
 
-        private bool isTheCellEmpty(TextBox txt)
-        {
-            return (txt.Text == "");
-        }
+        private bool isTheCellEmpty(TextBox txt) => txt.Text == "";
+
 
 
 
         private void EmptyCellValidation(object sender, CancelEventArgs e)
         {
-            if (isTheCellEmpty((TextBox)sender))
+            if (((TextBox)sender).Equals(""))
             {
                 e.Cancel = true;
                 errEmpty.SetError((TextBox)sender, "This can't be empty");
@@ -246,10 +301,9 @@ namespace Presentation_Layer.Custom_Controls
         }
 
 
-        private bool checkIfMatched(TextBox Number)
-        {
-            return Regex.IsMatch(Number.Text, "[^0-9]");
-        }
+        private bool checkIfMatched(TextBox Number) => Regex.IsMatch(Number.Text, "[^0-9]");
+
+
 
         private void NumbersOnlyValidator(object sender, EventArgs e)
         {
@@ -263,8 +317,33 @@ namespace Presentation_Layer.Custom_Controls
             }
         }
 
+        private void CountriesList_Load(object sender, EventArgs e)
+        {
+           
+        }
 
+        private void CountriesList_EvIndexSelected_1(int obj)
+        {
+            CountriesList.Tag = obj.ToString();
+        }
 
-
+        private void linklblRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (MessageBox.Show("This picture will be deleted. Are you sure? ", "Remove Picture", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                File.Delete(ProfilePic.ImageLocation);
+                ProfilePic.Image = SetProfilePicture(Resources.Male_User);
+            }
+        }
     }
 }
+
+
+
+
+// TODO (Add/Edit Screen) should be done ASAP:
+// 1- Validation on the Address (Not empty)
+// 2- resolve bugs when removing the profile picture, and after setting a profile picture  
+// 3- Update should work 
+// 4- Validation currently is turned off on all the textboxes, should be also fixed 
+

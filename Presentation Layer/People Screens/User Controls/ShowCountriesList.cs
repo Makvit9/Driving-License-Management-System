@@ -57,7 +57,7 @@ namespace Presentation_Layer.Custom_Controls
 
         private void comboBox1_Leave(object sender, EventArgs e)
         {
-            EvIndexSelected(comboBox1.SelectedIndex + 1);
+             EvIndexSelected(comboBox1.SelectedIndex + 1);
         }
     }
 }
