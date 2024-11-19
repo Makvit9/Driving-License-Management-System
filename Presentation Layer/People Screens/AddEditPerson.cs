@@ -264,38 +264,20 @@ namespace Presentation_Layer
 
         private void EmptyCellValidation(object sender, CancelEventArgs e)
         {
-            if (((TextBox)sender).Equals(""))
+            if (((TextBox)sender).Text == "")
             {
                 e.Cancel = true;
                 errEmpty.SetError((TextBox)sender, "This can't be empty");
             }
-            else
-            {
-                //(TextBox)sender.Validated += FirstNametxt_Validated;
-
-            }
+          
 
 
         }
 
         private void ClearError(object sender, EventArgs e)
         {
-            //    errEmpty.SetError(this, "");
             errEmpty.Clear();
-        }
-
-        private void AddressRtxt_Validating(object sender, CancelEventArgs e)
-        {
-            //if ( (RichTextBox)sender == "")
-            //{
-            //    e.Cancel = true;
-            //    errEmpty.SetError((RichTextBox)sender, "This can't be empty");
-            //}
-            //else
-            //{
-            //    //(TextBox)sender.Validated += FirstNametxt_Validated;
-
-            //}
+            
         }
 
 
@@ -305,6 +287,9 @@ namespace Presentation_Layer
             Regex rgx = new Regex(@"^[A-Z0-9a-z._%+-]{2,63}@(?:[A-Za-z0-9-]{1,125}\.)+[A-Za-z]{2,63}$");
 
             return rgx.IsMatch(EmailAddress);
+            
+               
+            
 
         }
 
@@ -346,6 +331,29 @@ namespace Presentation_Layer
             {
                 File.Delete(ProfilePic.ImageLocation);
                 ProfilePic.Image = SetProfilePicture(Resources.Male_User);
+                linklblRemove.Visible = false;
+            }
+        }
+
+        private void AddressRtxt_Leave(object sender, EventArgs e)
+        {
+            if (AddressRtxt.Text == "")
+            {
+                
+                errEmpty.SetError(AddressRtxt, "This can't be empty");
+               
+            }
+        }
+
+        private void Emailtxt_TextChanged(object sender, EventArgs e)
+        {
+            if (!IsEmailValid(Emailtxt.Text))
+            {
+                errInvalidEmail.SetError(Emailtxt, "Email is not valid");
+            }
+            else
+            {
+                errInvalidEmail.Clear();
             }
         }
     }
@@ -355,8 +363,10 @@ namespace Presentation_Layer
 
 
 // TODO (Add/Edit Screen) should be done ASAP:
-// 1- Validation on the Address (Not empty)
-// 2- resolve bugs when removing the profile picture, and after setting a profile picture  
+// 1- Validation currently is turned off on all the textboxes, should be also fixed 
+// 2- resolve bugs when removing the profile picture, and after setting a profile picture 
+//      Now it's working, but it should change between the male and female 
 // 3- Update should work 
-// 4- Validation currently is turned off on all the textboxes, should be also fixed 
+// * Validation on the Address (Not empty) (DONE)
+// * Email Validation (DONE)
 

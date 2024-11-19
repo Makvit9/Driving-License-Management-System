@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.FirstNametxt = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linklblRemove = new System.Windows.Forms.LinkLabel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.ProfilePic = new System.Windows.Forms.PictureBox();
@@ -65,7 +66,6 @@
             this.errEmpty = new System.Windows.Forms.ErrorProvider(this.components);
             this.errInvalidEmail = new System.Windows.Forms.ErrorProvider(this.components);
             this.errNumbersOnly = new System.Windows.Forms.ErrorProvider(this.components);
-            this.linklblRemove = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errEmpty)).BeginInit();
@@ -141,6 +141,19 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
+            // linklblRemove
+            // 
+            this.linklblRemove.AutoSize = true;
+            this.linklblRemove.Location = new System.Drawing.Point(649, 167);
+            this.linklblRemove.Name = "linklblRemove";
+            this.linklblRemove.Size = new System.Drawing.Size(47, 13);
+            this.linklblRemove.TabIndex = 50;
+            this.linklblRemove.TabStop = true;
+            this.linklblRemove.Tag = "";
+            this.linklblRemove.Text = "Remove";
+            this.linklblRemove.Visible = false;
+            this.linklblRemove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklblRemove_LinkClicked);
+            // 
             // btnExit
             // 
             this.btnExit.Location = new System.Drawing.Point(270, 448);
@@ -191,6 +204,7 @@
             this.AddressRtxt.Size = new System.Drawing.Size(392, 207);
             this.AddressRtxt.TabIndex = 44;
             this.AddressRtxt.Text = "";
+            this.AddressRtxt.Leave += new System.EventHandler(this.AddressRtxt_Leave);
             // 
             // label12
             // 
@@ -277,6 +291,7 @@
             this.Emailtxt.Name = "Emailtxt";
             this.Emailtxt.Size = new System.Drawing.Size(195, 20);
             this.Emailtxt.TabIndex = 39;
+            this.Emailtxt.TextChanged += new System.EventHandler(this.Emailtxt_TextChanged);
             this.Emailtxt.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
             this.Emailtxt.Validated += new System.EventHandler(this.ClearError);
             // 
@@ -447,19 +462,6 @@
             // errNumbersOnly
             // 
             this.errNumbersOnly.ContainerControl = this;
-            // 
-            // linklblRemove
-            // 
-            this.linklblRemove.AutoSize = true;
-            this.linklblRemove.Location = new System.Drawing.Point(649, 167);
-            this.linklblRemove.Name = "linklblRemove";
-            this.linklblRemove.Size = new System.Drawing.Size(47, 13);
-            this.linklblRemove.TabIndex = 50;
-            this.linklblRemove.TabStop = true;
-            this.linklblRemove.Tag = "";
-            this.linklblRemove.Text = "Remove";
-            this.linklblRemove.Visible = false;
-            this.linklblRemove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklblRemove_LinkClicked);
             // 
             // AddEditPerson
             // 
