@@ -111,10 +111,21 @@ namespace Presentation_Layer
             ThirdNametxt.Text = _Person1.ThirdName;
             LastNametxt.Text = _Person1.LastName;
             DateOfBirthtxt.Value = _Person1.DateOfBirth;
+            _CheckGender(_Person1.Gender);
             Phonetxt.Text = _Person1.Phone;
             Emailtxt.Text = _Person1.Email;
             NationalNotxt.Text = _Person1.NationalNumber;
             ProfilePic.ImageLocation = _Person1.ImagePath;
+        }
+
+        private void _CheckGender(Char gender)
+        {
+            if (gender == 'M')
+                btnMale.Checked = true;
+            else
+                btnFemale.Checked = true;
+
+            
         }
 
         private Image SetProfilePicture(Bitmap Picture)
@@ -139,13 +150,15 @@ namespace Presentation_Layer
 
         private void btnMale_CheckedChanged(object sender, EventArgs e)
         {
+            if (ProfilePic.Image == Resources.user || ProfilePic.Image == Resources.Female_User)
             ProfilePic.Image = SetProfilePicture(Resources.Male_User);
 
         }
 
         private void btnFemale_CheckedChanged(object sender, EventArgs e)
         {
-            ProfilePic.Image = SetProfilePicture(Resources.Female_User);
+            if (ProfilePic.Image == Resources.user || ProfilePic.Image == Resources.Male_User)
+                ProfilePic.Image = SetProfilePicture(Resources.Female_User);
 
         }
 
@@ -329,7 +342,7 @@ namespace Presentation_Layer
 
         private void linklblRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (MessageBox.Show("This picture will be deleted. Are you sure? ", "Remove Picture", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("This picture will be removed. Are you sure? ", "Remove Picture", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 File.Delete(ProfilePic.ImageLocation);
                 ProfilePic.Image = SetProfilePicture(Resources.Male_User);

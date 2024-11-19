@@ -51,7 +51,7 @@ namespace BL
 
         public Person(string firstname, string secondname, string thirdname, string finalname,
             string nationalNumber, DateTime dateofbirth, char gender, string phone,
-            string email, int countryId, string address)
+            string email, int countryId, string address, string imagePath)
         {
             FirstName = firstname;
             SecondName = secondname;
@@ -64,7 +64,7 @@ namespace BL
             Email = email;
             CountryID = countryId;
             Address = address;
-
+            ImagePath = imagePath;
             Mode = enMode.Update;
 
         }
@@ -90,7 +90,7 @@ namespace BL
         public static Person Find(int PersonID)
         {
             string firstname = "", secondname = "", thirdname = "", lastname = "", nationalnumber = "";
-            string phone = "", email = "", picturepath = "",address = "";
+            string phone = "", email = "", imagePath = "",address = "";
             int countryid = -1;
             char gender = ' ';
             DateTime dateofbirth = DateTime.Now;
@@ -98,10 +98,10 @@ namespace BL
             if (PersonDAL.GetPersonInfoByID(PersonID, ref firstname, ref secondname, ref thirdname,
                 ref lastname, ref nationalnumber, ref dateofbirth,
                 ref gender, ref phone, ref email, ref countryid,
-                ref address, ref picturepath))
+                ref address, ref imagePath))
 
                 return new Person(firstname, secondname, thirdname, lastname, nationalnumber, dateofbirth
-                    , gender, phone, email, countryid, address);
+                    , gender, phone, email, countryid, address, imagePath);
 
 
 

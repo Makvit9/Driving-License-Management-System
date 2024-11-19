@@ -1,6 +1,7 @@
 ﻿using BL;
 using System;
 using System.Data;
+using System.IO;
 using System.Windows.Forms;
 namespace Presentation_Layer
 {
@@ -35,7 +36,6 @@ namespace Presentation_Layer
         {
             showAllPeople();
             PrepareFilter();
-
 
         }
 
@@ -85,15 +85,24 @@ namespace Presentation_Layer
         {
             if (MessageBox.Show($"Are you sure you want to delete person with ID= {dataGridView1.CurrentRow.Cells[0].Value}?", "Delete Person", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                DeleteImage(dataGridView1.CurrentRow.Cells[12].Value.ToString());
+                
                 if (Person.DeletePerson((int)dataGridView1.CurrentRow.Cells[0].Value))
                 {
+                    
                     MessageBox.Show("Person Deleted Successfully.");
                     showAllPeople();
                 }
             }
         }
 
-
+        private void DeleteImage(string Path)
+        {
+            if (Path != null)
+            {
+                File.Delete(Path);
+            }
+        }
 
         // This is activated when you change the index 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

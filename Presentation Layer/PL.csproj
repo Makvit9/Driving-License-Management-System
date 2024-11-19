@@ -98,12 +98,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ShowPeople.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ShowPeople.Designer.cs">
-      <DependentUpon>ShowPeople.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="People Screens\AddEditPerson.resx">
       <DependentUpon>AddEditPerson.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,9 +120,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ShowPeople.resx">
-      <DependentUpon>ShowPeople.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -31,9 +31,15 @@ namespace Presentation_Layer.User_Controls
         }
 
         public void PersonInfo(int PersonID) 
-        { 
+        {
 
-          
+            _SelectedPerson = Person.Find(PersonID);
+
+            if (_SelectedPerson != null)
+            {
+                _PersonID = PersonID;
+                _fillTheCard(PersonID);
+            }
 
         }
 
