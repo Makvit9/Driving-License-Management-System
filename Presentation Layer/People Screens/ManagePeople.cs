@@ -30,6 +30,9 @@ namespace Presentation_Layer
             {
                 ComboFilter.Items.Add(column.Name);
             }
+
+            ComboFilter.SelectedIndex = 0;
+            
         }
 
         private void Manage_People_Load(object sender, EventArgs e)
