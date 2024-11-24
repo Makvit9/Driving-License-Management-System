@@ -45,6 +45,7 @@
     <Compile Include="PersonDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ConnectionString.cs" />
+    <Compile Include="UserDAL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
