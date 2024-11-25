@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using BL;
 
+
 namespace Presentation_Layer
 {
     public partial class MainScreen : Form
@@ -37,6 +38,8 @@ namespace Presentation_Layer
             ShowAll.MdiParent = this;
 
             ShowAll.Show();
+            ShowAll.WindowState = FormWindowState.Maximized;
+
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -51,7 +54,11 @@ namespace Presentation_Layer
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Coming Soon");
+            Form ShowUsers = new Users_Screens.ManageUsers();
+            ShowUsers.MdiParent = this;
+
+            ShowUsers.Show();
+            ShowUsers.WindowState = FormWindowState.Maximized;
         }
 
         private void applicationsToolStripMenuItem_Click(object sender, EventArgs e)
