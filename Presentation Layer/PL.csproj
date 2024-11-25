@@ -98,6 +98,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Users Screens\AddEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users Screens\AddEditUser.Designer.cs">
+      <DependentUpon>AddEditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users Screens\ManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users Screens\ManageUsers.Designer.cs">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="People Screens\AddEditPerson.resx">
       <DependentUpon>AddEditPerson.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +132,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users Screens\ManageUsers.resx">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -155,8 +170,6 @@
   <ItemGroup>
     <None Include="Assets\DVLD.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Add\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
