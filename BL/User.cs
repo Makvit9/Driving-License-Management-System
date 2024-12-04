@@ -1,4 +1,7 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using BL.Settings;
+using System.Security.Cryptography;
 using DAL;
 namespace BL
 {
@@ -6,8 +9,26 @@ namespace BL
     {
         string Username;
         string Password;
+        byte[] Salt;
         bool IsActive;
         int PersonID;
+
+
+        static HashAlgorithmName HashName => HashAlgorithmName.SHA512;
+
+        public string HashPassword(string Password, out byte[] salt)
+        {
+            //create the salt and fill with random bits 
+            RandomNumberGenerator rnd = RandomNumberGenerator.Create();
+            salt = new byte[HashSettings.KEYSIZE];
+            rnd.GetBytes(salt);
+            //Salt done
+            var Hash = new Rfc2898DeriveBytes(Password, salt, HashSettings.ITERATIONS, HashName).GetBytes(HashSettings.KEYSIZE);
+
+
+            return Convert.ToBase64String(Hash);
+        }
+
 
         public User()
         {
@@ -27,12 +48,23 @@ namespace BL
 
 
         // Get All Users -- DONE
-        public DataTable GetAllUsers()
+        public static DataTable GetAllUsers()
         {
             return UserDAL.GetAllUsers();
         }
 
         //ADD User 
+
+        //Delete
+
+        //Update 
+
+        //Find User
+        public static bool FindUser(string Username, string Password)
+        {
+            return UserDAL.FindUser(Username, Password);
+        }
+
 
 
     }

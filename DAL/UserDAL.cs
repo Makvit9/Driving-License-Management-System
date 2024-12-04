@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
+using DAL.Settings;
 
 namespace DAL
 {
@@ -49,6 +46,41 @@ namespace DAL
             return dt;
         }
 
+
+        public static bool FindUser(string username, string password)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString.connectionString);
+
+            string Query = @"Select * from Users Where Username = @username and password = @password";
+
+            SqlCommand command = new SqlCommand(Query, connection);
+
+            command.Parameters.AddWithValue("username", username);
+            command.Parameters.AddWithValue("password", password);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+
+                    return true;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { connection.Close(); }
+
+
+
+            return false;
+        }
 
     }
 }
