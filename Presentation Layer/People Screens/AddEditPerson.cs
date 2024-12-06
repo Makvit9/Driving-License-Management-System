@@ -13,8 +13,11 @@ namespace Presentation_Layer
     {
         public enum enmode { AddNew = 0, Update = 1 };
         private enmode _mode;
+        Guid PictureName;
+        
         int _PersonID;
         Person _Person1;
+        
         public AddEditPerson()
         {
             InitializeComponent();
@@ -42,10 +45,11 @@ namespace Presentation_Layer
         public event CloseTheForm Current;
 
 
-
+        // This event handles invoking this Form and send the info back to the Grid 
         public event Action<Person> EvPassPersonInfo;
 
-        Guid PictureName;
+        
+        
         protected virtual void PassPersonInfo(Person person)
         {
             Action<Person> pass = EvPassPersonInfo;
@@ -73,7 +77,7 @@ namespace Presentation_Layer
         }
         private void AddNewPersonCard_Load(object sender, EventArgs e)
         {
-            //Default Profile Picture
+            //Default Profile Picture (needs to be fixed) 
             ProfilePic.Image = SetProfilePicture(Resources.user);
             //Default Date
             DateOfBirthtxt.MaxDate = MaximumDate();
@@ -100,7 +104,7 @@ namespace Presentation_Layer
 
             _PerpareForEdit();
 
-
+            //Here the edit is not working properly, it should make full update instead of resetting the whole thing 
 
         }
 
