@@ -1,4 +1,5 @@
 ﻿using BL;
+using Syncfusion.Windows.Forms.Interop;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,14 +21,19 @@ namespace Presentation_Layer.Users_Screens
 
         private int id;
         DataTable dt1;
-        private void showAllPeople()
+        private void showAllUsers()
         {
-            // This needs to be changed. No need for the picture path to be displayed 
+            
             dt1 = User.GetAllUsers();
 
             dataGridView1.DataSource = dt1;
             dataGridView1.MouseUp += DataGridView1_MouseUp;
         }
+
+
+
+
+
 
         private void DataGridView1_MouseUp(object sender, MouseEventArgs e)
         {
@@ -44,6 +50,48 @@ namespace Presentation_Layer.Users_Screens
 
                 }
             }
+        }
+
+        private void ManageUsers_Load(object sender, EventArgs e)
+        {
+            showAllUsers();
+        }
+
+        private void btnNewUser_Click(object sender, EventArgs e)
+        {
+            Form AddUser = new AddEditUser();
+            AddUser.ShowDialog();
+            showAllUsers();
+        }
+
+        private void showUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Form ShowInfo = new ShowUserInfo((int)dataGridView1.CurrentRow.Cells[0].Value);
+            ShowInfo.ShowDialog();
+        }
+
+        private void deleteUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show($"Are you sure you want to delete User with ID= {dataGridView1.CurrentRow.Cells[0].Value}?", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                
+                if (User.DeleteUser((int)dataGridView1.CurrentRow.Cells[0].Value))
+                {
+
+                    MessageBox.Show("User Deleted Successfully.");
+                    showAllUsers();
+                }
+                
+            }
+        }
+
+        private void editCurrentUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Form Edit_User = new EditUser((int)dataGridView1.CurrentRow.Cells[0].Value);
+            Edit_User.ShowDialog();
+            showAllUsers();
         }
     }
 }

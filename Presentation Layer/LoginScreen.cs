@@ -37,7 +37,8 @@ namespace Presentation_Layer
                 MessageBox.Show($"Hello {txtUsername.Text}");
                 MainScreen mainScreen = new MainScreen();
                 mainScreen.Show();
-                this.Hide();
+                
+                
 
             }
             else if (_counter >= 3)

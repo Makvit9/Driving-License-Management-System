@@ -52,12 +52,11 @@
             this.dataGridView1.CausesValidation = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 247);
+            this.dataGridView1.Location = new System.Drawing.Point(15, 212);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1064, 434);
+            this.dataGridView1.Size = new System.Drawing.Size(1025, 397);
             this.dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -131,6 +130,7 @@
             // ComboFilter
             // 
             this.ComboFilter.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ComboFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboFilter.FormattingEnabled = true;
             this.ComboFilter.Location = new System.Drawing.Point(71, 123);
             this.ComboFilter.Name = "ComboFilter";
@@ -159,6 +159,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MinimizeBox = false;
             this.Name = "ManagePeople";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage People";

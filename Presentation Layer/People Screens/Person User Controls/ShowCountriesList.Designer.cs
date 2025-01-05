@@ -28,44 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CountriesComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // CountriesComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(0, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(195, 21);
-            this.comboBox1.Size = new System.Drawing.Size(163, 21);
-
-            this.comboBox1.Size = new System.Drawing.Size(195, 21);
-
-            this.comboBox1.Size = new System.Drawing.Size(163, 21);
-
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
-            this.comboBox1.Leave += new System.EventHandler(this.comboBox1_Leave);
+            this.CountriesComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CountriesComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountriesComboBox.FormattingEnabled = true;
+            this.CountriesComboBox.Location = new System.Drawing.Point(0, 0);
+            this.CountriesComboBox.Name = "CountriesComboBox";
+            this.CountriesComboBox.Size = new System.Drawing.Size(163, 21);
+            this.CountriesComboBox.TabIndex = 0;
+            this.CountriesComboBox.Leave += new System.EventHandler(this._CountriesComboBox_Leave);
             // 
             // ShowCountriesList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.CountriesComboBox);
             this.Name = "ShowCountriesList";
-            this.Size = new System.Drawing.Size(195, 21);
             this.Size = new System.Drawing.Size(163, 21);
-
-            this.Size = new System.Drawing.Size(195, 21);
-
-            this.Size = new System.Drawing.Size(163, 21);
-
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CountriesComboBox;
     }
 }

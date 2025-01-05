@@ -44,9 +44,10 @@ namespace Presentation_Layer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form AddNew = new AddEditPerson(-1);
+            Form AddNew = new AddEditPerson();
             AddNew.ShowDialog();
             showAllPeople();
+
         }
 
         private void aToolStripMenuItem_Click(object sender, EventArgs e)
@@ -96,12 +97,16 @@ namespace Presentation_Layer
                     MessageBox.Show("Person Deleted Successfully.");
                     showAllPeople();
                 }
+                else
+                {
+                    MessageBox.Show("Person Can't be deleted because it's linked with a user");
+                }
             }
         }
 
         private void DeleteImage(string Path)
         {
-            if (Path != null)
+            if (Path != "")
             {
                 File.Delete(Path);
             }
@@ -142,7 +147,14 @@ namespace Presentation_Layer
         private void Result(string text, string FilterName)
         {
             DataView Dv1 = new DataView(dt1);
+            if (FilterName == "PersonID" || FilterName == "Country_ID")
+            {
+                Dv1.RowFilter = FilterName + " = " + text;
+            }
+            else
+            {
             Dv1.RowFilter = FilterName + " LIKE '" + text + "%'";
+            }
             dataGridView1.DataSource = Dv1;
         }
     }

@@ -20,18 +20,18 @@ namespace DAL
 
         public static int AddNewPerson(string FirstName, string SecondName, string ThirdName, string LastName,
             string NationalNumber, DateTime DateOfBirth, char Gender, string Phone,
-            string Email,int Nationality, string Address, string ImagePath)
+            string Email, int Nationality, string Address, string ImagePath)
         {
             int PersonID = -1;
-            
+
             SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
-           
+
             string Query = @"INSERT INTO PEOPLE (FirstName, SecondName, ThirdName, LastName, nationalnumber, BirthDate, Gender, phoneNumber, email, Country_ID, address, Picturepath)
                              VALUES (@FirstName , @SecondName , @ThirdName , @LastName , @NationalNumber,
                              @DateOfBirth,@Gender, @Phone, @Email , @Nationality, @Address, @ImagePath )
                              Select Scope_Identity()";
-             
-           
+
+
             SqlCommand cmd = new SqlCommand(Query, connection);
 
 
@@ -39,13 +39,13 @@ namespace DAL
             cmd.Parameters.AddWithValue("@SecondName", SecondName);
             cmd.Parameters.AddWithValue("@ThirdName", ThirdName);
             cmd.Parameters.AddWithValue("@LastName", LastName);
-            cmd.Parameters.AddWithValue("@NationalNumber",NationalNumber );
+            cmd.Parameters.AddWithValue("@NationalNumber", NationalNumber);
             cmd.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
             cmd.Parameters.AddWithValue("@Gender", Gender);
             cmd.Parameters.AddWithValue("@Phone", Phone);
-            cmd.Parameters.AddWithValue("@Email",Email );
-            cmd.Parameters.AddWithValue("@Nationality",Nationality );
-            cmd.Parameters.AddWithValue("@Address",Address );
+            cmd.Parameters.AddWithValue("@Email", Email);
+            cmd.Parameters.AddWithValue("@Nationality", Nationality);
+            cmd.Parameters.AddWithValue("@Address", Address);
 
 
             if (ImagePath != null)
@@ -121,13 +121,79 @@ namespace DAL
         }
 
 
-        public static void UpdatePerson()
+        public static bool UpdatePerson(int PersonID, string FirstName, string SecondName,
+           string ThirdName, string LastName, string NationalNumber, DateTime BirthDate,
+           char Gender, string Address, string PhoneNumber, string Email,
+            int Country_ID, string PicturePath)
         {
 
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
+
+            string query = @"Update  People  
+                            set FirstName = @FirstName,
+                                SecondName = @SecondName,
+                                ThirdName = @ThirdName,
+                                LastName = @LastName, 
+                                NationalNumber = @NationalNumber,
+                                BirthDate = @BirthDate,
+                                Gender=@Gender,
+                                PhoneNumber = @PhoneNumber,
+                                Email = @Email, 
+                                Country_ID = @Country_ID,
+                                Address = @Address,  
+                                PicturePath =@PicturePath
+                                where PersonID = @PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@FirstName", FirstName);
+            command.Parameters.AddWithValue("@SecondName", SecondName);
+
+            if (ThirdName != "" && ThirdName != null)
+                command.Parameters.AddWithValue("@ThirdName", ThirdName);
+            else
+                command.Parameters.AddWithValue("@ThirdName", System.DBNull.Value);
+
+
+            command.Parameters.AddWithValue("@LastName", LastName);
+            command.Parameters.AddWithValue("@NationalNumber", NationalNumber);
+            command.Parameters.AddWithValue("@BirthDate", BirthDate);
+            command.Parameters.AddWithValue("@Gender", Gender);
+            command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
+            command.Parameters.AddWithValue("@Email", Email);
+            command.Parameters.AddWithValue("@Country_ID", Country_ID);
+
+            if (PicturePath != "" && PicturePath != null)
+                command.Parameters.AddWithValue("@PicturePath", PicturePath);
+            else
+                command.Parameters.AddWithValue("@PicturePath", System.DBNull.Value);
+
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
         }
 
+
         public static bool GetPersonInfoByID(int PersonID, ref string FirstName, ref string SecondName,
-            ref string ThirdName, ref string LastName, ref string NationalNumber, 
+            ref string ThirdName, ref string LastName, ref string NationalNumber,
             ref DateTime DateOfBirth, ref char Gender, ref string Phone, ref string Email,
             ref int Country_ID, ref string Address, ref string ImagePath)
         {
@@ -153,12 +219,21 @@ namespace DAL
 
                     FirstName = (string)reader["FirstName"];
                     SecondName = (string)reader["SecondName"];
+
+                    if (reader["ThirdName"] != DBNull.Value)
+                    {
                     ThirdName = (string)reader["ThirdName"];
+
+                    }
+                    else
+                    {
+                        ThirdName = "";
+                    }
                     LastName = (string)reader["LastName"];
                     NationalNumber = (string)reader["NationalNumber"];
                     DateOfBirth = (DateTime)reader["BirthDate"];
-                    Gender = Convert.ToChar( reader["Gender"]);                    
-                  
+                    Gender = Convert.ToChar(reader["Gender"]);
+
                     Phone = (string)reader["phoneNumber"];
                     Email = (string)reader["Email"];
                     Country_ID = (int)reader["Country_ID"];
@@ -187,7 +262,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                          isFound = false;
+                isFound = false;
             }
             finally
             {
@@ -227,7 +302,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                
+
                 isFound = false;
             }
             finally
@@ -237,7 +312,7 @@ namespace DAL
 
             return isFound;
         }
-       
+
         public static bool IsPersonExist(string NationalNumber)
         {
             bool isFound = false;
@@ -271,14 +346,14 @@ namespace DAL
 
             return isFound;
         }
-        
-        
-        
+
+
+
         public static DataTable GetAllPeople()
         {
 
             DataTable dt = new DataTable();
-           
+
             SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
 
             string Query = "Select * From People";
@@ -309,9 +384,55 @@ namespace DAL
             }
             return dt;
         }
-    }
+
+
+        public static bool IsThePersonLinkedWithUser(int PersonID)
+        {
+            bool IsLinked = false;
+
+
+            SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
+
+            string Query = @"
+                            Select Found =1 from People
+                            inner join Users
+                            on Users.PersonID = People.PersonID
+                            where People.PersonID = @PersonID";
+
+            SqlCommand cmd = new SqlCommand(Query, connection);
+
+            cmd.Parameters.AddWithValue("@PersonID", PersonID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                IsLinked = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+                IsLinked = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsLinked;
+
+        }
+
+
     }
 
+
+    
+
+}
 
     
 

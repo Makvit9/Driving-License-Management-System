@@ -4,8 +4,10 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Presentation_Layer
 {
@@ -18,6 +20,7 @@ namespace Presentation_Layer
         public AddEditPerson()
         {
             InitializeComponent();
+
         }
 
         public AddEditPerson(int PersonID)
@@ -26,16 +29,9 @@ namespace Presentation_Layer
 
 
             _PersonID = PersonID;
-            if (PersonID == -1)
-            {
-                _mode = enmode.AddNew;
-            }
-            else
-            {
                 _mode = enmode.Update;
-                linklblRemove.Visible = true;
-            }
-
+                
+            _Person1 = Person.Find(PersonID);
         }
 
         public delegate void CloseTheForm();
@@ -58,6 +54,7 @@ namespace Presentation_Layer
         public AddEditPerson(Person person)
         {
             ActivateEditMode(person);
+            _mode = enmode.Update;
         }
 
         public void ActivateEditMode(Person person)
@@ -70,17 +67,19 @@ namespace Presentation_Layer
             Emailtxt.Text = person.Email;
             NationalNotxt.Text = person.NationalNumber;
             ProfilePic.ImageLocation = person.ImagePath;
+            AddressRtxt.Text = person.Address;
         }
         private void AddNewPersonCard_Load(object sender, EventArgs e)
         {
             //Default Profile Picture
-            ProfilePic.Image = SetProfilePicture(Resources.user);
+            //ProfilePic.Image = SetProfilePicture(Resources.user);
             //Default Date
             DateOfBirthtxt.MaxDate = MaximumDate();
             DateOfBirthtxt.MinDate = MinimumDate();
 
             if (_mode == enmode.AddNew)
             {
+                ProfilePic.Image = SetProfilePicture(Resources.Male_User);
                 lblMode.Text = "Add New Person";
                 _Person1 = new Person();
                 return;
@@ -115,8 +114,56 @@ namespace Presentation_Layer
             Phonetxt.Text = _Person1.Phone;
             Emailtxt.Text = _Person1.Email;
             NationalNotxt.Text = _Person1.NationalNumber;
-            ProfilePic.ImageLocation = _Person1.ImagePath;
+            CountriesList.DefaultSelectionOnEdit(_Person1.CountryID);
+
+            if (_Person1.ImagePath != "")
+            {
+                ProfilePic.ImageLocation = _Person1.ImagePath;
+                linklblRemove.Visible = true;
+            }
+            else if (_Person1.Gender == 'M')
+            {
+                ProfilePic.Image=  SetProfilePicture(Resources.Male_User);
+            }
+            else
+            {
+                ProfilePic.Image = SetProfilePicture(Resources.Female_User);
+            }
+            
+            AddressRtxt.Text = _Person1.Address;
         }
+
+        private void _PrepareFormValues()
+        {
+
+            if (_mode == enmode.AddNew)
+            {
+                lblMode.Text = "Add New Person";
+                _Person1 = new Person();
+            }
+            else
+            {
+                lblMode.Text = "Edit Person Info";
+                return;
+            }
+
+
+            if (btnMale.Checked)
+                ProfilePic.Image = Resources.Male_User;
+            else
+                ProfilePic.Image = Resources.Female_User;
+
+            linklblRemove.Visible = (ProfilePic.ImageLocation != null);
+
+
+            MaximumDate();
+            MinimumDate();
+
+
+
+
+        }
+
 
         private void _CheckGender(Char gender)
         {
@@ -150,14 +197,14 @@ namespace Presentation_Layer
 
         private void btnMale_CheckedChanged(object sender, EventArgs e)
         {
-            if (ProfilePic.Image == Resources.user || ProfilePic.Image == Resources.Female_User)
-            ProfilePic.Image = SetProfilePicture(Resources.Male_User);
+            if (linklblRemove.Visible == false)
+                ProfilePic.Image = SetProfilePicture(Resources.Male_User);
 
         }
 
         private void btnFemale_CheckedChanged(object sender, EventArgs e)
         {
-            if (ProfilePic.Image == Resources.user || ProfilePic.Image == Resources.Male_User)
+            if (linklblRemove.Visible == false)
                 ProfilePic.Image = SetProfilePicture(Resources.Female_User);
 
         }
@@ -196,6 +243,8 @@ namespace Presentation_Layer
 
 
             linklblRemove.Visible = true;
+
+
             return NewPicturePath;
 
             
@@ -203,7 +252,7 @@ namespace Presentation_Layer
         }
 
 
-        private void createNewPerson(char gender)
+        private void createNewPerson()//char gender)
         {
            
                 Person p = new Person
@@ -215,10 +264,10 @@ namespace Presentation_Layer
                     LastName = LastNametxt.Text,
                     NationalNumber = NationalNotxt.Text,
                     DateOfBirth = DateOfBirthtxt.Value,
-                    Gender = gender,
+                    Gender = (btnMale.Checked== true)? 'M': 'F',
                     Phone = Phonetxt.Text,
                     Email = Emailtxt.Text,
-                    CountryID = Convert.ToInt32(CountriesList.Tag),
+                    //CountryID = Convert.ToInt32(CountriesList.Tag),
                     Address = AddressRtxt.Text,
                     ImagePath = ProfilePic.ImageLocation
                 };
@@ -227,40 +276,7 @@ namespace Presentation_Layer
         }
 
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            // Here should do it differently. like the 
-
-            if (btnMale.Checked)
-            {
-                createNewPerson('M');
-
-                MessageBox.Show("Saved Successfully");
-
-            }
-            else if (btnFemale.Checked)
-            {
-                createNewPerson('F');
-                MessageBox.Show("Saved Successfully");
-
-            }
-
-            else
-            {
-                MessageBox.Show("You should pick a gender", "Pick a Gender", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private bool isTheCellEmpty(TextBox txt) => txt.Text == "";
-
-
-
 
         private void EmptyCellValidation(object sender, CancelEventArgs e)
         {
@@ -329,8 +345,19 @@ namespace Presentation_Layer
         {
             if (MessageBox.Show("This picture will be removed. Are you sure? ", "Remove Picture", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                if (ProfilePic.ImageLocation != "")
                 File.Delete(ProfilePic.ImageLocation);
+
+                ProfilePic.ImageLocation = "";
+
+                if(btnMale.Checked)
                 ProfilePic.Image = SetProfilePicture(Resources.Male_User);
+
+
+                if (btnFemale.Checked)
+                ProfilePic.Image = SetProfilePicture(Resources.Female_User);
+
+
                 linklblRemove.Visible = false;
             }
         }
@@ -356,6 +383,69 @@ namespace Presentation_Layer
                 errInvalidEmail.Clear();
             }
         }
+
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            switch (_mode)
+            {
+                case (enmode.AddNew):
+                    _SavePerson(_Person1, "User Was added successfully");
+                    break;
+
+
+                case (enmode.Update):
+                    _SavePerson(_Person1, "User Was updated successfully");
+                    break;
+            }
+
+
+
+
+            //_prepareToSave(_Person1);
+            //_Person1.Save();
+
+            
+            btnSave.Enabled = false;
+
+        }
+
+        private void _SavePerson(Person P1, string Message)
+        {
+            _prepareToSave(_Person1);
+            _Person1.Save();
+            MessageBox.Show(Message);
+        }
+
+        private void _prepareToSave(Person selectedPerson)
+        {
+            if (_mode == enmode.Update)
+                selectedPerson.PersonID = Int32.Parse(lblPersonID.Text);
+            
+            selectedPerson.FirstName = FirstNametxt.Text;
+            selectedPerson.SecondName = SecondNametxt.Text;
+            selectedPerson.ThirdName = ThirdNametxt.Text;
+            selectedPerson.LastName = LastNametxt.Text;
+            selectedPerson.NationalNumber = NationalNotxt.Text;
+            selectedPerson.DateOfBirth = DateOfBirthtxt.Value;
+            selectedPerson.Gender = (btnMale.Checked == true) ? 'M' : 'F';
+            selectedPerson.Phone = Phonetxt.Text;
+            selectedPerson.Email = Emailtxt.Text;
+            selectedPerson.CountryID = CountriesList.Country_ID;
+            selectedPerson.Address = AddressRtxt.Text;
+            selectedPerson.ImagePath = ProfilePic.ImageLocation;
+        
+                
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+
     }
 }
 
@@ -366,7 +456,7 @@ namespace Presentation_Layer
 // 1- Validation currently is turned off on all the textboxes, should be also fixed 
 // 2- resolve bugs when removing the profile picture, and after setting a profile picture 
 //      Now it's working, but it should change between the male and female 
-// 3- Update should work 
+// 3- Update should work (DONE) 
 // * Validation on the Address (Not empty) (DONE)
 // * Email Validation (DONE)
 

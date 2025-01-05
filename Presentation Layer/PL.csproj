@@ -9,6 +9,7 @@
     <RootNamespace>Presentation_Layer</RootNamespace>
     <AssemblyName>Presentation Layer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>11.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -55,6 +56,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application Types\EditApplicationType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application Types\EditApplicationType.Designer.cs">
+      <DependentUpon>EditApplicationType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Application Types\ManageApplications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Application Types\ManageApplications.Designer.cs">
+      <DependentUpon>ManageApplications.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,16 +92,22 @@
     <Compile Include="People Screens\ShowPersonInfo.Designer.cs">
       <DependentUpon>ShowPersonInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="People Screens\User Controls\PersonInfoCard.cs">
+    <Compile Include="People Screens\Person User Controls\PersonInfoCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="People Screens\User Controls\PersonInfoCard.Designer.cs">
+    <Compile Include="People Screens\Person User Controls\PersonInfoCard.Designer.cs">
       <DependentUpon>PersonInfoCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="People Screens\User Controls\ShowCountriesList.cs">
+    <Compile Include="People Screens\Person User Controls\PersonInfoWithFIlter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="People Screens\User Controls\ShowCountriesList.Designer.cs">
+    <Compile Include="People Screens\Person User Controls\PersonInfoWithFIlter.Designer.cs">
+      <DependentUpon>PersonInfoWithFIlter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People Screens\Person User Controls\ShowCountriesList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People Screens\Person User Controls\ShowCountriesList.Designer.cs">
       <DependentUpon>ShowCountriesList.cs</DependentUpon>
     </Compile>
     <Compile Include="MainScreen.cs">
@@ -110,12 +129,30 @@
     <Compile Include="Users Screens\AddEditUser.Designer.cs">
       <DependentUpon>AddEditUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Users Screens\EditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users Screens\EditUser.Designer.cs">
+      <DependentUpon>EditUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users Screens\ManageUsers.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Users Screens\ManageUsers.Designer.cs">
       <DependentUpon>ManageUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Users Screens\ShowUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users Screens\ShowUserInfo.Designer.cs">
+      <DependentUpon>ShowUserInfo.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Application Types\EditApplicationType.resx">
+      <DependentUpon>EditApplicationType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application Types\ManageApplications.resx">
+      <DependentUpon>ManageApplications.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,10 +165,13 @@
     <EmbeddedResource Include="People Screens\ShowPersonInfo.resx">
       <DependentUpon>ShowPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="People Screens\User Controls\PersonInfoCard.resx">
+    <EmbeddedResource Include="People Screens\Person User Controls\PersonInfoCard.resx">
       <DependentUpon>PersonInfoCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="People Screens\User Controls\ShowCountriesList.resx">
+    <EmbeddedResource Include="People Screens\Person User Controls\PersonInfoWithFIlter.resx">
+      <DependentUpon>PersonInfoWithFIlter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People Screens\Person User Controls\ShowCountriesList.resx">
       <DependentUpon>ShowCountriesList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainScreen.resx">
@@ -142,8 +182,17 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Users Screens\AddEditUser.resx">
+      <DependentUpon>AddEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users Screens\EditUser.resx">
+      <DependentUpon>EditUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Users Screens\ManageUsers.resx">
       <DependentUpon>ManageUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users Screens\ShowUserInfo.resx">
+      <DependentUpon>ShowUserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

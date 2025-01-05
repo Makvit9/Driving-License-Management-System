@@ -13,6 +13,12 @@ namespace Presentation_Layer.Custom_Controls
 {
     public partial class ShowCountriesList : UserControl
     {
+        public int Country_ID
+        {
+            get { return CountriesComboBox.SelectedIndex; }
+            set { Country_ID = value; }
+        }
+
 
         public event Action<int> EvIndexSelected;
 
@@ -28,11 +34,11 @@ namespace Presentation_Layer.Custom_Controls
         public ShowCountriesList()
         {
             InitializeComponent();
-            FillComboBox();
+            _FillComboBox();
            
         }
 
-        private void FillComboBox()
+        private void _FillComboBox()
         {
             DataTable dt = Country.GetAllCountries();
             List<string> countriesList = new List<string>();
@@ -45,19 +51,19 @@ namespace Presentation_Layer.Custom_Controls
             foreach (string country in countriesList)
             {
 
-                comboBox1.Items.Add(country);
+                CountriesComboBox.Items.Add(country);
             }
-            comboBox1.SelectedIndex = 114;
+            CountriesComboBox.SelectedIndex = Country.GetCountryID("Jordan") - 1;
         }
         
-        private void comboBox1_TextChanged(object sender, EventArgs e)
+        public void DefaultSelectionOnEdit(int CountryID)
         {
-            
+            CountriesComboBox.SelectedIndex = CountryID;
         }
-
-        private void comboBox1_Leave(object sender, EventArgs e)
+               
+        private void _CountriesComboBox_Leave(object sender, EventArgs e)
         {
-             EvIndexSelected(comboBox1.SelectedIndex + 1);
+             EvIndexSelected(CountriesComboBox.SelectedIndex + 1);
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using BL;
+using Presentation_Layer.Application_Types;
+using Syncfusion.Windows.Forms.Interop;
 
 
 namespace Presentation_Layer
@@ -61,22 +63,15 @@ namespace Presentation_Layer
             ShowUsers.WindowState = FormWindowState.Maximized;
         }
 
-        private void applicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Coming Soon");
-
+            ManageApplications Application = new ManageApplications();
+            Application.ShowDialog();
         }
 
-        private void testsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ComingSoon(object sender, EventArgs e)
         {
             MessageBox.Show("Coming Soon");
-
-        }
-
-        private void driversToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Coming Soon");
-
         }
     }
 }

@@ -92,17 +92,21 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(ConnectionString.connectionString);
 
-            string Query = "SELECT ID FROM Countries where CountryName = @countryName";
+            string Query = @"SELECT ID FROM Countries where Name = @countryName";
 
             SqlCommand cmd = new SqlCommand(Query, connection);
+            cmd.Parameters.AddWithValue("@CountryName", countryName);
 
             try
             {
                 connection.Open();
-
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                if(reader.Read())
+                ID = Convert.ToInt32(reader["ID"]);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return -1;

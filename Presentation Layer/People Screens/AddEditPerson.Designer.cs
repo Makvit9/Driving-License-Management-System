@@ -254,7 +254,6 @@
             this.btnFemale.Name = "btnFemale";
             this.btnFemale.Size = new System.Drawing.Size(59, 17);
             this.btnFemale.TabIndex = 34;
-            this.btnFemale.TabStop = true;
             this.btnFemale.Tag = "F";
             this.btnFemale.Text = "Female";
             this.btnFemale.UseVisualStyleBackColor = true;
@@ -263,6 +262,7 @@
             // btnMale
             // 
             this.btnMale.AutoSize = true;
+            this.btnMale.Checked = true;
             this.btnMale.Location = new System.Drawing.Point(150, 268);
             this.btnMale.Name = "btnMale";
             this.btnMale.Size = new System.Drawing.Size(48, 17);

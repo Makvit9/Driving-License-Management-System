@@ -126,8 +126,8 @@ namespace BL
                     }
 
                 case enMode.Update:
-                    break;
-                    //return _UpdateContact();
+                    return _updatePerson();
+                    
 
             }
 
@@ -146,7 +146,17 @@ namespace BL
         public static bool DeletePerson(int PersonID)
         {
 
-            return PersonDAL.RemovePerson(PersonID);
+            return PersonDAL.RemovePerson(PersonID) && !PersonDAL.IsThePersonLinkedWithUser(PersonID);
         }
+
+
+       private bool _updatePerson()
+        {
+            return PersonDAL.UpdatePerson(PersonID, FirstName, SecondName,
+                ThirdName, LastName, NationalNumber, DateOfBirth,
+                Gender, Address, Phone, Email, CountryID, ImagePath);
+        }
+
+
     }
 }
