@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using BL;
 using Presentation_Layer.Application_Types;
+using Presentation_Layer.TestTypes;
 using Syncfusion.Windows.Forms.Interop;
 
 
@@ -72,6 +73,12 @@ namespace Presentation_Layer
         private void ComingSoon(object sender, EventArgs e)
         {
             MessageBox.Show("Coming Soon");
+        }
+
+        private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageTestTypes Test = new ManageTestTypes();
+            Test.ShowDialog();
         }
     }
 }
