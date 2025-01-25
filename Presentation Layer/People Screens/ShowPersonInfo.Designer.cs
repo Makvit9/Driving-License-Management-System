@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.personInfoCard1 = new Presentation_Layer.User_Controls.PersonInfoCard();
+            this.PersonInfoCard = new Presentation_Layer.People_Screens.Person_User_Controls.PersonInfoUpdated();
             this.SuspendLayout();
             // 
             // label1
@@ -45,7 +45,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(711, 478);
+            this.button1.Location = new System.Drawing.Point(376, 398);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 49);
             this.button1.TabIndex = 2;
@@ -53,25 +53,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // personInfoCard1
+            // PersonInfoCard
             // 
-            this.personInfoCard1.BackColor = System.Drawing.Color.White;
-            this.personInfoCard1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.personInfoCard1.Location = new System.Drawing.Point(41, 93);
-            this.personInfoCard1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.personInfoCard1.Name = "personInfoCard1";
-            this.personInfoCard1.Size = new System.Drawing.Size(766, 377);
-            this.personInfoCard1.TabIndex = 0;
+            this.PersonInfoCard.BackColor = System.Drawing.Color.White;
+            this.PersonInfoCard.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PersonInfoCard.Location = new System.Drawing.Point(55, 72);
+            this.PersonInfoCard.Margin = new System.Windows.Forms.Padding(4);
+            this.PersonInfoCard.Name = "PersonInfoCard";
+            this.PersonInfoCard.Size = new System.Drawing.Size(749, 297);
+            this.PersonInfoCard.TabIndex = 3;
             // 
             // ShowPersonInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(865, 539);
+            this.ClientSize = new System.Drawing.Size(858, 455);
+            this.Controls.Add(this.PersonInfoCard);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.personInfoCard1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ShowPersonInfo";
@@ -82,9 +82,8 @@
         }
 
         #endregion
-
-        private User_Controls.PersonInfoCard personInfoCard1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private People_Screens.Person_User_Controls.PersonInfoUpdated PersonInfoCard;
     }
 }

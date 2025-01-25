@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using BL;
 using Presentation_Layer.Application_Types;
 using Presentation_Layer.TestTypes;
+using Presentation_Layer.Applications;
 using Syncfusion.Windows.Forms.Interop;
 
 
@@ -79,6 +80,12 @@ namespace Presentation_Layer
         {
             ManageTestTypes Test = new ManageTestTypes();
             Test.ShowDialog();
+        }
+
+        private void localDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LocalDrivingLicenseApplication LicenseApplication = new LocalDrivingLicenseApplication();
+            LicenseApplication.ShowDialog();
         }
     }
 }

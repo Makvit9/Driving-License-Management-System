@@ -81,7 +81,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(27, 170);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1104, 461);
+            this.dataGridView1.Size = new System.Drawing.Size(1036, 461);
             this.dataGridView1.TabIndex = 6;
             // 
             // contextMenuStrip1
@@ -92,39 +92,39 @@
             this.editCurrentUserToolStripMenuItem,
             this.deleteUserToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 92);
             // 
             // showUserInfoToolStripMenuItem
             // 
             this.showUserInfoToolStripMenuItem.Name = "showUserInfoToolStripMenuItem";
-            this.showUserInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showUserInfoToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.showUserInfoToolStripMenuItem.Text = "Show User Info";
             this.showUserInfoToolStripMenuItem.Click += new System.EventHandler(this.showUserInfoToolStripMenuItem_Click);
             // 
             // addNewUserToolStripMenuItem
             // 
             this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
-            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.addNewUserToolStripMenuItem.Text = "Add New User";
             this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.btnNewUser_Click);
             // 
             // editCurrentUserToolStripMenuItem
             // 
             this.editCurrentUserToolStripMenuItem.Name = "editCurrentUserToolStripMenuItem";
-            this.editCurrentUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editCurrentUserToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.editCurrentUserToolStripMenuItem.Text = "Edit Current User";
             this.editCurrentUserToolStripMenuItem.Click += new System.EventHandler(this.editCurrentUserToolStripMenuItem_Click);
             // 
             // deleteUserToolStripMenuItem
             // 
             this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
-            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
             this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.deleteUserToolStripMenuItem_Click);
             // 
             // btnNewUser
             // 
-            this.btnNewUser.Location = new System.Drawing.Point(790, 108);
+            this.btnNewUser.Location = new System.Drawing.Point(927, 121);
             this.btnNewUser.Name = "btnNewUser";
             this.btnNewUser.Size = new System.Drawing.Size(136, 28);
             this.btnNewUser.TabIndex = 10;
@@ -136,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1152, 655);
+            this.ClientSize = new System.Drawing.Size(1082, 655);
             this.Controls.Add(this.btnNewUser);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ComboFilter);

@@ -68,8 +68,29 @@ namespace BL
             Mode = enMode.Update;
 
         }
-        
-        
+
+        public Person(int personID, string firstname, string secondname, string thirdname, string finalname,
+           string nationalNumber, DateTime dateofbirth, char gender, string phone,
+           string email, int countryId, string address, string imagePath)
+        {
+            PersonID = personID;
+            FirstName = firstname;
+            SecondName = secondname;
+            ThirdName = thirdname;
+            LastName = finalname;
+            NationalNumber = nationalNumber;
+            DateOfBirth = dateofbirth;
+            Gender = gender;
+            Phone = phone;
+            Email = email;
+            CountryID = countryId;
+            Address = address;
+            ImagePath = imagePath;
+            Mode = enMode.Update;
+
+        }
+
+
         public static DataTable GetAllPeople()
         {
             return PersonDAL.GetAllPeople();
@@ -95,17 +116,35 @@ namespace BL
             char gender = ' ';
             DateTime dateofbirth = DateTime.Now;
 
-            if (PersonDAL.GetPersonInfoByID(PersonID, ref firstname, ref secondname, ref thirdname,
+            if (PersonDAL.GetPersonInfoByID( PersonID, ref firstname, ref secondname, ref thirdname,
                 ref lastname, ref nationalnumber, ref dateofbirth,
                 ref gender, ref phone, ref email, ref countryid,
                 ref address, ref imagePath))
 
-                return new Person(firstname, secondname, thirdname, lastname, nationalnumber, dateofbirth
+                return new Person(PersonID, firstname, secondname, thirdname, lastname, nationalnumber, dateofbirth
                     , gender, phone, email, countryid, address, imagePath);
 
 
 
             return null;        
+        }
+
+        public static Person Find(string NationalNumber)
+        {
+            string firstname = "", secondname = "", thirdname = "", lastname = "";
+            string phone = "", email = "", imagePath = "", address = "";
+            int countryid = -1, personID = -1;
+            char gender = ' ';
+            DateTime dateofbirth = DateTime.Now;
+
+            if (PersonDAL.GetPersonInfoByNationalNumber(ref NationalNumber, ref personID, ref firstname, ref secondname,
+                ref thirdname, ref lastname, ref dateofbirth, ref gender, ref phone, ref email, ref countryid,
+                ref address, ref imagePath))
+            {
+                return new Person(personID,firstname, secondname, thirdname, lastname, NationalNumber, dateofbirth,
+                    gender, phone, email, countryid, address, imagePath);
+            }
+            return null;
         }
 
 

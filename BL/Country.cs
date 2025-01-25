@@ -6,17 +6,12 @@ namespace BL
 {
     public class Country
     {
-        enum enMode { addNew = 0, Update = 1 };
-
-
-
-
-        public int CountryID { get; set; }
+       
+        public int? CountryID { get; set; }
         public string CountryName { get; set; }
         public string IsoCode { get; set; }
 
-        enMode Mode = enMode.addNew;
-
+       
         public Country(int countryID, string countryName, string isoCode)
         {
             CountryID = countryID;
@@ -48,6 +43,20 @@ namespace BL
             }
             return null;
         }
+
+        public static string FindCountry(int CountryID)
+        {
+            string CountryName = CountryDAL.GetCountryName(CountryID);
+
+            if ( CountryName != null)
+            {
+                return CountryName;
+            }
+
+            return null;
+
+        }
+
 
         public static int GetCountryID(string CountryName)
         {

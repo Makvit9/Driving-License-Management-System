@@ -1,4 +1,5 @@
 ﻿using BL;
+using Presentation_Layer.People_Screens.Person_User_Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,10 @@ namespace Presentation_Layer
         public ShowPersonInfo(int PersonID)
         {
             InitializeComponent();
-            personInfoCard1.PersonInfo(PersonID);
+            //personInfoCard1.PersonInfo(PersonID);
+            PersonInfoCard.LoadPersonInfo(PersonID);
+
+
         }
 
 
@@ -29,7 +33,7 @@ namespace Presentation_Layer
         private void personInfoCard1_EvPassPersonInfo(Person obj)
         {
 
-            personInfoCard1.Show();
+         //   personInfoCard1.Show();
         }
     }
 }

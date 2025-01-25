@@ -192,7 +192,7 @@ namespace DAL
         }
 
 
-        public static bool GetPersonInfoByID(int PersonID, ref string FirstName, ref string SecondName,
+        public static bool GetPersonInfoByID( int PersonID, ref string FirstName, ref string SecondName,
             ref string ThirdName, ref string LastName, ref string NationalNumber,
             ref DateTime DateOfBirth, ref char Gender, ref string Phone, ref string Email,
             ref int Country_ID, ref string Address, ref string ImagePath)
@@ -274,8 +274,91 @@ namespace DAL
 
 
 
-        public static void GetPersonInfo()
+        public static bool GetPersonInfoByNationalNumber (ref string NationalNumber, ref int PersonID, ref string FirstName, ref string SecondName,
+            ref string ThirdName, ref string LastName,
+            ref DateTime DateOfBirth, ref char Gender, ref string Phone, ref string Email,
+            ref int Country_ID, ref string Address, ref string ImagePath)
         {
+
+            bool isFound = false;
+
+            SqlConnection conn = new SqlConnection(Settings.ConnectionString.connectionString);
+
+
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "FindPersonByNationalNumber";
+
+            cmd.Parameters.AddWithValue("@NationalNumber", NationalNumber);
+
+
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    isFound = true;
+
+                    PersonID = Convert.ToInt32(reader["PersonID"]);
+                    FirstName = (string)reader["FirstName"];
+                    SecondName = (string)reader["SecondName"];
+
+                    if (reader["ThirdName"] != DBNull.Value)
+                    {
+                        ThirdName = (string)reader["ThirdName"];
+
+                    }
+                    else
+                    {
+                        ThirdName = "";
+                    }
+                    LastName = (string)reader["LastName"];
+                    NationalNumber = (string)reader["NationalNumber"];
+                    DateOfBirth = (DateTime)reader["BirthDate"];
+                    Gender = Convert.ToChar(reader["Gender"]);
+
+                    Phone = (string)reader["phoneNumber"];
+                    Email = (string)reader["Email"];
+                    Country_ID = (int)reader["Country_ID"];
+                    Address = (string)reader["Address"];
+
+                    //ImagePath: allows null in database so we should handle null
+                    if (reader["Picturepath"] != DBNull.Value)
+                    {
+                        ImagePath = (string)reader["Picturepath"];
+                    }
+                    else
+                    {
+                        ImagePath = "";
+                    }
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                isFound = false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return isFound;
+
+
 
         }
 

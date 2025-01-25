@@ -29,37 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEditPerson));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.FirstNametxt = new System.Windows.Forms.TextBox();
+            this.txtFirstname = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.linklblRemove = new System.Windows.Forms.LinkLabel();
+            this.cboCountries = new System.Windows.Forms.ComboBox();
+            this.lnkRemove = new System.Windows.Forms.LinkLabel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ProfilePic = new System.Windows.Forms.PictureBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.AddressRtxt = new System.Windows.Forms.RichTextBox();
+            this.picProfile = new System.Windows.Forms.PictureBox();
+            this.lnkSetImage = new System.Windows.Forms.LinkLabel();
+            this.rtxAddress = new System.Windows.Forms.RichTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.CountriesList = new Presentation_Layer.Custom_Controls.ShowCountriesList();
             this.label10 = new System.Windows.Forms.Label();
             this.btnFemale = new System.Windows.Forms.RadioButton();
             this.btnMale = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
-            this.Emailtxt = new System.Windows.Forms.TextBox();
-            this.NationalNotxt = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtNationalNumber = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.Phonetxt = new System.Windows.Forms.TextBox();
-            this.DateOfBirthtxt = new System.Windows.Forms.DateTimePicker();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.dtpBirthdate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.ThirdNametxt = new System.Windows.Forms.TextBox();
-            this.LastNametxt = new System.Windows.Forms.TextBox();
+            this.txtThirdname = new System.Windows.Forms.TextBox();
+            this.txtLastname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.SecondNametxt = new System.Windows.Forms.TextBox();
+            this.txtSecondname = new System.Windows.Forms.TextBox();
             this.lblPersonID = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.lblMode = new System.Windows.Forms.Label();
@@ -67,7 +66,7 @@
             this.errInvalidEmail = new System.Windows.Forms.ErrorProvider(this.components);
             this.errNumbersOnly = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProfilePic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errEmpty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errInvalidEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errNumbersOnly)).BeginInit();
@@ -94,65 +93,73 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Name: ";
             // 
-            // FirstNametxt
+            // txtFirstname
             // 
-            this.FirstNametxt.Location = new System.Drawing.Point(153, 73);
-            this.FirstNametxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.FirstNametxt.Name = "FirstNametxt";
-            this.FirstNametxt.Size = new System.Drawing.Size(195, 20);
-            this.FirstNametxt.TabIndex = 5;
-            this.FirstNametxt.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
-            this.FirstNametxt.Validated += new System.EventHandler(this.ClearError);
+            this.txtFirstname.Location = new System.Drawing.Point(153, 73);
+            this.txtFirstname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtFirstname.Name = "txtFirstname";
+            this.txtFirstname.Size = new System.Drawing.Size(195, 20);
+            this.txtFirstname.TabIndex = 5;
+            this.txtFirstname.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
+            this.txtFirstname.Validated += new System.EventHandler(this.ClearError);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.linklblRemove);
+            this.groupBox1.Controls.Add(this.cboCountries);
+            this.groupBox1.Controls.Add(this.lnkRemove);
             this.groupBox1.Controls.Add(this.btnExit);
             this.groupBox1.Controls.Add(this.btnSave);
-            this.groupBox1.Controls.Add(this.ProfilePic);
-            this.groupBox1.Controls.Add(this.linkLabel1);
-            this.groupBox1.Controls.Add(this.AddressRtxt);
+            this.groupBox1.Controls.Add(this.picProfile);
+            this.groupBox1.Controls.Add(this.lnkSetImage);
+            this.groupBox1.Controls.Add(this.rtxAddress);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.CountriesList);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.btnFemale);
             this.groupBox1.Controls.Add(this.btnMale);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.Emailtxt);
-            this.groupBox1.Controls.Add(this.NationalNotxt);
+            this.groupBox1.Controls.Add(this.txtEmail);
+            this.groupBox1.Controls.Add(this.txtNationalNumber);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.Phonetxt);
-            this.groupBox1.Controls.Add(this.DateOfBirthtxt);
+            this.groupBox1.Controls.Add(this.txtPhone);
+            this.groupBox1.Controls.Add(this.dtpBirthdate);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.ThirdNametxt);
-            this.groupBox1.Controls.Add(this.LastNametxt);
+            this.groupBox1.Controls.Add(this.txtThirdname);
+            this.groupBox1.Controls.Add(this.txtLastname);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.SecondNametxt);
+            this.groupBox1.Controls.Add(this.txtSecondname);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.FirstNametxt);
+            this.groupBox1.Controls.Add(this.txtFirstname);
             this.groupBox1.Location = new System.Drawing.Point(12, 121);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(825, 506);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
-            // linklblRemove
+            // cboCountries
             // 
-            this.linklblRemove.AutoSize = true;
-            this.linklblRemove.Location = new System.Drawing.Point(649, 167);
-            this.linklblRemove.Name = "linklblRemove";
-            this.linklblRemove.Size = new System.Drawing.Size(47, 13);
-            this.linklblRemove.TabIndex = 50;
-            this.linklblRemove.TabStop = true;
-            this.linklblRemove.Tag = "";
-            this.linklblRemove.Text = "Remove";
-            this.linklblRemove.Visible = false;
-            this.linklblRemove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklblRemove_LinkClicked);
+            this.cboCountries.FormattingEnabled = true;
+            this.cboCountries.Location = new System.Drawing.Point(153, 310);
+            this.cboCountries.Name = "cboCountries";
+            this.cboCountries.Size = new System.Drawing.Size(195, 21);
+            this.cboCountries.TabIndex = 51;
+            // 
+            // lnkRemove
+            // 
+            this.lnkRemove.AutoSize = true;
+            this.lnkRemove.Location = new System.Drawing.Point(649, 167);
+            this.lnkRemove.Name = "lnkRemove";
+            this.lnkRemove.Size = new System.Drawing.Size(47, 13);
+            this.lnkRemove.TabIndex = 50;
+            this.lnkRemove.TabStop = true;
+            this.lnkRemove.Tag = "";
+            this.lnkRemove.Text = "Remove";
+            this.lnkRemove.Visible = false;
+            this.lnkRemove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RemoveProfilePic);
             // 
             // btnExit
             // 
@@ -162,7 +169,7 @@
             this.btnExit.TabIndex = 49;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExit.Click += new System.EventHandler(this.CloseForm);
             // 
             // btnSave
             // 
@@ -172,39 +179,39 @@
             this.btnSave.TabIndex = 48;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.ClickSave);
             // 
-            // ProfilePic
+            // picProfile
             // 
-            this.ProfilePic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ProfilePic.InitialImage = ((System.Drawing.Image)(resources.GetObject("ProfilePic.InitialImage")));
-            this.ProfilePic.Location = new System.Drawing.Point(652, 19);
-            this.ProfilePic.Name = "ProfilePic";
-            this.ProfilePic.Size = new System.Drawing.Size(132, 141);
-            this.ProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ProfilePic.TabIndex = 47;
-            this.ProfilePic.TabStop = false;
+            this.picProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picProfile.InitialImage = global::Presentation_Layer.Properties.Resources.user;
+            this.picProfile.Location = new System.Drawing.Point(652, 19);
+            this.picProfile.Name = "picProfile";
+            this.picProfile.Size = new System.Drawing.Size(132, 141);
+            this.picProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picProfile.TabIndex = 47;
+            this.picProfile.TabStop = false;
             // 
-            // linkLabel1
+            // lnkSetImage
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(725, 167);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
-            this.linkLabel1.TabIndex = 46;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Tag = "";
-            this.linkLabel1.Text = "Set Image";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.lnkSetImage.AutoSize = true;
+            this.lnkSetImage.Location = new System.Drawing.Point(725, 167);
+            this.lnkSetImage.Name = "lnkSetImage";
+            this.lnkSetImage.Size = new System.Drawing.Size(55, 13);
+            this.lnkSetImage.TabIndex = 46;
+            this.lnkSetImage.TabStop = true;
+            this.lnkSetImage.Tag = "";
+            this.lnkSetImage.Text = "Set Image";
+            this.lnkSetImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SetProfilePic);
             // 
-            // AddressRtxt
+            // rtxAddress
             // 
-            this.AddressRtxt.Location = new System.Drawing.Point(392, 218);
-            this.AddressRtxt.Name = "AddressRtxt";
-            this.AddressRtxt.Size = new System.Drawing.Size(392, 207);
-            this.AddressRtxt.TabIndex = 44;
-            this.AddressRtxt.Text = "";
-            this.AddressRtxt.Leave += new System.EventHandler(this.AddressRtxt_Leave);
+            this.rtxAddress.Location = new System.Drawing.Point(392, 218);
+            this.rtxAddress.Name = "rtxAddress";
+            this.rtxAddress.Size = new System.Drawing.Size(392, 207);
+            this.rtxAddress.TabIndex = 44;
+            this.rtxAddress.Text = "";
+            this.rtxAddress.Leave += new System.EventHandler(this.AddressRtxt_Leave);
             // 
             // label12
             // 
@@ -226,15 +233,6 @@
             this.label11.Size = new System.Drawing.Size(73, 21);
             this.label11.TabIndex = 43;
             this.label11.Text = "Country: ";
-            // 
-            // CountriesList
-            // 
-            this.CountriesList.Location = new System.Drawing.Point(153, 311);
-            this.CountriesList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.CountriesList.Name = "CountriesList";
-            this.CountriesList.Size = new System.Drawing.Size(195, 23);
-            this.CountriesList.TabIndex = 36;
-            this.CountriesList.EvIndexSelected += new System.Action<int>(this.CountriesList_EvIndexSelected_1);
             // 
             // label10
             // 
@@ -284,27 +282,27 @@
             this.label6.TabIndex = 35;
             this.label6.Text = "National No:";
             // 
-            // Emailtxt
+            // txtEmail
             // 
-            this.Emailtxt.Location = new System.Drawing.Point(153, 405);
-            this.Emailtxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Emailtxt.Name = "Emailtxt";
-            this.Emailtxt.Size = new System.Drawing.Size(195, 20);
-            this.Emailtxt.TabIndex = 39;
-            this.Emailtxt.TextChanged += new System.EventHandler(this.Emailtxt_TextChanged);
-            this.Emailtxt.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
-            this.Emailtxt.Validated += new System.EventHandler(this.ClearError);
+            this.txtEmail.Location = new System.Drawing.Point(153, 405);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(195, 20);
+            this.txtEmail.TabIndex = 39;
+            this.txtEmail.TextChanged += new System.EventHandler(this.Emailtxt_TextChanged);
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
+            this.txtEmail.Validated += new System.EventHandler(this.ClearError);
             // 
-            // NationalNotxt
+            // txtNationalNumber
             // 
-            this.NationalNotxt.Location = new System.Drawing.Point(153, 189);
-            this.NationalNotxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.NationalNotxt.Name = "NationalNotxt";
-            this.NationalNotxt.Size = new System.Drawing.Size(195, 20);
-            this.NationalNotxt.TabIndex = 31;
-            this.NationalNotxt.TextChanged += new System.EventHandler(this.NumbersOnlyValidator);
-            this.NationalNotxt.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
-            this.NationalNotxt.Validated += new System.EventHandler(this.ClearError);
+            this.txtNationalNumber.Location = new System.Drawing.Point(153, 189);
+            this.txtNationalNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtNationalNumber.Name = "txtNationalNumber";
+            this.txtNationalNumber.Size = new System.Drawing.Size(195, 20);
+            this.txtNationalNumber.TabIndex = 31;
+            this.txtNationalNumber.TextChanged += new System.EventHandler(this.NumbersOnlyValidator);
+            this.txtNationalNumber.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
+            this.txtNationalNumber.Validated += new System.EventHandler(this.ClearError);
             // 
             // label9
             // 
@@ -328,26 +326,26 @@
             this.label7.TabIndex = 37;
             this.label7.Text = "Date of birth:";
             // 
-            // Phonetxt
+            // txtPhone
             // 
-            this.Phonetxt.Location = new System.Drawing.Point(153, 358);
-            this.Phonetxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Phonetxt.Name = "Phonetxt";
-            this.Phonetxt.Size = new System.Drawing.Size(195, 20);
-            this.Phonetxt.TabIndex = 38;
-            this.Phonetxt.TextChanged += new System.EventHandler(this.NumbersOnlyValidator);
-            this.Phonetxt.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
-            this.Phonetxt.Validated += new System.EventHandler(this.ClearError);
+            this.txtPhone.Location = new System.Drawing.Point(153, 358);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(195, 20);
+            this.txtPhone.TabIndex = 38;
+            this.txtPhone.TextChanged += new System.EventHandler(this.NumbersOnlyValidator);
+            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
+            this.txtPhone.Validated += new System.EventHandler(this.ClearError);
             // 
-            // DateOfBirthtxt
+            // dtpBirthdate
             // 
-            this.DateOfBirthtxt.Location = new System.Drawing.Point(153, 227);
-            this.DateOfBirthtxt.MaxDate = new System.DateTime(2024, 10, 27, 0, 0, 0, 0);
-            this.DateOfBirthtxt.MinDate = new System.DateTime(1924, 1, 1, 0, 0, 0, 0);
-            this.DateOfBirthtxt.Name = "DateOfBirthtxt";
-            this.DateOfBirthtxt.Size = new System.Drawing.Size(195, 20);
-            this.DateOfBirthtxt.TabIndex = 32;
-            this.DateOfBirthtxt.Value = new System.DateTime(2024, 10, 27, 0, 0, 0, 0);
+            this.dtpBirthdate.Location = new System.Drawing.Point(153, 227);
+            this.dtpBirthdate.MaxDate = new System.DateTime(2024, 10, 27, 0, 0, 0, 0);
+            this.dtpBirthdate.MinDate = new System.DateTime(1924, 1, 1, 0, 0, 0, 0);
+            this.dtpBirthdate.Name = "dtpBirthdate";
+            this.dtpBirthdate.Size = new System.Drawing.Size(195, 20);
+            this.dtpBirthdate.TabIndex = 32;
+            this.dtpBirthdate.Value = new System.DateTime(2024, 10, 27, 0, 0, 0, 0);
             // 
             // label8
             // 
@@ -380,23 +378,23 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Third Name (Optional)";
             // 
-            // ThirdNametxt
+            // txtThirdname
             // 
-            this.ThirdNametxt.Location = new System.Drawing.Point(153, 140);
-            this.ThirdNametxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ThirdNametxt.Name = "ThirdNametxt";
-            this.ThirdNametxt.Size = new System.Drawing.Size(195, 20);
-            this.ThirdNametxt.TabIndex = 9;
+            this.txtThirdname.Location = new System.Drawing.Point(153, 140);
+            this.txtThirdname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtThirdname.Name = "txtThirdname";
+            this.txtThirdname.Size = new System.Drawing.Size(195, 20);
+            this.txtThirdname.TabIndex = 9;
             // 
-            // LastNametxt
+            // txtLastname
             // 
-            this.LastNametxt.Location = new System.Drawing.Point(392, 140);
-            this.LastNametxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.LastNametxt.Name = "LastNametxt";
-            this.LastNametxt.Size = new System.Drawing.Size(195, 20);
-            this.LastNametxt.TabIndex = 10;
-            this.LastNametxt.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
-            this.LastNametxt.Validated += new System.EventHandler(this.ClearError);
+            this.txtLastname.Location = new System.Drawing.Point(392, 140);
+            this.txtLastname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtLastname.Name = "txtLastname";
+            this.txtLastname.Size = new System.Drawing.Size(195, 20);
+            this.txtLastname.TabIndex = 10;
+            this.txtLastname.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
+            this.txtLastname.Validated += new System.EventHandler(this.ClearError);
             // 
             // label3
             // 
@@ -408,15 +406,15 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Second Name";
             // 
-            // SecondNametxt
+            // txtSecondname
             // 
-            this.SecondNametxt.Location = new System.Drawing.Point(392, 73);
-            this.SecondNametxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.SecondNametxt.Name = "SecondNametxt";
-            this.SecondNametxt.Size = new System.Drawing.Size(195, 20);
-            this.SecondNametxt.TabIndex = 6;
-            this.SecondNametxt.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
-            this.SecondNametxt.Validated += new System.EventHandler(this.ClearError);
+            this.txtSecondname.Location = new System.Drawing.Point(392, 73);
+            this.txtSecondname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtSecondname.Name = "txtSecondname";
+            this.txtSecondname.Size = new System.Drawing.Size(195, 20);
+            this.txtSecondname.TabIndex = 6;
+            this.txtSecondname.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyCellValidation);
+            this.txtSecondname.Validated += new System.EventHandler(this.ClearError);
             // 
             // lblPersonID
             // 
@@ -475,10 +473,10 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "AddEditPerson";
             this.Text = "AddEditPerson";
-            this.Load += new System.EventHandler(this.AddNewPersonCard_Load);
+            this.Load += new System.EventHandler(this._LoadForm);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProfilePic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errEmpty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errInvalidEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errNumbersOnly)).EndInit();
@@ -491,31 +489,30 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox FirstNametxt;
+        private System.Windows.Forms.TextBox txtFirstname;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox SecondNametxt;
+        private System.Windows.Forms.TextBox txtSecondname;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox ThirdNametxt;
-        private System.Windows.Forms.TextBox LastNametxt;
+        private System.Windows.Forms.TextBox txtThirdname;
+        private System.Windows.Forms.TextBox txtLastname;
         private System.Windows.Forms.Label label11;
-        private Custom_Controls.ShowCountriesList CountriesList;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RadioButton btnFemale;
         private System.Windows.Forms.RadioButton btnMale;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox Emailtxt;
-        private System.Windows.Forms.TextBox NationalNotxt;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtNationalNumber;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox Phonetxt;
-        private System.Windows.Forms.DateTimePicker DateOfBirthtxt;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.DateTimePicker dtpBirthdate;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.RichTextBox AddressRtxt;
+        private System.Windows.Forms.RichTextBox rtxAddress;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.PictureBox ProfilePic;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.PictureBox picProfile;
+        private System.Windows.Forms.LinkLabel lnkSetImage;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblPersonID;
@@ -524,6 +521,7 @@
         private System.Windows.Forms.ErrorProvider errEmpty;
         private System.Windows.Forms.ErrorProvider errInvalidEmail;
         private System.Windows.Forms.ErrorProvider errNumbersOnly;
-        private System.Windows.Forms.LinkLabel linklblRemove;
+        private System.Windows.Forms.LinkLabel lnkRemove;
+        private System.Windows.Forms.ComboBox cboCountries;
     }
 }

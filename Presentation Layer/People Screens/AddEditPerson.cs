@@ -1,85 +1,70 @@
 ﻿using BL;
+using Presentation_Layer.People_Screens.Validators;
 using Presentation_Layer.Properties;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Presentation_Layer
 {
     public partial class AddEditPerson : Form
     {
+
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+
+        
+        public event DataBackEventHandler DataBack;
+
+
+
+
         public enum enmode { AddNew = 0, Update = 1 };
-        private enmode _mode;
+        private enmode _Mode;
         int _PersonID;
         Person _Person1;
+        Guid PictureName;
+        string OldImagePath = "";
+        string NewImagePath = ""; 
         public AddEditPerson()
         {
             InitializeComponent();
-
+            _FillCountries();
         }
 
         public AddEditPerson(int PersonID)
         {
             InitializeComponent();
 
-
             _PersonID = PersonID;
-                _mode = enmode.Update;
-                
+            _Mode = enmode.Update;
             _Person1 = Person.Find(PersonID);
         }
 
-        public delegate void CloseTheForm();
-        public event CloseTheForm Current;
-
-
-
-        public event Action<Person> EvPassPersonInfo;
-
-        Guid PictureName;
-        protected virtual void PassPersonInfo(Person person)
-        {
-            Action<Person> pass = EvPassPersonInfo;
-            if (EvPassPersonInfo != null)
-            {
-                pass(person);
-            }
-        }
 
         public AddEditPerson(Person person)
         {
+            InitializeComponent();
+
             ActivateEditMode(person);
-            _mode = enmode.Update;
+            _Mode = enmode.Update;
+            _Person1 = person;
         }
 
-        public void ActivateEditMode(Person person)
+        private void _LoadForm(object sender, EventArgs e)
         {
-            FirstNametxt.Text = person.FirstName;
-            SecondNametxt.Text = person.SecondName;
-            ThirdNametxt.Text = person.ThirdName;
-            LastNametxt.Text = person.LastName;
-            Phonetxt.Text = person.Phone;
-            Emailtxt.Text = person.Email;
-            NationalNotxt.Text = person.NationalNumber;
-            ProfilePic.ImageLocation = person.ImagePath;
-            AddressRtxt.Text = person.Address;
-        }
-        private void AddNewPersonCard_Load(object sender, EventArgs e)
-        {
-            //Default Profile Picture
-            //ProfilePic.Image = SetProfilePicture(Resources.user);
-            //Default Date
-            DateOfBirthtxt.MaxDate = MaximumDate();
-            DateOfBirthtxt.MinDate = MinimumDate();
+            _FillCountries();
+            dtpBirthdate.MaxDate = MaximumDate();
+            dtpBirthdate.MinDate = MinimumDate();
 
-            if (_mode == enmode.AddNew)
+
+            if (_Mode == enmode.AddNew)
             {
-                ProfilePic.Image = SetProfilePicture(Resources.Male_User);
+                picProfile.Image = SetProfilePicture(Resources.Male_User);
                 lblMode.Text = "Add New Person";
                 _Person1 = new Person();
                 return;
@@ -98,87 +83,121 @@ namespace Presentation_Layer
             lblPersonID.Text = _PersonID.ToString();
 
             _PerpareForEdit();
-
-
-
         }
+
+
+
+
+
+
+
+
+        public void ActivateEditMode(Person person)
+        {
+            txtFirstname.Text = person.FirstName;
+            txtSecondname.Text = person.SecondName;
+            txtThirdname.Text = person.ThirdName;
+            txtLastname.Text = person.LastName;
+            txtPhone.Text = person.Phone;
+            txtEmail.Text = person.Email;
+            txtNationalNumber.Text = person.NationalNumber;
+            rtxAddress.Text = person.Address;
+            picProfile.ImageLocation = person.ImagePath;
+        }
+
+
+        private void _FillCountries()
+        {
+            DataTable dt = Country.GetAllCountries();
+            List<string> countriesList = new List<string>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                countriesList.Add(dr["Name"].ToString());
+            }
+
+            foreach (string country in countriesList)
+            {
+
+                cboCountries.Items.Add(country);
+            }
+
+            cboCountries.SelectedIndex = Country.GetCountryID("Jordan") - 1;
+        }
+        
+     
 
         private void _PerpareForEdit()
         {
-            FirstNametxt.Text = _Person1.FirstName;
-            SecondNametxt.Text = _Person1.SecondName;
-            ThirdNametxt.Text = _Person1.ThirdName;
-            LastNametxt.Text = _Person1.LastName;
-            DateOfBirthtxt.Value = _Person1.DateOfBirth;
+
+            txtFirstname.Text = _Person1.FirstName;
+            txtSecondname.Text = _Person1.SecondName;
+            txtThirdname.Text = _Person1.ThirdName;
+            txtLastname.Text = _Person1.LastName;
+            dtpBirthdate.Value = _Person1.DateOfBirth;
             _CheckGender(_Person1.Gender);
-            Phonetxt.Text = _Person1.Phone;
-            Emailtxt.Text = _Person1.Email;
-            NationalNotxt.Text = _Person1.NationalNumber;
-            CountriesList.DefaultSelectionOnEdit(_Person1.CountryID);
+            txtPhone.Text = _Person1.Phone;
+            txtEmail.Text = _Person1.Email;
+            txtNationalNumber.Text = _Person1.NationalNumber;
+            cboCountries.SelectedIndex = _Person1.CountryID - 1;
+
 
             if (_Person1.ImagePath != "")
             {
-                ProfilePic.ImageLocation = _Person1.ImagePath;
-                linklblRemove.Visible = true;
+                picProfile.ImageLocation = _Person1.ImagePath;
+                lnkRemove.Visible = true;
             }
             else if (_Person1.Gender == 'M')
             {
-                ProfilePic.Image=  SetProfilePicture(Resources.Male_User);
+                picProfile.Image = SetProfilePicture(Resources.Male_User);
             }
             else
             {
-                ProfilePic.Image = SetProfilePicture(Resources.Female_User);
+                picProfile.Image = SetProfilePicture(Resources.Female_User);
             }
-            
-            AddressRtxt.Text = _Person1.Address;
+
+            rtxAddress.Text = _Person1.Address;
         }
-
-        private void _PrepareFormValues()
-        {
-
-            if (_mode == enmode.AddNew)
-            {
-                lblMode.Text = "Add New Person";
-                _Person1 = new Person();
-            }
-            else
-            {
-                lblMode.Text = "Edit Person Info";
-                return;
-            }
-
-
-            if (btnMale.Checked)
-                ProfilePic.Image = Resources.Male_User;
-            else
-                ProfilePic.Image = Resources.Female_User;
-
-            linklblRemove.Visible = (ProfilePic.ImageLocation != null);
-
-
-            MaximumDate();
-            MinimumDate();
-
-
-
-
-        }
-
-
         private void _CheckGender(Char gender)
         {
             if (gender == 'M')
                 btnMale.Checked = true;
             else
                 btnFemale.Checked = true;
-
-            
         }
 
-        private Image SetProfilePicture(Bitmap Picture)
-        {
-            return Picture;
-        }
+        private Image SetProfilePicture(Bitmap Picture) => Picture;
+
+
+        //TODO: Remove this 
+
+        //private void _PrepareFormValues()
+        //{
+
+        //    if (_mode == enmode.AddNew)
+        //    {
+        //        lblMode.Text = "Add New Person";
+        //        _Person1 = new Person();
+        //    }
+        //    else
+        //    {
+        //        lblMode.Text = "Edit Person Info";
+        //        return;
+        //    }
+
+
+        //    if (btnMale.Checked)
+        //        picProfile.Image = Resources.Male_User;
+        //    else
+        //        picProfile.Image = Resources.Female_User;
+
+        //    linklblRemove.Visible = (picProfile.ImageLocation != null);
+
+        //}
+
+
+     
+
         private DateTime MaximumDate(int age = 18)
         {
             return new DateTime(DateTime.Today.Year - age, DateTime.Today.Month, DateTime.Today.Day);
@@ -190,94 +209,67 @@ namespace Presentation_Layer
 
         }
 
-        private void DateOfBirthtxt_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnMale_CheckedChanged(object sender, EventArgs e)
         {
-            if (linklblRemove.Visible == false)
-                ProfilePic.Image = SetProfilePicture(Resources.Male_User);
+            if (lnkRemove.Visible == false)
+                picProfile.Image = SetProfilePicture(Resources.Male_User);
 
         }
 
         private void btnFemale_CheckedChanged(object sender, EventArgs e)
         {
-            if (linklblRemove.Visible == false)
-                ProfilePic.Image = SetProfilePicture(Resources.Female_User);
+            if (lnkRemove.Visible == false)
+                picProfile.Image = SetProfilePicture(Resources.Female_User);
 
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            OpenFileDialog ProfilePicturePicker = new OpenFileDialog();
-            ProfilePicturePicker.Filter = @"Jpg Pictures (*.Jpg)|*.Jpg|Png Pictures (*.Png)|*.Png|Jpeg Pictures (*.Jpeg)|*.Jpeg|All Files (*.*)|*.*";
-            ProfilePicturePicker.FileName = $"Untitled.{ProfilePicturePicker.Filter}";
+        
 
-            ProfilePicturePicker.Title = "Set a Profile Picture";
-            ProfilePicturePicker.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-
-            if (ProfilePicturePicker.ShowDialog() == DialogResult.OK)
-            {
-                ProfilePic.ImageLocation = SaveImage(ProfilePicturePicker.FileName);
-
-            }
-          
-        }
-
-        public string SaveImage(string Imagepath)
+        private string SaveImage(string imagePath)
         {
 
             PictureName = Guid.NewGuid();
-          
-            string NewPath = $"C:\\Pictures";
+
+            string NewPath = Settings.Default.ImageStoragePath;
+
             string NewPicturePath = $"{NewPath}\\{PictureName}.jpg";
 
             if (!File.Exists(NewPath))
             {
                 Directory.CreateDirectory(NewPath);
             }
-            File.Copy(Imagepath, NewPicturePath);
+            File.Copy(imagePath, NewPicturePath);
 
-
-
-            linklblRemove.Visible = true;
-
+            lnkRemove.Visible = true;
 
             return NewPicturePath;
 
-            
-
         }
-
 
         private void createNewPerson()//char gender)
         {
-           
-                Person p = new Person
 
-                {
-                    FirstName = FirstNametxt.Text,
-                    SecondName = SecondNametxt.Text,
-                    ThirdName = ThirdNametxt.Text,
-                    LastName = LastNametxt.Text,
-                    NationalNumber = NationalNotxt.Text,
-                    DateOfBirth = DateOfBirthtxt.Value,
-                    Gender = (btnMale.Checked== true)? 'M': 'F',
-                    Phone = Phonetxt.Text,
-                    Email = Emailtxt.Text,
-                    //CountryID = Convert.ToInt32(CountriesList.Tag),
-                    Address = AddressRtxt.Text,
-                    ImagePath = ProfilePic.ImageLocation
-                };
-                p.Save();
-            
+            Person p = new Person
+
+            {
+                FirstName = txtFirstname.Text,
+                SecondName = txtSecondname.Text,
+                ThirdName = txtThirdname.Text,
+                LastName = txtLastname.Text,
+                NationalNumber = txtNationalNumber.Text,
+                DateOfBirth = dtpBirthdate.Value,
+                Gender = (btnMale.Checked == true) ? 'M' : 'F',
+                Phone = txtPhone.Text,
+                Email = txtEmail.Text,
+                CountryID = cboCountries.SelectedIndex,
+                Address = rtxAddress.Text,
+                ImagePath = picProfile.ImageLocation
+            };
+            p.Save();
+
         }
 
-
-        private bool isTheCellEmpty(TextBox txt) => txt.Text == "";
-
+        
         private void EmptyCellValidation(object sender, CancelEventArgs e)
         {
             if (((TextBox)sender).Text == "")
@@ -285,7 +277,6 @@ namespace Presentation_Layer
                 e.Cancel = true;
                 errEmpty.SetError((TextBox)sender, "This can't be empty");
             }
-          
 
 
         }
@@ -293,27 +284,8 @@ namespace Presentation_Layer
         private void ClearError(object sender, EventArgs e)
         {
             errEmpty.Clear();
-            
-        }
-
-
-
-        public static bool IsEmailValid(string EmailAddress)
-        {
-            Regex rgx = new Regex(@"^[A-Z0-9a-z._%+-]{2,63}@(?:[A-Za-z0-9-]{1,125}\.)+[A-Za-z]{2,63}$");
-
-            return rgx.IsMatch(EmailAddress);
-            
-               
-            
 
         }
-
-        private void CountriesList_EvIndexSelected(int obj)
-        {
-            CountriesList.Tag = obj.ToString();
-        }
-
 
         private bool checkIfMatched(TextBox Number) => Regex.IsMatch(Number.Text, "[^0-9]");
 
@@ -331,52 +303,25 @@ namespace Presentation_Layer
             }
         }
 
-        private void CountriesList_Load(object sender, EventArgs e)
-        {
-           
-        }
 
-        private void CountriesList_EvIndexSelected_1(int obj)
-        {
-            CountriesList.Tag = obj.ToString();
-        }
-
-        private void linklblRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (MessageBox.Show("This picture will be removed. Are you sure? ", "Remove Picture", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                if (ProfilePic.ImageLocation != "")
-                File.Delete(ProfilePic.ImageLocation);
-
-                ProfilePic.ImageLocation = "";
-
-                if(btnMale.Checked)
-                ProfilePic.Image = SetProfilePicture(Resources.Male_User);
-
-
-                if (btnFemale.Checked)
-                ProfilePic.Image = SetProfilePicture(Resources.Female_User);
-
-
-                linklblRemove.Visible = false;
-            }
-        }
 
         private void AddressRtxt_Leave(object sender, EventArgs e)
         {
-            if (AddressRtxt.Text == "")
+
+            if (Validators.IsTheCellEmpty( rtxAddress.Text ))
             {
-                
-                errEmpty.SetError(AddressRtxt, "This can't be empty");
-               
+
+                errEmpty.SetError(rtxAddress, "This can't be empty");
+
             }
+
         }
 
         private void Emailtxt_TextChanged(object sender, EventArgs e)
         {
-            if (!IsEmailValid(Emailtxt.Text))
+            if (!Validators.IsEmailValid(txtEmail.Text))
             {
-                errInvalidEmail.SetError(Emailtxt, "Email is not valid");
+                errInvalidEmail.SetError(txtEmail, "Email is not valid");
             }
             else
             {
@@ -385,77 +330,152 @@ namespace Presentation_Layer
         }
 
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void DeleteOldImage(string path)
         {
-            switch (_mode)
+            if (path != "")
             {
-                case (enmode.AddNew):
-                    _SavePerson(_Person1, "User Was added successfully");
-                    break;
-
-
-                case (enmode.Update):
-                    _SavePerson(_Person1, "User Was updated successfully");
-                    break;
+                File.Delete(path);
             }
-
-
-
-
-            //_prepareToSave(_Person1);
-            //_Person1.Save();
-
-            
-            btnSave.Enabled = false;
-
         }
 
-        private void _SavePerson(Person P1, string Message)
+        private void _SavePerson(Person personToSave, string message)
         {
-            _prepareToSave(_Person1);
-            _Person1.Save();
-            MessageBox.Show(Message);
+            if (NewImagePath != "")
+                picProfile.ImageLocation = SaveImage(NewImagePath);
+            
+            _prepareToSave(personToSave);
+            DeleteOldImage(OldImagePath);
+            personToSave.Save();
+            MessageBox.Show(message);
         }
 
         private void _prepareToSave(Person selectedPerson)
         {
-            if (_mode == enmode.Update)
+            if (_Mode == enmode.Update)
+            {
                 selectedPerson.PersonID = Int32.Parse(lblPersonID.Text);
-            
-            selectedPerson.FirstName = FirstNametxt.Text;
-            selectedPerson.SecondName = SecondNametxt.Text;
-            selectedPerson.ThirdName = ThirdNametxt.Text;
-            selectedPerson.LastName = LastNametxt.Text;
-            selectedPerson.NationalNumber = NationalNotxt.Text;
-            selectedPerson.DateOfBirth = DateOfBirthtxt.Value;
+            }
+
+            selectedPerson.FirstName = txtFirstname.Text;
+            selectedPerson.SecondName = txtSecondname.Text;
+            selectedPerson.ThirdName = txtThirdname.Text;
+            selectedPerson.LastName = txtLastname.Text;
+            selectedPerson.NationalNumber = txtNationalNumber.Text;
+            selectedPerson.DateOfBirth = dtpBirthdate.Value;
             selectedPerson.Gender = (btnMale.Checked == true) ? 'M' : 'F';
-            selectedPerson.Phone = Phonetxt.Text;
-            selectedPerson.Email = Emailtxt.Text;
-            selectedPerson.CountryID = CountriesList.Country_ID;
-            selectedPerson.Address = AddressRtxt.Text;
-            selectedPerson.ImagePath = ProfilePic.ImageLocation;
-        
-                
+            selectedPerson.Phone = txtPhone.Text;
+            selectedPerson.Email = txtEmail.Text;
+            selectedPerson.CountryID = cboCountries.SelectedIndex + 1;
+            selectedPerson.Address = rtxAddress.Text;
+            selectedPerson.ImagePath = picProfile.ImageLocation;
+
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+
+        
+        
+
+        private void CloseForm(object sender, EventArgs e)
         {
             this.Close();
         }
 
 
+        private void ProfilePictureDialog()
+        {
+            OpenFileDialog ProfilePicturePicker = new OpenFileDialog();
+            ProfilePicturePicker.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            ProfilePicturePicker.Title = "Set a Profile Picture";
+            ProfilePicturePicker.Filter = @"Jpg Pictures (*.Jpg)|*.Jpg|Png Pictures (*.Png)|*.Png|Jpeg Pictures (*.Jpeg)|*.Jpeg|All Files (*.*)|*.*";
+            ProfilePicturePicker.FilterIndex = 0;
 
 
+            if (ProfilePicturePicker.ShowDialog() == DialogResult.OK)
+            {
+                NewImagePath = ProfilePicturePicker.FileName;
+                picProfile.ImageLocation = (ProfilePicturePicker.FileName);
+                MessageBox.Show("The Image has changed successfully, Don't forget to click save", "Profie picture is set");
+            }
+        }
+
+        private void SetProfilePic(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            if (picProfile.ImageLocation != null)
+            {
+
+
+                if (picProfile.ImageLocation.Contains(Settings.Default.ImageStoragePath))
+                {
+                    OldImagePath = picProfile.ImageLocation;
+                }
+
+
+
+                if (MessageBox.Show("This image will be deleted, are you sure?", "Image delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+
+                    ProfilePictureDialog();
+
+
+                }
+            }
+            else
+            {
+            ProfilePictureDialog();
+            }
+            
+        }
+        private void RemoveProfilePic(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (MessageBox.Show("This picture will be removed. Are you sure? ", "Remove Picture", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (picProfile.ImageLocation != "")
+                    File.Delete(picProfile.ImageLocation);
+
+                picProfile.ImageLocation = "";
+
+                if (btnMale.Checked)
+                    picProfile.Image = SetProfilePicture(Resources.Male_User);
+
+
+                if (btnFemale.Checked)
+                    picProfile.Image = SetProfilePicture(Resources.Female_User);
+
+
+                lnkRemove.Visible = false;
+            }
+        }
+
+        private void ClickSave(object sender, EventArgs e)
+        {
+            switch (_Mode)
+            {
+                case (enmode.AddNew):
+                    _SavePerson(_Person1, "User Was added successfully");
+                    DataBack?.Invoke(this, _Person1.PersonID);
+                    break;
+
+
+                case (enmode.Update):
+                    _SavePerson(_Person1, "User Was updated successfully");
+                    DataBack?.Invoke(this, _Person1.PersonID);
+                    break;
+            }
+
+            //_prepareToSave(_Person1);
+            //_Person1.Save();
+
+            btnSave.Enabled = false;
+        }
     }
 }
 
 
-
-
 // TODO (Add/Edit Screen) should be done ASAP:
-// 1- Validation currently is turned off on all the textboxes, should be also fixed 
+// 1- Validation currently is turned off on all the textboxes, should be also fixed (DONE)
 // 2- resolve bugs when removing the profile picture, and after setting a profile picture 
-//      Now it's working, but it should change between the male and female 
+//      Now it's working, but it should change between the male and female (RESOLVED)
 // 3- Update should work (DONE) 
 // * Validation on the Address (Not empty) (DONE)
 // * Email Validation (DONE)
