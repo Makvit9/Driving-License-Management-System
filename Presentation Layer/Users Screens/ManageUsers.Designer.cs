@@ -39,6 +39,7 @@
             this.editCurrentUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNewUser = new System.Windows.Forms.Button();
+            this.changeUserPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -90,35 +91,36 @@
             this.showUserInfoToolStripMenuItem,
             this.addNewUserToolStripMenuItem,
             this.editCurrentUserToolStripMenuItem,
-            this.deleteUserToolStripMenuItem});
+            this.deleteUserToolStripMenuItem,
+            this.changeUserPasswordToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(195, 136);
             // 
             // showUserInfoToolStripMenuItem
             // 
             this.showUserInfoToolStripMenuItem.Name = "showUserInfoToolStripMenuItem";
-            this.showUserInfoToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.showUserInfoToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.showUserInfoToolStripMenuItem.Text = "Show User Info";
             this.showUserInfoToolStripMenuItem.Click += new System.EventHandler(this.showUserInfoToolStripMenuItem_Click);
             // 
             // addNewUserToolStripMenuItem
             // 
             this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
-            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.addNewUserToolStripMenuItem.Text = "Add New User";
             this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.btnNewUser_Click);
             // 
             // editCurrentUserToolStripMenuItem
             // 
             this.editCurrentUserToolStripMenuItem.Name = "editCurrentUserToolStripMenuItem";
-            this.editCurrentUserToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.editCurrentUserToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.editCurrentUserToolStripMenuItem.Text = "Edit Current User";
             this.editCurrentUserToolStripMenuItem.Click += new System.EventHandler(this.editCurrentUserToolStripMenuItem_Click);
             // 
             // deleteUserToolStripMenuItem
             // 
             this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
-            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
             this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.deleteUserToolStripMenuItem_Click);
             // 
@@ -131,6 +133,13 @@
             this.btnNewUser.Text = "Add New User";
             this.btnNewUser.UseVisualStyleBackColor = true;
             this.btnNewUser.Click += new System.EventHandler(this.btnNewUser_Click);
+            // 
+            // changeUserPasswordToolStripMenuItem
+            // 
+            this.changeUserPasswordToolStripMenuItem.Name = "changeUserPasswordToolStripMenuItem";
+            this.changeUserPasswordToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.changeUserPasswordToolStripMenuItem.Text = "Change User Password";
+            this.changeUserPasswordToolStripMenuItem.Click += new System.EventHandler(this.changeUserPasswordToolStripMenuItem_Click);
             // 
             // ManageUsers
             // 
@@ -164,5 +173,6 @@
         private System.Windows.Forms.ToolStripMenuItem addNewUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editCurrentUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeUserPasswordToolStripMenuItem;
     }
 }

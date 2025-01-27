@@ -93,7 +93,45 @@ namespace DAL
             return (rowsAffected > 0);
         }
 
+        public static bool UpdateUserPassword(int userID, string password, string salt)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
 
+            string query = @"
+                            UPDATE Users 
+                            SET
+                             Password = @Password,
+                             Salt = @Salt
+                            WHERE UserID = @UserID
+                            ";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@UserID", userID);
+            command.Parameters.AddWithValue("@Password", password);
+            command.Parameters.AddWithValue("@Salt", salt);
+
+
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
 
         public static bool FindUser(int UserID, ref int PersonID, ref string Username, ref bool IsActive)
         {
@@ -173,7 +211,7 @@ namespace DAL
 
         }
 
-        public static int AddNewUser(int PersonID, string Username, string Password, bool IsActive)
+        public static int AddNewUser(int PersonID, string Username, string Password, bool IsActive, string salt)
         {
             int UserID = -1;
 
@@ -184,6 +222,7 @@ namespace DAL
                              @PersonID,
                              @Username,
                              @Password,
+                             @Salt,
                              @IsActive
                                 )
                              SELECT Scope_Identity()";
@@ -195,6 +234,7 @@ namespace DAL
             cmd.Parameters.AddWithValue("@Username", Username);
             cmd.Parameters.AddWithValue("@Password", Password);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
+            cmd.Parameters.AddWithValue("@Salt", salt);
 
 
             try

@@ -36,7 +36,7 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.personInfoCard1 = new Presentation_Layer.User_Controls.PersonInfoCard();
+            this.personInfoCard1 = new Presentation_Layer.People_Screens.Person_User_Controls.PersonInfoUpdated();
             this.SuspendLayout();
             // 
             // lblAddNewUser
@@ -94,7 +94,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(341, 612);
+            this.btnUpdate.Location = new System.Drawing.Point(356, 452);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 16;
@@ -114,21 +114,21 @@
             // personInfoCard1
             // 
             this.personInfoCard1.BackColor = System.Drawing.Color.White;
-            this.personInfoCard1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.personInfoCard1.Location = new System.Drawing.Point(23, 216);
-            this.personInfoCard1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.personInfoCard1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.personInfoCard1.Location = new System.Drawing.Point(23, 215);
+            this.personInfoCard1.Margin = new System.Windows.Forms.Padding(4);
             this.personInfoCard1.Name = "personInfoCard1";
-            this.personInfoCard1.Size = new System.Drawing.Size(766, 377);
-            this.personInfoCard1.TabIndex = 17;
+            this.personInfoCard1.Size = new System.Drawing.Size(749, 213);
+            this.personInfoCard1.TabIndex = 19;
             // 
             // EditUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(812, 647);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(812, 492);
             this.Controls.Add(this.personInfoCard1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblAddNewUser);
             this.Controls.Add(this.lblPerson);
@@ -152,7 +152,7 @@
         private System.Windows.Forms.CheckBox chkIsActive;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Button btnUpdate;
-        private User_Controls.PersonInfoCard personInfoCard1;
         private System.Windows.Forms.Label label1;
+        private People_Screens.Person_User_Controls.PersonInfoUpdated personInfoCard1;
     }
 }

@@ -58,5 +58,4 @@ namespace Presentation_Layer
 
 
 // TODO: Create the validator
-// TODO: Handle the Hashing 
 // TODO: create account for users 

@@ -59,7 +59,7 @@ namespace Presentation_Layer.Users_Screens
 
         private void btnNewUser_Click(object sender, EventArgs e)
         {
-            Form AddUser = new AddEditUser();
+            Form AddUser = new AddNewUserUpdated();
             AddUser.ShowDialog();
             showAllUsers();
         }
@@ -92,6 +92,12 @@ namespace Presentation_Layer.Users_Screens
             Form Edit_User = new EditUser((int)dataGridView1.CurrentRow.Cells[0].Value);
             Edit_User.ShowDialog();
             showAllUsers();
+        }
+
+        private void changeUserPasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form ResetPassword = new ChangeUserPassword((int)dataGridView1.CurrentRow.Cells[0].Value);
+            ResetPassword.ShowDialog();
         }
     }
 }

@@ -27,8 +27,10 @@ namespace Presentation_Layer.People_Screens.Validators
         public static bool IsPhoneNumberLengthCorrect(string phoneNumber , int requiredLength = 10) =>
             (phoneNumber.Length == requiredLength);
 
+        public static bool AreTheStringsMatched(string firstString, string secondString) => firstString.Equals(secondString);
+   
 
-
+        // override object.GetHashCode
 
     }
 }

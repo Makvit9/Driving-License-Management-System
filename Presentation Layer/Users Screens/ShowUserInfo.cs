@@ -17,34 +17,34 @@ namespace Presentation_Layer.Users_Screens
             InitializeComponent();
         }
 
-        private User user1;
+        private User _SelectedUser;
 
         public ShowUserInfo(int UserID)
         {
             InitializeComponent();
-            user1 = User.FindUser(UserID);
-
-            _FillInfo();
+            _SelectedUser = User.FindUser(UserID);
+            userCardInfo1.LoadUserInfo(UserID);
+            //_FillInfo();
 
         
         }
 
-        private void _FillInfo()
-        {
-            lblUsername.Text = user1.Username;
-            lblUserID.Text = user1.UserID.ToString();
+        //private void _FillInfo()
+        //{
+        //    lblUsername.Text = _SelectedUser.Username;
+        //    lblUserID.Text = _SelectedUser.UserID.ToString();
 
 
-            if (user1.IsActive.ToString() == "True")
-            {
-                lblIsActive.Text = "Active";
-            }
-            else
-            {
-                lblIsActive.Text = "Disabled";
-            }
-            personInfoCard1.PersonInfo(user1.PersonID);
+        //    if (_SelectedUser.IsActive.ToString() == "True")
+        //    {
+        //        lblIsActive.Text = "Active";
+        //    }
+        //    else
+        //    {
+        //        lblIsActive.Text = "Disabled";
+        //    }
+        //    personInfoUpdated1.LoadPersonInfo(_SelectedUser.PersonID);
             
-        }
+        //}
     }
 }

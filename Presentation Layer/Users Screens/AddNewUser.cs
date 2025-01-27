@@ -11,11 +11,11 @@ using BL;
 using Syncfusion.Windows.Forms;
 namespace Presentation_Layer.Users_Screens
 {
-    public partial class AddEditUser : Form
+    public partial class AddNewUser : Form
     {
 
         private User _User;
-        public AddEditUser()
+        public AddNewUser()
         {
             InitializeComponent();
         }
@@ -49,10 +49,12 @@ namespace Presentation_Layer.Users_Screens
         {
             currentUser.PersonID = Int32.Parse(txtPersonID.Text);
             currentUser.Username = txtUsername.Text;
+
+
             currentUser.Password = txtPassword.Text; //This is only for now 
             /*currentUser.HashPassword()        Coming Soon*/
             currentUser.IsActive = chkIsActive.Checked ? true : false;
-            currentUser.mode = User.enmode.AddNew;
+            currentUser.Mode = User.enmode.AddNew;
 
         }
 

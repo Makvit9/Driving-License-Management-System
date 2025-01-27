@@ -1,6 +1,6 @@
 ﻿namespace Presentation_Layer.Users_Screens
 {
-    partial class AddEditUser
+    partial class AddNewUser
     {
         /// <summary>
         /// Required designer variable.

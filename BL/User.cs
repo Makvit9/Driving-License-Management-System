@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using DAL;
 using static BL.Person;
 using System.Net.Http.Headers;
+using BL.Services;
 namespace BL
 {
     public class User
@@ -14,24 +15,16 @@ namespace BL
         public string Password { get; set; }
         byte[] Salt;
         public bool IsActive { get; set; }
+
+        public Person PersonInfo;
         public int PersonID { get; set; }
-        public enmode mode;
+        public enmode Mode;
         public int UserID { get; set; }
 
-        static HashAlgorithmName HashName => HashAlgorithmName.SHA512;
+        private string stringSalt { get; set; }
+        
 
-        public string HashPassword(string Password, out byte[] salt)
-        {
-            //create the salt and fill with random bits 
-            RandomNumberGenerator rnd = RandomNumberGenerator.Create();
-            salt = new byte[HashSettings.KEYSIZE];
-            rnd.GetBytes(salt);
-            //Salt done
-            var Hash = new Rfc2898DeriveBytes(Password, salt, HashSettings.ITERATIONS, HashName).GetBytes(HashSettings.KEYSIZE);
-
-
-            return Convert.ToBase64String(Hash);
-        }
+        
 
 
         public User()
@@ -39,23 +32,32 @@ namespace BL
             PersonID = -1;
             Username = "";
             Password = "";
-            IsActive = false;
+            IsActive = true;
+
+            Mode = enmode.AddNew;
         }
         public User(int PersonID, string Username, bool IsActive)
         {
-            this.PersonID = PersonID;
+            this.PersonInfo.PersonID = PersonID;
             this.Username = Username;
             this.IsActive = IsActive;
+
+            Mode = enmode.Update;
         }
 
         public User(int PersonID, string Username, string Password, bool IsActive)
         {
             this.PersonID = PersonID;
             this.Username = Username;
-            this.Password = Password;
+            this.Password = HashPassword(Password);
             this.IsActive = IsActive;
+
+            Mode = enmode.Update;
+
         }
 
+        private string HashPassword(string Password) => this.Password = Services.HashService.HashPassword(Password, out Salt);
+        
 
 
         public User(int UserID, int PersonID, string Username, bool IsActive)
@@ -64,6 +66,9 @@ namespace BL
             this.PersonID = PersonID;
             this.Username = Username;
             this.IsActive = IsActive;
+
+            Mode = enmode.Update;
+
         }
 
         // Get All Users -- DONE
@@ -76,7 +81,9 @@ namespace BL
 
         private bool _AddNewUser()
         {
-            this.UserID = UserDAL.AddNewUser(this.PersonID,this.Username,this.Password,this.IsActive);
+            this.Password = HashPassword(Password);
+            stringSalt = Convert.ToBase64String(Salt); 
+            this.UserID = UserDAL.AddNewUser(this.PersonID,this.Username,this.Password,this.IsActive, stringSalt);
 
 
             
@@ -90,7 +97,7 @@ namespace BL
 
         public bool Save()
         {
-            switch (mode)
+            switch (Mode)
             {
                 case enmode.AddNew: 
                     return _AddNewUser();
@@ -109,6 +116,18 @@ namespace BL
 
         //Update 
         
+        public static bool UpdatePassword(int UserID, string NewPassword)
+        {
+            byte[] tempSalt;
+            string stringSalt;
+            NewPassword = HashService.HashPassword(NewPassword, out tempSalt);
+
+            stringSalt = Convert.ToBase64String(tempSalt);
+
+            return UserDAL.UpdateUserPassword(UserID, NewPassword, stringSalt);
+        }
+
+
 
         //Delete
         public static bool DeleteUser(int UserID)

@@ -38,7 +38,7 @@ namespace Presentation_Layer.Users_Screens
             }
 
 
-            personInfoCard1.PersonInfo(CurrentUser.PersonID);
+            personInfoCard1.LoadPersonInfo(CurrentUser.PersonID);
 
         }
 
@@ -62,7 +62,7 @@ namespace Presentation_Layer.Users_Screens
             currentUser.PersonID = Int32.Parse(txtPersonID.Text);
             currentUser.Username = txtUsername.Text;
             currentUser.IsActive = chkIsActive.Checked ? true :  false;
-            currentUser.mode = User.enmode.Update;
+            currentUser.Mode = User.enmode.Update;
             
         }
 

@@ -157,11 +157,23 @@
     <Compile Include="TestTypes\ManageTestTypes.Designer.cs">
       <DependentUpon>ManageTestTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Users Screens\AddEditUser.cs">
+    <Compile Include="Users Screens\AddNewUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Users Screens\AddEditUser.Designer.cs">
-      <DependentUpon>AddEditUser.cs</DependentUpon>
+    <Compile Include="Users Screens\AddNewUser.Designer.cs">
+      <DependentUpon>AddNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users Screens\AddNewUserUpdated.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users Screens\AddNewUserUpdated.Designer.cs">
+      <DependentUpon>AddNewUserUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users Screens\ChangeUserPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users Screens\ChangeUserPassword.Designer.cs">
+      <DependentUpon>ChangeUserPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Users Screens\EditUser.cs">
       <SubType>Form</SubType>
@@ -180,6 +192,12 @@
     </Compile>
     <Compile Include="Users Screens\ShowUserInfo.Designer.cs">
       <DependentUpon>ShowUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users Screens\UserCardInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Users Screens\UserCardInfo.Designer.cs">
+      <DependentUpon>UserCardInfo.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Application Types\EditApplicationType.resx">
       <DependentUpon>EditApplicationType.cs</DependentUpon>
@@ -225,8 +243,14 @@
     <EmbeddedResource Include="TestTypes\ManageTestTypes.resx">
       <DependentUpon>ManageTestTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Users Screens\AddEditUser.resx">
-      <DependentUpon>AddEditUser.cs</DependentUpon>
+    <EmbeddedResource Include="Users Screens\AddNewUser.resx">
+      <DependentUpon>AddNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users Screens\AddNewUserUpdated.resx">
+      <DependentUpon>AddNewUserUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users Screens\ChangeUserPassword.resx">
+      <DependentUpon>ChangeUserPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users Screens\EditUser.resx">
       <DependentUpon>EditUser.cs</DependentUpon>
@@ -236,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Users Screens\ShowUserInfo.resx">
       <DependentUpon>ShowUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users Screens\UserCardInfo.resx">
+      <DependentUpon>UserCardInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
