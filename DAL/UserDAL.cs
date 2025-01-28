@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using DAL.Settings;
 
@@ -10,23 +11,21 @@ namespace DAL
     public class UserDAL
     {
 
-      
-
         public static DataTable GetAllUsers()
         {
 
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
+            SqlConnection conn = new SqlConnection(Settings.ConnectionString.connectionString);
 
             string Query = "Select UserID,PersonID,Username,IsActive From Users";
 
-            SqlCommand command = new SqlCommand(Query, connection);
+            SqlCommand cmd = new SqlCommand(Query, conn);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
                 {
@@ -43,18 +42,16 @@ namespace DAL
             finally
             {
 
-                connection.Close();
+                conn.Close();
             }
             return dt;
         }
-
-
 
         public static bool UpdateUser(int PersonID, int UserID, string Username, bool IsActive)
         {
 
             int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
+            SqlConnection conn = new SqlConnection(Settings.ConnectionString.connectionString);
 
             string query = @"
                             UPDATE Users 
@@ -65,19 +62,19 @@ namespace DAL
                             WHERE UserID = @UserID
                             ";
 
-            SqlCommand command = new SqlCommand(query, connection);
+            SqlCommand cmd = new SqlCommand(query, conn);
 
-            command.Parameters.AddWithValue("PersonID", PersonID);
-            command.Parameters.AddWithValue("UserID", UserID);
-            command.Parameters.AddWithValue("Username", Username);
-            command.Parameters.AddWithValue("IsActive", IsActive);
+            cmd.Parameters.AddWithValue("PersonID", PersonID);
+            cmd.Parameters.AddWithValue("UserID", UserID);
+            cmd.Parameters.AddWithValue("Username", Username);
+            cmd.Parameters.AddWithValue("IsActive", IsActive);
 
 
 
             try
             {
-                connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
+                conn.Open();
+                rowsAffected = cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)
@@ -87,7 +84,7 @@ namespace DAL
 
             finally
             {
-                connection.Close();
+                conn.Close();
             }
 
             return (rowsAffected > 0);
@@ -95,8 +92,10 @@ namespace DAL
 
         public static bool UpdateUserPassword(int userID, string password, string salt)
         {
+           
+
             int rowsAffected = 0;
-            SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
+            SqlConnection conn = new SqlConnection(Settings.ConnectionString.connectionString);
 
             string query = @"
                             UPDATE Users 
@@ -106,18 +105,18 @@ namespace DAL
                             WHERE UserID = @UserID
                             ";
 
-            SqlCommand command = new SqlCommand(query, connection);
+            SqlCommand cmd = new SqlCommand(query, conn);
 
-            command.Parameters.AddWithValue("@UserID", userID);
-            command.Parameters.AddWithValue("@Password", password);
-            command.Parameters.AddWithValue("@Salt", salt);
+            cmd.Parameters.AddWithValue("@UserID", userID);
+            cmd.Parameters.AddWithValue("@Password", password);
+            cmd.Parameters.AddWithValue("@Salt", salt);
 
 
 
             try
             {
-                connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
+                conn.Open();
+                rowsAffected = cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)
@@ -127,10 +126,47 @@ namespace DAL
 
             finally
             {
-                connection.Close();
+                conn.Close();
             }
 
             return (rowsAffected > 0);
+        }
+
+        public static void GetUserInfoByUsername(string Username, ref int userID, ref int personID, ref string password, ref string salt, ref bool isActive)
+        {
+
+            SqlConnection conn = new SqlConnection(ConnectionString.connectionString);
+
+            string Query = @"Select * from Users Where Username = @Username";
+            SqlCommand cmd = new SqlCommand(Query, conn);
+
+            cmd.Parameters.AddWithValue("Username", Username);
+           
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    userID = (int)reader["UserID"];
+                    personID = (int)reader["PersonID"];
+                    password = reader["Password"].ToString();
+                    salt = reader["Salt"].ToString();
+                    isActive = (bool)reader["IsActive"];
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { conn.Close(); }
+
+
+
+      
         }
 
         public static bool FindUser(int UserID, ref int PersonID, ref string Username, ref bool IsActive)
@@ -142,19 +178,19 @@ namespace DAL
 
         public static bool FindUser(string username, string password)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString.connectionString);
+            SqlConnection conn = new SqlConnection(ConnectionString.connectionString);
 
             string Query = @"Select * from Users Where Username = @username and password = @password";
 
-            SqlCommand command = new SqlCommand(Query, connection);
+            SqlCommand cmd = new SqlCommand(Query, conn);
 
-            command.Parameters.AddWithValue("username", username);
-            command.Parameters.AddWithValue("password", password);
+            cmd.Parameters.AddWithValue("username", username);
+            cmd.Parameters.AddWithValue("password", password);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
                 {
@@ -168,7 +204,7 @@ namespace DAL
 
                 throw;
             }
-            finally { connection.Close(); }
+            finally { conn.Close(); }
 
 
 
@@ -178,18 +214,18 @@ namespace DAL
         public static bool IsUsernameExists(string Username)
         {
             bool isFound = false;
-            SqlConnection connection = new SqlConnection(ConnectionString.connectionString);
+            SqlConnection conn = new SqlConnection(ConnectionString.connectionString);
 
             string Query = @"Select Found = 1 from Users Where Username = @username ";
 
-            SqlCommand command = new SqlCommand(Query, connection);
+            SqlCommand cmd = new SqlCommand(Query, conn);
 
-            command.Parameters.AddWithValue("username", Username);
+            cmd.Parameters.AddWithValue("username", Username);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
                 {
@@ -203,7 +239,7 @@ namespace DAL
 
                 throw;
             }
-            finally { connection.Close(); }
+            finally { conn.Close(); }
 
 
 
@@ -215,7 +251,7 @@ namespace DAL
         {
             int UserID = -1;
 
-            SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
+            SqlConnection conn = new SqlConnection(Settings.ConnectionString.connectionString);
 
             string Query = @"INSERT INTO Users 
                              VALUES (
@@ -228,7 +264,7 @@ namespace DAL
                              SELECT Scope_Identity()";
 
 
-            SqlCommand cmd = new SqlCommand(Query, connection);
+            SqlCommand cmd = new SqlCommand(Query, conn);
 
             cmd.Parameters.AddWithValue("@PersonID", PersonID);
             cmd.Parameters.AddWithValue("@Username", Username);
@@ -239,7 +275,7 @@ namespace DAL
 
             try
             {
-                connection.Open();
+                conn.Open();
 
                 object result = cmd.ExecuteScalar();
 
@@ -258,7 +294,7 @@ namespace DAL
 
             finally
             {
-                connection.Close();
+                conn.Close();
             }
 
 
@@ -268,18 +304,18 @@ namespace DAL
         public static bool IsPersonLinkedToOtherUser(int PersonID)
         {
             bool isFound = false;
-            SqlConnection connection = new SqlConnection(ConnectionString.connectionString);
+            SqlConnection conn = new SqlConnection(ConnectionString.connectionString);
 
             string Query = @"Select Found = 1 from Users Where PersonID = @PersonID ";
 
-            SqlCommand command = new SqlCommand(Query, connection);
+            SqlCommand cmd = new SqlCommand(Query, conn);
 
-            command.Parameters.AddWithValue("@PersonID", PersonID);
+            cmd.Parameters.AddWithValue("@PersonID", PersonID);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
                 {
@@ -293,7 +329,7 @@ namespace DAL
 
                 throw;
             }
-            finally { connection.Close(); }
+            finally { conn.Close(); }
 
 
 
@@ -301,25 +337,22 @@ namespace DAL
 
         }
 
-
-
-
         public static bool GetUserInfoByID(int UserID, ref int PersonID, ref string Username, ref bool IsActive)
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
+            SqlConnection conn = new SqlConnection(Settings.ConnectionString.connectionString);
 
             string query = "SELECT * FROM Users WHERE UserID = @UserID";
 
-            SqlCommand command = new SqlCommand(query, connection);
+            SqlCommand cmd = new SqlCommand(query, conn);
 
-            command.Parameters.AddWithValue("@UserID", UserID);
+            cmd.Parameters.AddWithValue("@UserID", UserID);
 
             try
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())
                 {
@@ -351,7 +384,7 @@ namespace DAL
             }
             finally
             {
-                connection.Close();
+                conn.Close();
             }
 
             return isFound;
@@ -361,20 +394,20 @@ namespace DAL
         {
             int rowsAffected = 0;
 
-            SqlConnection connection = new SqlConnection(Settings.ConnectionString.connectionString);
+            SqlConnection conn = new SqlConnection(Settings.ConnectionString.connectionString);
 
             string query = @"Delete from Users 
                                 where UserID = @UserID";
 
-            SqlCommand command = new SqlCommand(query, connection);
+            SqlCommand cmd = new SqlCommand(query, conn);
 
-            command.Parameters.AddWithValue("@UserID", UserID);
+            cmd.Parameters.AddWithValue("@UserID", UserID);
 
             try
             {
-                connection.Open();
+                conn.Open();
 
-                rowsAffected = command.ExecuteNonQuery();
+                rowsAffected = cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)
@@ -384,17 +417,12 @@ namespace DAL
             finally
             {
 
-                connection.Close();
+                conn.Close();
 
             }
 
             return (rowsAffected > 0);
         }
-
-
-
-
-
 
     }
 }

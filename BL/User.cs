@@ -10,18 +10,27 @@ namespace BL
 {
     public class User
     {
+
+
+
+        private string _username;
+        private string _password;
+        private string _salt;
+        private int _personid;
+        private int _userid;
+        private bool _isActive;
         public enum enmode { AddNew = 0, Update= 1  };
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Username { get => _username;  }
+        public string Password { get => _password; }
         byte[] Salt;
         public bool IsActive { get; set; }
 
         public Person PersonInfo;
-        public int PersonID { get; set; }
+        public int PersonID { get => _personid; }
         public enmode Mode;
-        public int UserID { get; set; }
+        public int UserID { get => _userid; }
 
-        private string stringSalt { get; set; }
+        private string stringSalt { get => _salt; }
         
 
         
@@ -29,43 +38,48 @@ namespace BL
 
         public User()
         {
-            PersonID = -1;
-            Username = "";
-            Password = "";
-            IsActive = true;
+            _personid = -1;
+            _username = "";
+            _password = "";
+            _isActive = true;
 
             Mode = enmode.AddNew;
         }
         public User(int PersonID, string Username, bool IsActive)
         {
             this.PersonInfo.PersonID = PersonID;
-            this.Username = Username;
-            this.IsActive = IsActive;
+            _username  = Username;
+            _isActive = IsActive;
 
             Mode = enmode.Update;
         }
 
         public User(int PersonID, string Username, string Password, bool IsActive)
         {
-            this.PersonID = PersonID;
-            this.Username = Username;
-            this.Password = HashPassword(Password);
-            this.IsActive = IsActive;
+            _personid = PersonID;
+            _username = Username;
+            _password = HashPassword(Password);
+            _isActive = IsActive;
 
             Mode = enmode.Update;
 
         }
 
-        private string HashPassword(string Password) => this.Password = Services.HashService.HashPassword(Password, out Salt);
+        private User(string Username)
+        {
+            _username = Username;
+        }
+
+        private string HashPassword(string Password) => _password = Services.HashService.HashPassword(Password, out Salt);
         
 
 
         public User(int UserID, int PersonID, string Username, bool IsActive)
         {
-            this.UserID = UserID;
-            this.PersonID = PersonID;
-            this.Username = Username;
-            this.IsActive = IsActive;
+            _userid = UserID;
+            _personid = PersonID;
+            _username = Username;
+            _isActive = IsActive;
 
             Mode = enmode.Update;
 
@@ -81,9 +95,9 @@ namespace BL
 
         private bool _AddNewUser()
         {
-            this.Password = HashPassword(Password);
-            stringSalt = Convert.ToBase64String(Salt); 
-            this.UserID = UserDAL.AddNewUser(this.PersonID,this.Username,this.Password,this.IsActive, stringSalt);
+            _password = HashPassword(Password);
+            _salt = Convert.ToBase64String(Salt); 
+            _userid = UserDAL.AddNewUser(this.PersonID,this.Username,this.Password,this.IsActive, stringSalt);
 
 
             
@@ -148,9 +162,14 @@ namespace BL
             return new User(UserID, PersonID, Username, IsActive);
         
         }
-        public static bool FindUser(string Username, string Password)
+        public static User FindUser(string Username, string Password)
         {
-            return UserDAL.FindUser(Username, Password);
+            if (!UserDAL.IsUsernameExists(Username)) return null;
+
+            User selectedUser = new User(Username);
+            UserDAL.GetUserInfoByUsername(Username,  ref selectedUser._userid,  ref selectedUser._personid,  ref selectedUser._password,  ref selectedUser._salt,  ref selectedUser._isActive);
+            
+            //return UserDAL.FindUser(Username, Password);
         }
 
         public static bool IsTheUsernameExists(string Username)

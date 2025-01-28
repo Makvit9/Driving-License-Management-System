@@ -89,10 +89,11 @@
     <Compile Include="Applications\LocalDrivingLicenseApplication.Designer.cs">
       <DependentUpon>LocalDrivingLicenseApplication.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginScreen.cs">
+    <Compile Include="Global\GlobalUser.cs" />
+    <Compile Include="Login\LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginScreen.Designer.cs">
+    <Compile Include="Login\LoginScreen.Designer.cs">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="People Screens\AddEditPerson.cs">
@@ -208,7 +209,7 @@
     <EmbeddedResource Include="Applications\LocalDrivingLicenseApplication.resx">
       <DependentUpon>LocalDrivingLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginScreen.resx">
+    <EmbeddedResource Include="Login\LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People Screens\AddEditPerson.resx">

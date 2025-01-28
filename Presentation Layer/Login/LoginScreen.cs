@@ -28,8 +28,10 @@ namespace Presentation_Layer
         {
             _counter++;
 
+
+            
             //new User(usernameTextBox.Text, passwordTextBox.Text);
-            if (User.FindUser(txtUsername.Text, txtPassword.Text) == true)
+            if (User.FindUser(txtUsername.Text,txtPassword.Text ) != null)
             {
 
 
@@ -44,7 +46,7 @@ namespace Presentation_Layer
             else if (_counter >= 3)
             {
                 btnLogin.Enabled = false;
-                label1.Visible = true;
+                lblLocked.Visible = true;
             }
             else
             {

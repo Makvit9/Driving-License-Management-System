@@ -33,8 +33,8 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.cbRememberUsername = new System.Windows.Forms.CheckBox();
+            this.lblLocked = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -90,29 +90,29 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // checkBox1
+            // cbRememberUsername
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(335, 257);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(140, 19);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Remember Username";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbRememberUsername.AutoSize = true;
+            this.cbRememberUsername.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRememberUsername.Location = new System.Drawing.Point(335, 257);
+            this.cbRememberUsername.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbRememberUsername.Name = "cbRememberUsername";
+            this.cbRememberUsername.Size = new System.Drawing.Size(140, 19);
+            this.cbRememberUsername.TabIndex = 5;
+            this.cbRememberUsername.Text = "Remember Username";
+            this.cbRememberUsername.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lblLocked
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(283, 389);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(380, 30);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "You\'re Locked Out, Contact you admin";
-            this.label1.Visible = false;
+            this.lblLocked.AutoSize = true;
+            this.lblLocked.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocked.Location = new System.Drawing.Point(283, 389);
+            this.lblLocked.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLocked.Name = "lblLocked";
+            this.lblLocked.Size = new System.Drawing.Size(380, 30);
+            this.lblLocked.TabIndex = 6;
+            this.lblLocked.Text = "You\'re Locked Out, Contact you admin";
+            this.lblLocked.Visible = false;
             // 
             // LoginScreen
             // 
@@ -120,8 +120,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(933, 519);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.lblLocked);
+            this.Controls.Add(this.cbRememberUsername);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
@@ -143,7 +143,7 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox cbRememberUsername;
+        private System.Windows.Forms.Label lblLocked;
     }
 }
