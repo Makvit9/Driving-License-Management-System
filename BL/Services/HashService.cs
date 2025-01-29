@@ -26,6 +26,15 @@ namespace BL.Services
         }
 
 
+        public static string HashPassword(string Password, byte[] salt)
+        {
+            RandomNumberGenerator rnd = RandomNumberGenerator.Create();
+            //Salt done
+            var Hash = new Rfc2898DeriveBytes(Password, salt, HashSettings.ITERATIONS, HashSettings.HashName).GetBytes(HashSettings.KEYSIZE);
+
+
+            return Convert.ToBase64String(Hash);
+        }
 
     }
 }

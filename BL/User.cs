@@ -6,6 +6,7 @@ using DAL;
 using static BL.Person;
 using System.Net.Http.Headers;
 using BL.Services;
+using System.Text;
 namespace BL
 {
     public class User
@@ -13,91 +14,84 @@ namespace BL
 
 
 
-        private string _username;
-        private string _password;
-        private string _salt;
-        private int _personid;
-        private int _userid;
-        private bool _isActive;
+        
         public enum enmode { AddNew = 0, Update= 1  };
-        public string Username { get => _username;  }
-        public string Password { get => _password; }
+        public string Username { get; set; }
+        public string Password { get; set; }
         byte[] Salt;
         public bool IsActive { get; set; }
 
         public Person PersonInfo;
-        public int PersonID { get => _personid; }
+        public int PersonID { get; set; }
         public enmode Mode;
-        public int UserID { get => _userid; }
+        public int UserID { get; set; }
 
-        private string stringSalt { get => _salt; }
-        
-
-        
-
+        private string stringSalt { get; set; }
+       
 
         public User()
         {
-            _personid = -1;
-            _username = "";
-            _password = "";
-            _isActive = true;
+            this.PersonID = -1;
+            this.Username = "";
+            this.Password = "";
+            this.IsActive = true;
 
             Mode = enmode.AddNew;
         }
+       
         public User(int PersonID, string Username, bool IsActive)
         {
             this.PersonInfo.PersonID = PersonID;
-            _username  = Username;
-            _isActive = IsActive;
+            this.Username  = Username;
+            this.IsActive= IsActive;
 
             Mode = enmode.Update;
         }
 
         public User(int PersonID, string Username, string Password, bool IsActive)
         {
-            _personid = PersonID;
-            _username = Username;
-            _password = HashPassword(Password);
-            _isActive = IsActive;
+            this.PersonID = PersonID;
+            this.Username = Username;
+            this.Password = HashPassword(Password);
+            this.IsActive = IsActive;
 
             Mode = enmode.Update;
 
         }
-
-        private User(string Username)
-        {
-            _username = Username;
-        }
-
-        private string HashPassword(string Password) => _password = Services.HashService.HashPassword(Password, out Salt);
-        
-
-
+         
         public User(int UserID, int PersonID, string Username, bool IsActive)
         {
-            _userid = UserID;
-            _personid = PersonID;
-            _username = Username;
-            _isActive = IsActive;
+            this.UserID = UserID;
+            this.PersonID = PersonID;
+            this.Username = Username;
+            this.IsActive = IsActive;
 
             Mode = enmode.Update;
 
         }
 
-        // Get All Users -- DONE
+        public User(int userID, int personID, string username, string password, string salt, bool isActive)
+        {
+            this.UserID = userID;
+            this.PersonID = personID;
+            this.Username = username;
+            this.Password = password;
+            this.stringSalt= salt;
+            this.IsActive = isActive;
+        }
+
+        private string HashPassword(string Password) => this.Password = Services.HashService.HashPassword(Password, out Salt);
+
         public static DataTable GetAllUsers()
         {
             return UserDAL.GetAllUsers();
         }
 
-        //ADD User (Done_ But needs some fixing) 
-
         private bool _AddNewUser()
         {
-            _password = HashPassword(Password);
-            _salt = Convert.ToBase64String(Salt); 
-            _userid = UserDAL.AddNewUser(this.PersonID,this.Username,this.Password,this.IsActive, stringSalt);
+            Password = HashPassword(Password);
+            stringSalt = Convert.ToBase64String(Salt); 
+            UserID = UserDAL.AddNewUser(this.PersonID,this.Username,this.Password,this.IsActive, stringSalt);
 
 
             
@@ -122,14 +116,7 @@ namespace BL
             }
             return true;
         }
-
-
-
-
-
-
-        //Update 
-        
+                
         public static bool UpdatePassword(int UserID, string NewPassword)
         {
             byte[] tempSalt;
@@ -141,16 +128,12 @@ namespace BL
             return UserDAL.UpdateUserPassword(UserID, NewPassword, stringSalt);
         }
 
-
-
-        //Delete
         public static bool DeleteUser(int UserID)
         {
 
             return UserDAL.RemoveUser(UserID);
         }
 
-        //Find User
 
         public static User FindUser(int UserID)
         {
@@ -162,15 +145,26 @@ namespace BL
             return new User(UserID, PersonID, Username, IsActive);
         
         }
-        public static User FindUser(string Username, string Password)
+        public static User FindUser(string Username)
         {
             if (!UserDAL.IsUsernameExists(Username)) return null;
 
-            User selectedUser = new User(Username);
-            UserDAL.GetUserInfoByUsername(Username,  ref selectedUser._userid,  ref selectedUser._personid,  ref selectedUser._password,  ref selectedUser._salt,  ref selectedUser._isActive);
-            
+            //User selectedUser = new User(Username);
+
+            int UserID = -1;
+            int PersonID = -1;
+            string Password = "";
+            string Salt = "";
+            bool IsActive = false;
+
+            UserDAL.GetUserInfoByUsername(Username,  ref UserID, ref PersonID,  ref Password,  ref Salt,  ref IsActive);
+
+            return new User(UserID, PersonID, Username, Password, Salt, IsActive);
+
+
             //return UserDAL.FindUser(Username, Password);
         }
+
 
         public static bool IsTheUsernameExists(string Username)
         {
@@ -183,6 +177,16 @@ namespace BL
         {
             return (UserDAL.IsPersonLinkedToOtherUser(PersonID) || !PersonDAL.IsPersonExist(PersonID)) ;
         }
+
+
+        public bool IsTheLoginValid(string enteredPassword)
+        {
+            this.Salt = Convert.FromBase64String(this.stringSalt);
+            string NewHash = HashService.HashPassword(enteredPassword, this.Salt);
+
+            return NewHash == this.Password;
+        }
+
 
 
     }

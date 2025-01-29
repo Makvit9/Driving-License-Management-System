@@ -1,4 +1,5 @@
 ﻿using BL;
+using Presentation_Layer.Global;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,25 +30,33 @@ namespace Presentation_Layer
             _counter++;
 
 
-            
+
             //new User(usernameTextBox.Text, passwordTextBox.Text);
-            if (User.FindUser(txtUsername.Text,txtPassword.Text ) != null)
+
+            User user1 = User.FindUser(txtUsername.Text);
+
+            if (user1 != null)
             {
 
+                if (user1.IsActive == false)
+                {
+                    MessageBox.Show("User is disabled, contact your admin");
+                    return;
+                }
 
-                //Account MyAcount = new Account(user1);
+                if (user1.IsTheLoginValid(txtPassword.Text))
+                {
                 MessageBox.Show($"Hello {txtUsername.Text}");
                 MainScreen mainScreen = new MainScreen();
+                    this.Hide();
                 mainScreen.Show();
-                
-                
+                }
+                //Account MyAcount = new Account(user1);
+
 
             }
-            else if (_counter >= 3)
-            {
-                btnLogin.Enabled = false;
-                lblLocked.Visible = true;
-            }
+
+    
             else
             {
                 MessageBox.Show("Incorrect Email Or Password, try again");
