@@ -62,9 +62,8 @@
             // 
             // peopleToolStripMenuItem
             // 
-            //this.peopleToolStripMenuItem.Image = global::Presentation_Layer.Properties.Resources.People;
             this.peopleToolStripMenuItem.Name = "peopleToolStripMenuItem";
-            this.peopleToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.peopleToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.peopleToolStripMenuItem.Text = "People";
             this.peopleToolStripMenuItem.Click += new System.EventHandler(this.peopleToolStripMenuItem_Click);
             // 
@@ -165,6 +164,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainScreen_FormClosed);
             this.Load += new System.EventHandler(this.MainScreen_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

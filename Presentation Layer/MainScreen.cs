@@ -87,5 +87,10 @@ namespace Presentation_Layer
             LocalDrivingLicenseApplication LicenseApplication = new LocalDrivingLicenseApplication();
             LicenseApplication.ShowDialog();
         }
+
+        private void MainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

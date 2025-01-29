@@ -89,7 +89,7 @@
     <Compile Include="Applications\LocalDrivingLicenseApplication.Designer.cs">
       <DependentUpon>LocalDrivingLicenseApplication.cs</DependentUpon>
     </Compile>
-    <Compile Include="Global\GlobalUser.cs" />
+    <Compile Include="Global\SavingUsername.cs" />
     <Compile Include="Login\LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>

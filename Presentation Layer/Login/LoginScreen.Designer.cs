@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
@@ -35,6 +36,8 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.cbRememberUsername = new System.Windows.Forms.CheckBox();
             this.lblLocked = new System.Windows.Forms.Label();
+            this.errEmpty = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errEmpty)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -45,6 +48,8 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(174, 23);
             this.txtUsername.TabIndex = 0;
+            this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.Validating);
+            this.txtUsername.Validated += new System.EventHandler(this.Validated);
             // 
             // txtPassword
             // 
@@ -55,6 +60,8 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(174, 23);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.Validating);
+            this.txtPassword.Validated += new System.EventHandler(this.Validated);
             // 
             // lblUsername
             // 
@@ -114,6 +121,10 @@
             this.lblLocked.Text = "You\'re Locked Out, Contact you admin";
             this.lblLocked.Visible = false;
             // 
+            // errEmpty
+            // 
+            this.errEmpty.ContainerControl = this;
+            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -131,6 +142,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "LoginScreen";
             this.Text = "LoginScreen";
+            ((System.ComponentModel.ISupportInitialize)(this.errEmpty)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +157,6 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.CheckBox cbRememberUsername;
         private System.Windows.Forms.Label lblLocked;
+        private System.Windows.Forms.ErrorProvider errEmpty;
     }
 }
