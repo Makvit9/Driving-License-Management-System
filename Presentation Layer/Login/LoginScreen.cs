@@ -32,12 +32,9 @@ namespace Presentation_Layer
             _counter++;
 
 
-
-            //new User(usernameTextBox.Text, passwordTextBox.Text);
-
             User user1 = User.FindUser(txtUsername.Text);
 
-            if (user1 != null)
+            if (user1 != null && _counter < 3)
             {
 
                 if (user1.IsActive == false )
@@ -63,26 +60,26 @@ namespace Presentation_Layer
                     this.Hide();
                 mainScreen.Show();
                 }
-                else if (_counter < 3)
+                else 
                 {
                     MessageBox.Show("Incorrect Email Or Password, try again");
                     
                 }
-                else
-                {
-                    btnLogin.Enabled = false;
-                    MessageBox.Show("You are locked Out! Contact your admin");
-                }
+               
                 //Account MyAcount = new Account(user1);
 
 
             }
 
-    
             else
             {
-                MessageBox.Show("Please enter a valid Username");
-               
+                MessageBox.Show("Username doesn't exist, please make sure that the user is correct!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (_counter >= 3)
+            {
+                btnLogin.Enabled = false;
+                MessageBox.Show("You are locked Out! Contact your admin");
             }
 
         }

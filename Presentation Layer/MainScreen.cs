@@ -92,5 +92,10 @@ namespace Presentation_Layer
         {
             Application.Exit();
         }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

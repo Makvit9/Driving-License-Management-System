@@ -158,6 +158,12 @@
     <Compile Include="TestTypes\ManageTestTypes.Designer.cs">
       <DependentUpon>ManageTestTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Users Screens\AccountSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users Screens\AccountSettings.Designer.cs">
+      <DependentUpon>AccountSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users Screens\AddNewUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestTypes\ManageTestTypes.resx">
       <DependentUpon>ManageTestTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users Screens\AccountSettings.resx">
+      <DependentUpon>AccountSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users Screens\AddNewUser.resx">
       <DependentUpon>AddNewUser.cs</DependentUpon>
