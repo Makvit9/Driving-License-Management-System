@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +16,11 @@ namespace Presentation_Layer.Users_Screens
 
         User _CurrentUser;
         int _UserID;
-        public AccountSettings(int userID)
+        public AccountSettings(string username )
         {
             InitializeComponent();
-
-            _UserID = userID;
+            _CurrentUser = User.FindUser(username);
+            _UserID = _CurrentUser.UserID;
 
         }
 
