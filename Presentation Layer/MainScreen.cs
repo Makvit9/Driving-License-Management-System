@@ -8,6 +8,7 @@ using Presentation_Layer.Application_Types;
 using Presentation_Layer.TestTypes;
 using Presentation_Layer.Applications;
 using Syncfusion.Windows.Forms.Interop;
+using Presentation_Layer.Users_Screens;
 
 
 namespace Presentation_Layer
@@ -95,7 +96,9 @@ namespace Presentation_Layer
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            string Username = "admin";
+            AccountSettings UserAccount = new AccountSettings(Username);
+            
         }
     }
 }
