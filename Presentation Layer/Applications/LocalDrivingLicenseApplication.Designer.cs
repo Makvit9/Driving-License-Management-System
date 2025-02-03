@@ -30,6 +30,7 @@
         {
             this.ctrlInfo = new System.Windows.Forms.TabControl();
             this.tabPersonalInfo = new System.Windows.Forms.TabPage();
+            this.personInfoWithFIlter1 = new Presentation_Layer.People_Screens.User_Controls.PersonInfoWithFIlter();
             this.btnNext = new System.Windows.Forms.Button();
             this.tabApplicationInfo = new System.Windows.Forms.TabPage();
             this.lblApplicationFees = new System.Windows.Forms.Label();
@@ -72,6 +73,18 @@
             this.tabPersonalInfo.TabIndex = 0;
             this.tabPersonalInfo.Text = "Personal Info";
             this.tabPersonalInfo.UseVisualStyleBackColor = true;
+            // 
+            // personInfoWithFIlter1
+            // 
+            this.personInfoWithFIlter1.BackColor = System.Drawing.Color.White;
+            this.personInfoWithFIlter1.FilterEnabled = true;
+            this.personInfoWithFIlter1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.personInfoWithFIlter1.Location = new System.Drawing.Point(26, 27);
+            this.personInfoWithFIlter1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.personInfoWithFIlter1.Name = "personInfoWithFIlter1";
+            this.personInfoWithFIlter1.ShowAddPerson = true;
+            this.personInfoWithFIlter1.Size = new System.Drawing.Size(962, 544);
+            this.personInfoWithFIlter1.TabIndex = 1;
             // 
             // btnNext
             // 
