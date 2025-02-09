@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDAL.cs" />
+    <Compile Include="ApplicationInfoDAL.cs" />
     <Compile Include="ApplicationTypeDAL.cs" />
     <Compile Include="CountryDAL.cs" />
     <Compile Include="LicenseClassDAL.cs" />
