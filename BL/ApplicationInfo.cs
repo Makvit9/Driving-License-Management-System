@@ -195,6 +195,7 @@ namespace BL
             return ApplicationInfoDAL.GetActiveApplicationIDForLicenseClass(PersonID, (int)ApplicationTypeID, LicenseClassID);
         }
 
+
         public int GetActiveApplicationID(ApplicationInfo.enApplicationType ApplicationTypeID)
         {
             return GetActiveApplicationID(this.ApplicantPersonID, ApplicationTypeID);

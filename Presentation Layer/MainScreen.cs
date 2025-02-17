@@ -96,9 +96,9 @@ namespace Presentation_Layer
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string Username = "admin";
-            AccountSettings UserAccount = new AccountSettings(Username);
             
+            AccountSettings ChangePassword = new AccountSettings(Global.SavingUsername.LoggedInUser.UserID);
+            ChangePassword.ShowDialog();
         }
     }
 }
