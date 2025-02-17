@@ -54,7 +54,7 @@ namespace Presentation_Layer
                     }
 
                     MessageBox.Show($"Hello {txtUsername.Text}");
-                    
+                    Global.SavingUsername.LoggedInUser = user1;
 
                 MainScreen mainScreen = new MainScreen();
                     this.Hide();
