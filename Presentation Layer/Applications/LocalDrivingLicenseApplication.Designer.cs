@@ -33,6 +33,9 @@
             this.personInfoWithFIlter1 = new Presentation_Layer.People_Screens.User_Controls.PersonInfoWithFIlter();
             this.btnNext = new System.Windows.Forms.Button();
             this.tabApplicationInfo = new System.Windows.Forms.TabPage();
+            this.cbLicenseClasses = new System.Windows.Forms.ComboBox();
+            this.lblCreatedByUser = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lblApplicationFees = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -41,10 +44,6 @@
             this.lblLocalDrivingLicenseID = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.lblCreatedByUser = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.personInfoWithFIlter1 = new Presentation_Layer.People_Screens.User_Controls.PersonInfoWithFIlter();
-            this.cbLicenseClasses = new System.Windows.Forms.ComboBox();
             this.ctrlInfo.SuspendLayout();
             this.tabPersonalInfo.SuspendLayout();
             this.tabApplicationInfo.SuspendLayout();
@@ -118,6 +117,34 @@
             this.tabApplicationInfo.Text = "Appliaction Info";
             this.tabApplicationInfo.UseVisualStyleBackColor = true;
             this.tabApplicationInfo.Enter += new System.EventHandler(this.ApplicationTab_Enter);
+            // 
+            // cbLicenseClasses
+            // 
+            this.cbLicenseClasses.FormattingEnabled = true;
+            this.cbLicenseClasses.Location = new System.Drawing.Point(215, 133);
+            this.cbLicenseClasses.Name = "cbLicenseClasses";
+            this.cbLicenseClasses.Size = new System.Drawing.Size(191, 23);
+            this.cbLicenseClasses.TabIndex = 10;
+            // 
+            // lblCreatedByUser
+            // 
+            this.lblCreatedByUser.AutoSize = true;
+            this.lblCreatedByUser.Location = new System.Drawing.Point(212, 210);
+            this.lblCreatedByUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCreatedByUser.Name = "lblCreatedByUser";
+            this.lblCreatedByUser.Size = new System.Drawing.Size(38, 15);
+            this.lblCreatedByUser.TabIndex = 9;
+            this.lblCreatedByUser.Text = "label7";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(57, 210);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 15);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Created By ";
             // 
             // lblApplicationFees
             // 
@@ -199,46 +226,6 @@
             this.lblTitle.Size = new System.Drawing.Size(366, 30);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "New Local Driving License Application";
-            // 
-            // lblCreatedByUser
-            // 
-            this.lblCreatedByUser.AutoSize = true;
-            this.lblCreatedByUser.Location = new System.Drawing.Point(212, 210);
-            this.lblCreatedByUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCreatedByUser.Name = "lblCreatedByUser";
-            this.lblCreatedByUser.Size = new System.Drawing.Size(38, 15);
-            this.lblCreatedByUser.TabIndex = 9;
-            this.lblCreatedByUser.Text = "label7";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(57, 210);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 15);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Created By ";
-            // 
-            // personInfoWithFIlter1
-            // 
-            this.personInfoWithFIlter1.BackColor = System.Drawing.Color.White;
-            this.personInfoWithFIlter1.FilterEnabled = true;
-            this.personInfoWithFIlter1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.personInfoWithFIlter1.Location = new System.Drawing.Point(26, 27);
-            this.personInfoWithFIlter1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.personInfoWithFIlter1.Name = "personInfoWithFIlter1";
-            this.personInfoWithFIlter1.ShowAddPerson = true;
-            this.personInfoWithFIlter1.Size = new System.Drawing.Size(962, 544);
-            this.personInfoWithFIlter1.TabIndex = 1;
-            // 
-            // cbLicenseClasses
-            // 
-            this.cbLicenseClasses.FormattingEnabled = true;
-            this.cbLicenseClasses.Location = new System.Drawing.Point(215, 133);
-            this.cbLicenseClasses.Name = "cbLicenseClasses";
-            this.cbLicenseClasses.Size = new System.Drawing.Size(191, 23);
-            this.cbLicenseClasses.TabIndex = 10;
             // 
             // LocalDrivingLicenseApplication
             // 
