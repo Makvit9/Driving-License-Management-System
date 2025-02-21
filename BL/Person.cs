@@ -21,6 +21,12 @@ namespace BL
         public string LastName { get;set; }
         public string NationalNumber { get;set; }
 
+        public string Fullname { 
+        get
+            {
+                return $"{FirstName} {SecondName} {ThirdName} {LastName}";
+            }
+}
         public DateTime DateOfBirth { get;set; }
         public char Gender { get;set; }
         public string Phone { get; set; }
