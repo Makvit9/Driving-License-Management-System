@@ -69,7 +69,7 @@ namespace BL
             Mode = enMode.AddNew;
         }
 
-        private ApplicationInfo(int ApplicationID, int ApplicantPersonID,
+        protected ApplicationInfo(int ApplicationID, int ApplicantPersonID,
             DateTime ApplicationDate, int ApplicationTypeID,
              enApplicationStatus ApplicationStatus, DateTime LastStatusDate,
              decimal PaidFees, int CreatedByUserID)
