@@ -53,8 +53,8 @@ namespace DAL
 
 
         public static bool GetLicenseClassInfoByID(int LicenseClassID,
-           ref string ClassName, ref string ClassDescription, ref byte MinimumAllowedAge,
-           ref byte ValidityLength, ref float ClassFees)
+           ref string ClassName, ref string ClassDescription, ref short MinimumAllowedAge,
+           ref short ValidityLength, ref float ClassFees)
         {
             bool isFound = false;
 
@@ -78,8 +78,8 @@ namespace DAL
 
                     ClassName = (string)reader["ClassName"];
                     ClassDescription = (string)reader["ClassDescription"];
-                    MinimumAllowedAge = (byte)reader["MinimumAllowedAge"];
-                    ValidityLength = (byte)reader["ValidityLength"];
+                    MinimumAllowedAge = short.Parse(  reader["MinimumAllowedAge"].ToString());
+                    ValidityLength = short.Parse(reader["ValidityLength"].ToString());
                     ClassFees = Convert.ToSingle(reader["ClassFees"]);
 
                 }
@@ -108,8 +108,8 @@ namespace DAL
 
 
         public static bool GetLicenseClassInfoByClassName(string ClassName, ref int LicenseClassID,
-            ref string ClassDescription, ref byte MinimumAllowedAge,
-           ref byte ValidityLength, ref float ClassFees)
+            ref string ClassDescription, ref short MinimumAllowedAge,
+           ref short ValidityLength, ref float ClassFees)
         {
             bool isFound = false;
 
@@ -132,8 +132,8 @@ namespace DAL
                     isFound = true;
                     LicenseClassID = (int)reader["LicenseClassID"];
                     ClassDescription = (string)reader["ClassDescription"];
-                    MinimumAllowedAge = (byte)reader["MinimumAllowedAge"];
-                    ValidityLength = (byte)reader["ValidityLength"];
+                    MinimumAllowedAge = (short)reader["MinimumAllowedAge"];
+                    ValidityLength = (short)reader["ValidityLength"];
                     ClassFees = Convert.ToSingle(reader["ClassFees"]);
 
                 }
@@ -203,7 +203,7 @@ namespace DAL
         }
 
         public static int AddNewLicenseClass(string ClassName, string ClassDescription,
-            byte MinimumAllowedAge, byte ValidityLength, float ClassFees)
+            short MinimumAllowedAge, short ValidityLength, float ClassFees)
         {
             int LicenseClassID = -1;
 
@@ -261,7 +261,7 @@ namespace DAL
 
         public static bool UpdateLicenseClass(int LicenseClassID, string ClassName,
             string ClassDescription,
-            byte MinimumAllowedAge, byte ValidityLength, float ClassFees)
+            short MinimumAllowedAge, short ValidityLength, float ClassFees)
         {
 
             int rowsAffected = 0;
