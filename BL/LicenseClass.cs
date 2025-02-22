@@ -16,8 +16,8 @@ namespace BL
         public int LicenseClassID { set; get; }
         public string ClassName { set; get; }
         public string ClassDescription { set; get; }
-        public byte MinimumAllowedAge { set; get; }
-        public byte DefaultValidityLength { set; get; }
+        public short MinimumAllowedAge { set; get; }
+        public short DefaultValidityLength { set; get; }
         public float ClassFees { set; get; }
 
         public LicenseClass()
@@ -36,7 +36,7 @@ namespace BL
 
         public LicenseClass(int LicenseClassID, string ClassName,
             string ClassDescription,
-            byte MinimumAllowedAge, byte DefaultValidityLength, float ClassFees)
+            short MinimumAllowedAge, short DefaultValidityLength, float ClassFees)
 
         {
             this.LicenseClassID = LicenseClassID;
@@ -70,7 +70,7 @@ namespace BL
         public static LicenseClass Find(int LicenseClassID)
         {
             string ClassName = ""; string ClassDescription = "";
-            byte MinimumAllowedAge = 18; byte DefaultValidityLength = 10; float ClassFees = 0;
+            short MinimumAllowedAge = 18; short DefaultValidityLength = 10; float ClassFees = 0;
 
             if (LicenseClassDAL.GetLicenseClassInfoByID(LicenseClassID, ref ClassName, ref ClassDescription,
                     ref MinimumAllowedAge, ref DefaultValidityLength, ref ClassFees))
@@ -85,7 +85,7 @@ namespace BL
         public static LicenseClass Find(string ClassName)
         {
             int LicenseClassID = -1; string ClassDescription = "";
-            byte MinimumAllowedAge = 18; byte DefaultValidityLength = 10; float ClassFees = 0;
+            short MinimumAllowedAge = 18; short DefaultValidityLength = 10; float ClassFees = 0;
 
             if (LicenseClassDAL.GetLicenseClassInfoByClassName(ClassName, ref LicenseClassID, ref ClassDescription,
                     ref MinimumAllowedAge, ref DefaultValidityLength, ref ClassFees))
