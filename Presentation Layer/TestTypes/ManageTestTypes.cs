@@ -52,7 +52,7 @@ namespace Presentation_Layer.TestTypes
 
         private void editTestTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TestType testType = TestType.GetTestTypeInformation((int)dgvTestTypes.CurrentRow.Cells[0].Value);
+            TestType testType = TestType.GetTestTypeInformation((TestType.enTestType)(int)dgvTestTypes.CurrentRow.Cells[0].Value);
 
             if (testType != null)
             {

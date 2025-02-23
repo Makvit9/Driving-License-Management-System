@@ -170,6 +170,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tests\User Controls\TestScheduleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\User Controls\TestScheduleControl.Designer.cs">
+      <DependentUpon>TestScheduleControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestTypes\EditTestType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +285,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\User Controls\TestScheduleControl.resx">
+      <DependentUpon>TestScheduleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestTypes\EditTestType.resx">
       <DependentUpon>EditTestType.cs</DependentUpon>

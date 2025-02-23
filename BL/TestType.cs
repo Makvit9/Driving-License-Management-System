@@ -11,7 +11,12 @@ namespace BL
     public class TestType
     {
 
-        public int TestTypeID { get; set; }
+        public enum enTestType { VisionTest = 1, WrittenTest = 2, StreetTest = 3 }; 
+        public enum enMode { AddNew = 0, Update = 1 };
+        
+        public enMode Mode = enMode.AddNew;
+
+        public TestType.enTestType  TestTypeID { get; set; }
         public string TestTypeTitle { get; set; }
 
         public string TestTypeDescription { get; set; }
@@ -19,20 +24,36 @@ namespace BL
 
         public decimal TestTypeFees { get; set; }
 
+
+        public TestType(TestType.enTestType TestTypeID, string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
+
+        {
+            this.TestTypeID = TestTypeID;
+            this.TestTypeTitle = TestTypeTitle;
+            this.TestTypeDescription = TestTypeDescription;
+
+            this.TestTypeFees = TestTypeFees;
+            Mode = enMode.Update;
+        }
+
+
+
         public static DataTable GetAllApplicationTypes()
         {
             return TestTypeDAL.GetAllTestTypes();
         }
 
-        public static TestType GetTestTypeInformation(int TestTypeID)
+
+
+        public static TestType GetTestTypeInformation(TestType.enTestType TestTypeID)
         {
             string _TestTypeTitle = "";
             string _TestTypeDescription = "";
             decimal _TestTypeFees = -1;
 
-            if (TestTypeDAL.GetTestTypeInfo(TestTypeID, ref _TestTypeTitle, ref _TestTypeDescription ,ref _TestTypeFees))
+            if (TestTypeDAL.GetTestTypeInfo((int)TestTypeID, ref _TestTypeTitle, ref _TestTypeDescription ,ref _TestTypeFees))
             {
-                return new TestType { TestTypeID = TestTypeID, TestTypeTitle = _TestTypeTitle, TestTypeDescription = _TestTypeDescription , TestTypeFees = _TestTypeFees };
+                return new TestType( TestTypeID , _TestTypeTitle ,  _TestTypeDescription , _TestTypeFees );
             }
 
             return null;
@@ -41,7 +62,24 @@ namespace BL
 
         public bool UpdateTestType()
         {
-            return TestTypeDAL.UpdateTestType(this.TestTypeID, this.TestTypeTitle, this.TestTypeDescription,  this.TestTypeFees);
+            return TestTypeDAL.UpdateTestType((int)this.TestTypeID, this.TestTypeTitle, this.TestTypeDescription,  this.TestTypeFees);
         }
+
+       
+
+       
+
+        
+
+
+
+
+
+
+
+
     }
+
+
+
 }

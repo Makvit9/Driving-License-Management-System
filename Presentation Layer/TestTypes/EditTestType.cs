@@ -34,7 +34,7 @@ namespace Presentation_Layer.TestTypes
 
         private void _FillUpdatedValues(TestType _Test)
         {
-            _Test.TestTypeID = Int32.Parse(lblTestTypeID.Text);
+            _Test.TestTypeID =(TestType.enTestType) Int32.Parse(lblTestTypeID.Text);
             _Test.TestTypeTitle= txtTestTypeTitle.Text;
             _Test.TestTypeDescription= txtTestTypeDescription.Text;
             _Test.TestTypeFees = Decimal.Parse(txtTestTypeFee.Text);
