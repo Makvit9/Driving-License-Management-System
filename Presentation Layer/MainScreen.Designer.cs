@@ -32,17 +32,19 @@
             this.peopleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageApplicationTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drivingLicenseServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newDrivingLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localDrivingLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.internationalLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renewDrivingLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageApplicationTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.localDrivingLicensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageTestTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.driversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageApplicationTypesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,18 +82,11 @@
             // applicationsToolStripMenuItem
             // 
             this.applicationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manageApplicationTypesToolStripMenuItem,
-            this.drivingLicenseServicesToolStripMenuItem});
+            this.drivingLicenseServicesToolStripMenuItem,
+            this.manageApplicationTypesToolStripMenuItem});
             this.applicationsToolStripMenuItem.Name = "applicationsToolStripMenuItem";
             this.applicationsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
             this.applicationsToolStripMenuItem.Text = "Applications";
-            // 
-            // manageApplicationTypesToolStripMenuItem
-            // 
-            this.manageApplicationTypesToolStripMenuItem.Name = "manageApplicationTypesToolStripMenuItem";
-            this.manageApplicationTypesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.manageApplicationTypesToolStripMenuItem.Text = "Manage Application Types";
-            this.manageApplicationTypesToolStripMenuItem.Click += new System.EventHandler(this.manageApplicationTypesToolStripMenuItem_Click);
             // 
             // drivingLicenseServicesToolStripMenuItem
             // 
@@ -100,7 +95,7 @@
             this.renewDrivingLicenseToolStripMenuItem});
             this.drivingLicenseServicesToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.drivingLicenseServicesToolStripMenuItem.Name = "drivingLicenseServicesToolStripMenuItem";
-            this.drivingLicenseServicesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.drivingLicenseServicesToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.drivingLicenseServicesToolStripMenuItem.Text = "Driving License Services";
             // 
             // newDrivingLicenseToolStripMenuItem
@@ -130,6 +125,22 @@
             this.renewDrivingLicenseToolStripMenuItem.Name = "renewDrivingLicenseToolStripMenuItem";
             this.renewDrivingLicenseToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.renewDrivingLicenseToolStripMenuItem.Text = "Renew Driving License";
+            // 
+            // manageApplicationTypesToolStripMenuItem
+            // 
+            this.manageApplicationTypesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.localDrivingLicensesToolStripMenuItem,
+            this.manageApplicationTypesToolStripMenuItem1});
+            this.manageApplicationTypesToolStripMenuItem.Name = "manageApplicationTypesToolStripMenuItem";
+            this.manageApplicationTypesToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.manageApplicationTypesToolStripMenuItem.Text = "Manage Applications";
+            // 
+            // localDrivingLicensesToolStripMenuItem
+            // 
+            this.localDrivingLicensesToolStripMenuItem.Name = "localDrivingLicensesToolStripMenuItem";
+            this.localDrivingLicensesToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.localDrivingLicensesToolStripMenuItem.Text = "Local Driving Licenses";
+            this.localDrivingLicensesToolStripMenuItem.Click += new System.EventHandler(this.localDrivingLicensesToolStripMenuItem_Click);
             // 
             // testsToolStripMenuItem
             // 
@@ -164,9 +175,16 @@
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
+            // 
+            // manageApplicationTypesToolStripMenuItem1
+            // 
+            this.manageApplicationTypesToolStripMenuItem1.Name = "manageApplicationTypesToolStripMenuItem1";
+            this.manageApplicationTypesToolStripMenuItem1.Size = new System.Drawing.Size(217, 22);
+            this.manageApplicationTypesToolStripMenuItem1.Text = "Manage Application Types ";
+            this.manageApplicationTypesToolStripMenuItem1.Click += new System.EventHandler(this.manageApplicationTypesToolStripMenuItem1_Click);
             // 
             // MainScreen
             // 
@@ -208,6 +226,8 @@
         private System.Windows.Forms.ToolStripMenuItem renewDrivingLicenseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem localDrivingLicensesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageApplicationTypesToolStripMenuItem1;
     }
 }
 

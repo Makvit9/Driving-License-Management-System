@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Presentation_Layer.Global
 {
-    public static class SavingUsername
+    public static class CurrentUser
     {
         public static User LoggedInUser;
         public static bool GetStoredCredential(ref string Username, ref string Password)
