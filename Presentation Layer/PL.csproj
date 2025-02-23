@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -71,25 +71,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application Types\EditApplicationType.cs">
+    <Compile Include="Applications\Application Types\EditApplicationType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application Types\EditApplicationType.Designer.cs">
+    <Compile Include="Applications\Application Types\EditApplicationType.Designer.cs">
       <DependentUpon>EditApplicationType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Application Types\ManageApplications.cs">
+    <Compile Include="Applications\Application Types\ManageApplications.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Application Types\ManageApplications.Designer.cs">
+    <Compile Include="Applications\Application Types\ManageApplications.Designer.cs">
       <DependentUpon>ManageApplications.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\LocalDrivingLicenseApplication.cs">
+    <Compile Include="Applications\BaseApplicationInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Applications\BaseApplicationInfo.Designer.cs">
+      <DependentUpon>BaseApplicationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Local Driving License Applications\LocalApplicationInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Applications\Local Driving License Applications\LocalApplicationInfo.Designer.cs">
+      <DependentUpon>LocalApplicationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Local Driving License Applications\LocalDrivingLicenseApplications.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\LocalDrivingLicenseApplication.Designer.cs">
-      <DependentUpon>LocalDrivingLicenseApplication.cs</DependentUpon>
+    <Compile Include="Applications\Local Driving License Applications\LocalDrivingLicenseApplications.Designer.cs">
+      <DependentUpon>LocalDrivingLicenseApplications.cs</DependentUpon>
     </Compile>
-    <Compile Include="Global\SavingUsername.cs" />
+    <Compile Include="Applications\Local Driving License Applications\ManageLocalDrivingLicenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\Local Driving License Applications\ManageLocalDrivingLicenses.Designer.cs">
+      <DependentUpon>ManageLocalDrivingLicenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Local Driving License Applications\ShowApplicationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\Local Driving License Applications\ShowApplicationInfo.Designer.cs">
+      <DependentUpon>ShowApplicationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Global\CurrentUser.cs" />
     <Compile Include="Login\LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,14 +230,26 @@
     <Compile Include="Users Screens\UserCardInfo.Designer.cs">
       <DependentUpon>UserCardInfo.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Application Types\EditApplicationType.resx">
+    <EmbeddedResource Include="Applications\Application Types\EditApplicationType.resx">
       <DependentUpon>EditApplicationType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Application Types\ManageApplications.resx">
+    <EmbeddedResource Include="Applications\Application Types\ManageApplications.resx">
       <DependentUpon>ManageApplications.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\LocalDrivingLicenseApplication.resx">
-      <DependentUpon>LocalDrivingLicenseApplication.cs</DependentUpon>
+    <EmbeddedResource Include="Applications\BaseApplicationInfo.resx">
+      <DependentUpon>BaseApplicationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Local Driving License Applications\LocalApplicationInfo.resx">
+      <DependentUpon>LocalApplicationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Local Driving License Applications\LocalDrivingLicenseApplications.resx">
+      <DependentUpon>LocalDrivingLicenseApplications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Local Driving License Applications\ManageLocalDrivingLicenses.resx">
+      <DependentUpon>ManageLocalDrivingLicenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Local Driving License Applications\ShowApplicationInfo.resx">
+      <DependentUpon>ShowApplicationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
@@ -328,6 +364,39 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Number 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApplicationType1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Person 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Calendar 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\License Type 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete 32 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New Application 64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,6 +44,7 @@ namespace DAL
                     LastStatusDate = (DateTime)reader["LastStatusDate"];
                     PaidFees = (decimal)(reader["PaidFees"]);
                     CreatedByUserID = (int)reader["CreatedByUserID"];
+                    isFound = true;
                 }
                 else
                 {

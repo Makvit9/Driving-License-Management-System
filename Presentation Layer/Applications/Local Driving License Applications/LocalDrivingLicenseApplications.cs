@@ -32,6 +32,7 @@ namespace Presentation_Layer.Applications
 
         public LocalDrivingLicenseApplications(int LocalDrivingLicenseApplicationID)
         {
+            InitializeComponent();
             _Mode = enMode.Update;
             this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
         }
@@ -57,7 +58,7 @@ namespace Presentation_Layer.Applications
 
         private void ApplicationTab_Enter(object sender, EventArgs e)
         {
-            LoadLicenseClasses();
+            //LoadLicenseClasses();
           
 
         }
@@ -93,7 +94,7 @@ namespace Presentation_Layer.Applications
 
         private void LoadApplicationData()
         {
-            personInfoWithFIlter1.FilterEnabled = false;
+            
             _LocalDrivingLicenseApplication = LocalDrivingLicenseApplication.FindByLocalDrivingAppLicenseID(LocalDrivingLicenseApplicationID);
 
             if (_LocalDrivingLicenseApplication == null)
@@ -108,7 +109,7 @@ namespace Presentation_Layer.Applications
             lblApplicationFees.Text = _LocalDrivingLicenseApplication.PaidFees.ToString();
             lblCreatedByUser.Text = _LocalDrivingLicenseApplication.CreatedByUserID.ToString();
 
-
+            personInfoWithFIlter1.FilterEnabled = false;
             btnSave.Enabled = true;
         }
 
@@ -124,8 +125,8 @@ namespace Presentation_Layer.Applications
 
             }
 
-
         }
+
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -134,7 +135,9 @@ namespace Presentation_Layer.Applications
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int LicenseClassID = LicenseClass.Find(cbLicenseClasses.SelectedIndex).LicenseClassID;
+            PersonID = personInfoWithFIlter1.PersonID;
+
+            int LicenseClassID = LicenseClass.Find(cbLicenseClasses.SelectedIndex + 1).LicenseClassID;
 
             int ActiveApplicationID = ApplicationInfo.GetActiveApplicationIDForLicenseClass(PersonID, ApplicationInfo.enApplicationType.NewDrivingLicense, LicenseClassID);
 

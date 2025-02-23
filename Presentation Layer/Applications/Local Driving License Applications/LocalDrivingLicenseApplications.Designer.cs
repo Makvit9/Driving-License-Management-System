@@ -64,6 +64,7 @@
             // 
             // tabPersonalInfo
             // 
+            this.tabPersonalInfo.BackColor = System.Drawing.Color.White;
             this.tabPersonalInfo.Controls.Add(this.personInfoWithFIlter1);
             this.tabPersonalInfo.Controls.Add(this.btnNext);
             this.tabPersonalInfo.Location = new System.Drawing.Point(4, 24);
@@ -73,7 +74,6 @@
             this.tabPersonalInfo.Size = new System.Drawing.Size(998, 536);
             this.tabPersonalInfo.TabIndex = 0;
             this.tabPersonalInfo.Text = "Personal Info";
-            this.tabPersonalInfo.UseVisualStyleBackColor = true;
             // 
             // btnNext
             // 
@@ -88,6 +88,7 @@
             // 
             // tabApplicationInfo
             // 
+            this.tabApplicationInfo.BackColor = System.Drawing.Color.White;
             this.tabApplicationInfo.Controls.Add(this.cbLicenseClasses);
             this.tabApplicationInfo.Controls.Add(this.lblCreatedByUser);
             this.tabApplicationInfo.Controls.Add(this.label4);
@@ -105,11 +106,11 @@
             this.tabApplicationInfo.Size = new System.Drawing.Size(998, 536);
             this.tabApplicationInfo.TabIndex = 1;
             this.tabApplicationInfo.Text = "Appliaction Info";
-            this.tabApplicationInfo.UseVisualStyleBackColor = true;
             this.tabApplicationInfo.Enter += new System.EventHandler(this.ApplicationTab_Enter);
             // 
             // cbLicenseClasses
             // 
+            this.cbLicenseClasses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLicenseClasses.FormattingEnabled = true;
             this.cbLicenseClasses.Location = new System.Drawing.Point(215, 133);
             this.cbLicenseClasses.Name = "cbLicenseClasses";
@@ -209,11 +210,12 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.Crimson;
             this.lblTitle.Location = new System.Drawing.Point(373, 9);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(366, 30);
+            this.lblTitle.Size = new System.Drawing.Size(390, 30);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "New Local Driving License Application";
             // 
@@ -255,6 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1113, 747);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);

@@ -50,11 +50,11 @@ namespace Presentation_Layer
                     if (cbRememberUsername.Checked == true)
                     {
                         
-                        Global.SavingUsername.SaveUsername(txtUsername.Text);
+                        Global.CurrentUser.SaveUsername(txtUsername.Text);
                     }
 
                     MessageBox.Show($"Hello {txtUsername.Text}");
-                    Global.SavingUsername.LoggedInUser = user1;
+                    Global.CurrentUser.LoggedInUser = user1;
 
                 MainScreen mainScreen = new MainScreen();
                     this.Hide();

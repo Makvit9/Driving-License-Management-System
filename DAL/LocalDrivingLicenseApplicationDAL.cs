@@ -18,7 +18,7 @@ namespace DAL
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Settings.ConnectionString.connectionString);
 
-            string Query = @"SELECT * FROM LocalDrivingLicenseApplications";
+            string Query = @"Select * from LocalApplications";
 
             SqlCommand cmd = new SqlCommand(Query, conn);
 

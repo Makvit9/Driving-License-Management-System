@@ -56,6 +56,11 @@ namespace Presentation_Layer.People_Screens.User_Controls
         }
 
 
+        public void FilterFocus()
+        {
+            txtFilter.Focus();
+        }
+
         public int PersonID
         {
             get { return personInfoUpdated1.PersonID; }
@@ -76,7 +81,7 @@ namespace Presentation_Layer.People_Screens.User_Controls
         {
 
             cbFilters.SelectedIndex = 1;
-            txtFilter.Text = PersonID.ToString();
+            txtFilter.Text = personID.ToString();
             FindPerson();
 
         }

@@ -1,6 +1,7 @@
 ﻿using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,7 +96,10 @@ namespace BL
         }
 
 
-
+        public static DataTable GetAllApplications()
+        {
+            return LocalDrivingLicenseApplicationDAL.GetAllLocalDrivingLicenseApplications();
+        }
 
         public static LocalDrivingLicenseApplication FindByApplicationID(int ApplicationID)
         {
@@ -152,6 +156,20 @@ namespace BL
 
         }
 
+        public bool Delete()
+        {
+            bool IsLocalDrivingApplicationDeleted = false;
+            bool IsBaseApplicationDeleted = false;
+            //First we delete the Local Driving License Application
+            IsLocalDrivingApplicationDeleted = LocalDrivingLicenseApplicationDAL.DeleteLocalDrivingLicenseApplication(this.LocalDrivingLicenseApplicationID);
+
+            if (!IsLocalDrivingApplicationDeleted)
+                return false;
+            //Then we delete the base Application
+            IsBaseApplicationDeleted = base.DeleteApplication();
+            return IsBaseApplicationDeleted;
+
+        }
 
     }
 }

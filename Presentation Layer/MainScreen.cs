@@ -66,12 +66,6 @@ namespace Presentation_Layer
             ShowUsers.WindowState = FormWindowState.Maximized;
         }
 
-        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ManageApplications Application = new ManageApplications();
-            Application.ShowDialog();
-        }
-
         private void ComingSoon(object sender, EventArgs e)
         {
             MessageBox.Show("Coming Soon");
@@ -85,7 +79,7 @@ namespace Presentation_Layer
 
         private void localDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LocalDrivingLicenseApplication LicenseApplication = new LocalDrivingLicenseApplication();
+            LocalDrivingLicenseApplications LicenseApplication = new LocalDrivingLicenseApplications();
             LicenseApplication.ShowDialog();
         }
 
@@ -97,8 +91,20 @@ namespace Presentation_Layer
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-            AccountSettings ChangePassword = new AccountSettings(Global.SavingUsername.LoggedInUser.UserID);
+            AccountSettings ChangePassword = new AccountSettings(Global.CurrentUser.LoggedInUser.UserID);
             ChangePassword.ShowDialog();
+        }
+
+        private void localDrivingLicensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageLocalDrivingLicenses Applications = new ManageLocalDrivingLicenses();
+            Applications.ShowDialog();
+        }
+
+        private void manageApplicationTypesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ManageApplications Application = new ManageApplications();
+            Application.ShowDialog();
         }
     }
 }
