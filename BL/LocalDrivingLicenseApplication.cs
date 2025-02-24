@@ -171,5 +171,68 @@ namespace BL
 
         }
 
+
+
+        public bool DoesAttendTestType(TestType.enTestType TestTypeID)
+
+        {
+            return LocalDrivingLicenseApplicationDAL.DoesAttendTestType(this.LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+
+        public static bool DoesPassTestType(int LocalDrivingLicenseApplicationID, TestType.enTestType TestTypeID)
+
+        {
+            return LocalDrivingLicenseApplicationDAL.DoesPassTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+
+        public bool DoesPassTestType(TestType.enTestType TestTypeID)
+
+        {
+            return LocalDrivingLicenseApplicationDAL.DoesPassTestType(this.LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+
+
+
+
+
+        public byte TotalTrialsPerTest(TestType.enTestType TestTypeID)
+        {
+            return LocalDrivingLicenseApplicationDAL.TotalTrialsPerTest(this.LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+
+        public static byte TotalTrialsPerTest(int LocalDrivingLicenseApplicationID, TestType.enTestType TestTypeID)
+
+        {
+            return LocalDrivingLicenseApplicationDAL.TotalTrialsPerTest(LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+
+        public static bool AttendedTest(int LocalDrivingLicenseApplicationID, TestType.enTestType TestTypeID)
+
+        {
+            return LocalDrivingLicenseApplicationDAL.TotalTrialsPerTest(LocalDrivingLicenseApplicationID, (int)TestTypeID) > 0;
+        }
+
+        public bool AttendedTest(TestType.enTestType TestTypeID)
+
+        {
+            return LocalDrivingLicenseApplicationDAL.TotalTrialsPerTest(this.LocalDrivingLicenseApplicationID, (int)TestTypeID) > 0;
+        }
+
+
+        public static bool IsThereAnActiveScheduledTest(int LocalDrivingLicenseApplicationID, TestType.enTestType TestTypeID)
+
+        {
+
+            return LocalDrivingLicenseApplicationDAL.IsThereAnActiveScheduledTest(LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+
+        public bool IsThereAnActiveScheduledTest(TestType.enTestType TestTypeID)
+
+        {
+
+            return LocalDrivingLicenseApplicationDAL.IsThereAnActiveScheduledTest(this.LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
+
+
     }
 }

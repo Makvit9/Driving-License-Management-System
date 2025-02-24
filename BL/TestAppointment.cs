@@ -130,7 +130,21 @@ namespace BL
         }
 
 
+        public static TestAppointment Find(int TestAppointmentID)
+        {
+            int TestTypeID = 1; int LocalDrivingLicenseApplicationID = -1;
+            DateTime AppointmentDate = DateTime.Now; decimal PaidFees = 0;
+            int CreatedByUserID = -1; bool IsLocked = false; int RetakeTestApplicationID = -1;
 
+            if (TestAppointmentDAL.GetTestAppointmentByID(TestAppointmentID, ref TestTypeID, ref LocalDrivingLicenseApplicationID,
+            ref AppointmentDate, ref PaidFees, ref CreatedByUserID, ref IsLocked, ref RetakeTestApplicationID))
+
+                return new TestAppointment(TestAppointmentID, (TestType.enTestType)TestTypeID, LocalDrivingLicenseApplicationID,
+             AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID);
+            else
+                return null;
+
+        }
 
     }
 }
