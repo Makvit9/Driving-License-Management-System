@@ -182,6 +182,12 @@
     <Compile Include="Tests\ScheduleTest.Designer.cs">
       <DependentUpon>ScheduleTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tests\User Controls\ScheduledTestCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\User Controls\ScheduledTestCard.Designer.cs">
+      <DependentUpon>ScheduledTestCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tests\User Controls\TestScheduleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -303,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\ScheduleTest.resx">
       <DependentUpon>ScheduleTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\User Controls\ScheduledTestCard.resx">
+      <DependentUpon>ScheduledTestCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\User Controls\TestScheduleControl.resx">
       <DependentUpon>TestScheduleControl.cs</DependentUpon>
