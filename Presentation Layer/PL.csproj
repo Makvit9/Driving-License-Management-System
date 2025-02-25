@@ -182,6 +182,18 @@
     <Compile Include="Tests\ScheduleTest.Designer.cs">
       <DependentUpon>ScheduleTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tests\TakeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\TakeTest.Designer.cs">
+      <DependentUpon>TakeTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\User Controls\ScheduledTestCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\User Controls\ScheduledTestCard.Designer.cs">
+      <DependentUpon>ScheduledTestCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tests\User Controls\TestScheduleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -303,6 +315,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\ScheduleTest.resx">
       <DependentUpon>ScheduleTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\TakeTest.resx">
+      <DependentUpon>TakeTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\User Controls\ScheduledTestCard.resx">
+      <DependentUpon>ScheduledTestCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\User Controls\TestScheduleControl.resx">
       <DependentUpon>TestScheduleControl.cs</DependentUpon>
@@ -458,5 +476,8 @@
   <ItemGroup>
     <None Include="Resources\Written Test 32.png" />
   </ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\Notes 32.png" />
+	</ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
