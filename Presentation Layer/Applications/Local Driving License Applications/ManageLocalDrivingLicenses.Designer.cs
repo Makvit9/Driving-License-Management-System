@@ -36,11 +36,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvLDLApplications = new System.Windows.Forms.DataGridView();
             this.cmsApplicationOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnAddNewApplication = new System.Windows.Forms.Button();
             this.tsmiApplicationDescription = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditLocalApplication = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteLocalApplication = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCancelLocalApplication = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAddNewApplication = new System.Windows.Forms.Button();
             this.txtFilter = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLDLApplications)).BeginInit();
             this.cmsApplicationOptions.SuspendLayout();
@@ -75,7 +75,7 @@
             this.ComboFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboFilter.FormattingEnabled = true;
             this.ComboFilter.Location = new System.Drawing.Point(129, 158);
-            this.ComboFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboFilter.Margin = new System.Windows.Forms.Padding(4);
             this.ComboFilter.Name = "ComboFilter";
             this.ComboFilter.Size = new System.Drawing.Size(155, 23);
             this.ComboFilter.TabIndex = 12;
@@ -117,7 +117,7 @@
             this.dgvLDLApplications.ContextMenuStrip = this.cmsApplicationOptions;
             this.dgvLDLApplications.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvLDLApplications.Location = new System.Drawing.Point(63, 196);
-            this.dgvLDLApplications.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvLDLApplications.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLDLApplications.Name = "dgvLDLApplications";
             this.dgvLDLApplications.ReadOnly = true;
             this.dgvLDLApplications.Size = new System.Drawing.Size(1082, 351);
@@ -134,20 +134,8 @@
             this.tsmiDeleteLocalApplication,
             this.tsmiCancelLocalApplication});
             this.cmsApplicationOptions.Name = "cmsApplicationOptions";
-            this.cmsApplicationOptions.Size = new System.Drawing.Size(181, 114);
+            this.cmsApplicationOptions.Size = new System.Drawing.Size(177, 92);
             this.cmsApplicationOptions.Opening += new System.ComponentModel.CancelEventHandler(this.cmsApplicationOptions_Opening);
-            // 
-            // btnAddNewApplication
-            // 
-            this.btnAddNewApplication.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAddNewApplication.Image = global::Presentation_Layer.Properties.Resources.New_Application_64;
-            this.btnAddNewApplication.Location = new System.Drawing.Point(1070, 112);
-            this.btnAddNewApplication.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddNewApplication.Name = "btnAddNewApplication";
-            this.btnAddNewApplication.Size = new System.Drawing.Size(75, 77);
-            this.btnAddNewApplication.TabIndex = 10;
-            this.btnAddNewApplication.UseVisualStyleBackColor = true;
-            this.btnAddNewApplication.Click += new System.EventHandler(this.btnAddNewApplication_Click);
             // 
             // tsmiApplicationDescription
             // 
@@ -162,7 +150,7 @@
             // 
             this.tsmiEditLocalApplication.Image = global::Presentation_Layer.Properties.Resources.edit_32;
             this.tsmiEditLocalApplication.Name = "tsmiEditLocalApplication";
-            this.tsmiEditLocalApplication.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditLocalApplication.Size = new System.Drawing.Size(176, 22);
             this.tsmiEditLocalApplication.Text = "Edit Application";
             this.tsmiEditLocalApplication.Click += new System.EventHandler(this.tsmiEditLocalApplication_Click);
             // 
@@ -171,7 +159,7 @@
             this.tsmiDeleteLocalApplication.BackColor = System.Drawing.Color.Transparent;
             this.tsmiDeleteLocalApplication.Image = global::Presentation_Layer.Properties.Resources.Delete_32_2;
             this.tsmiDeleteLocalApplication.Name = "tsmiDeleteLocalApplication";
-            this.tsmiDeleteLocalApplication.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDeleteLocalApplication.Size = new System.Drawing.Size(176, 22);
             this.tsmiDeleteLocalApplication.Text = "Delete Application";
             this.tsmiDeleteLocalApplication.Click += new System.EventHandler(this.tsmiDeleteLocalApplication_Click);
             // 
@@ -180,9 +168,21 @@
             this.tsmiCancelLocalApplication.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmiCancelLocalApplication.Image = global::Presentation_Layer.Properties.Resources.Delete_32;
             this.tsmiCancelLocalApplication.Name = "tsmiCancelLocalApplication";
-            this.tsmiCancelLocalApplication.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCancelLocalApplication.Size = new System.Drawing.Size(176, 22);
             this.tsmiCancelLocalApplication.Text = "Cancel Application";
             this.tsmiCancelLocalApplication.Click += new System.EventHandler(this.tsmiCancelLocalApplication_Click);
+            // 
+            // btnAddNewApplication
+            // 
+            this.btnAddNewApplication.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddNewApplication.Image = global::Presentation_Layer.Properties.Resources.New_Application_64;
+            this.btnAddNewApplication.Location = new System.Drawing.Point(1070, 112);
+            this.btnAddNewApplication.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddNewApplication.Name = "btnAddNewApplication";
+            this.btnAddNewApplication.Size = new System.Drawing.Size(75, 77);
+            this.btnAddNewApplication.TabIndex = 10;
+            this.btnAddNewApplication.UseVisualStyleBackColor = true;
+            this.btnAddNewApplication.Click += new System.EventHandler(this.btnAddNewApplication_Click);
             // 
             // txtFilter
             // 
@@ -207,7 +207,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvLDLApplications);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ManageLocalDrivingLicenses";
             this.Text = "ManageLocalDrivingLicenses";
             this.Load += new System.EventHandler(this.ManageLocalDrivingLicenses_Load);

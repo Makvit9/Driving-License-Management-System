@@ -109,7 +109,6 @@ namespace Presentation_Layer.Tests.User_Controls
             lblClass.Text = _LocalDrivingLicenseApplication.LicenseClassInfo.ClassName;
             lblName.Text = _LocalDrivingLicenseApplication.FullName;
 
-            //this will show the trials for this test before  
             lblTrial.Text = _LocalDrivingLicenseApplication.TotalTrialsPerTest(_TestTypeID).ToString();
 
 
@@ -130,7 +129,7 @@ namespace Presentation_Layer.Tests.User_Controls
             }
 
 
-            lblTotalFees.Text = (Convert.ToSingle(lblFees.Text) + Convert.ToSingle(lblRetakeAppFees.Text)).ToString();
+            lblTotalFees.Text = (Convert.ToDecimal(lblFees.Text) + Convert.ToDecimal(lblRetakeAppFees.Text)).ToString();
 
 
             if (!_HandleActiveTestAppointmentConstraint())
@@ -153,7 +152,7 @@ namespace Presentation_Layer.Tests.User_Controls
             if (_TestAppointment.IsLocked)
             {
                 lblUserMessage.Visible = true;
-                lblUserMessage.Text = "Person already sat for the test, appointment loacked.";
+                lblUserMessage.Text = "Person already sat for the test, appointment locked.";
                 dtpTestDate.Enabled = false;
                 btnSave.Enabled = false;
                 return false;
@@ -168,24 +167,21 @@ namespace Presentation_Layer.Tests.User_Controls
 
         private bool _HandlePrviousTestConstraint()
         {
-            //we need to make sure that this person passed the prvious required test before apply to the new test.
-            //person cannno apply for written test unless s/he passes the vision test.
-            //person cannot apply for street test unless s/he passes the written test.
-
+           
             switch (TestTypeID)
             {
                 case TestType.enTestType.VisionTest:
-                    //in this case no required prvious test to pass.
+                    
+
                     lblUserMessage.Visible = false;
 
                     return true;
 
                 case TestType.enTestType.WrittenTest:
-                    //Written Test, you cannot sechdule it before person passes the vision test.
-                    //we check if pass visiontest 1.
+                  
                     if (!_LocalDrivingLicenseApplication.DoesPassTestType(TestType.enTestType.VisionTest))
                     {
-                        lblUserMessage.Text = "Cannot Sechule, Vision Test should be passed first";
+                        lblUserMessage.Text = "Cannot Schedule, Vision Test should be passed first";
                         lblUserMessage.Visible = true;
                         btnSave.Enabled = false;
                         dtpTestDate.Enabled = false;
@@ -203,11 +199,10 @@ namespace Presentation_Layer.Tests.User_Controls
 
                 case TestType.enTestType.StreetTest:
 
-                    //Street Test, you cannot sechdule it before person passes the written test.
-                    //we check if pass Written 2.
+                    
                     if (!_LocalDrivingLicenseApplication.DoesPassTestType(TestType.enTestType.WrittenTest))
                     {
-                        lblUserMessage.Text = "Cannot Sechule, Written Test should be passed first";
+                        lblUserMessage.Text = "Cannot Schedule, Written Test should be passed first";
                         lblUserMessage.Visible = true;
                         btnSave.Enabled = false;
                         dtpTestDate.Enabled = false;
@@ -229,14 +224,11 @@ namespace Presentation_Layer.Tests.User_Controls
         }
         private bool _HandleRetakeApplication()
         {
-            //this will decide to create a seperate application for retake test or not.
-            // and will create it if needed , then it will linkit to the appoinment.
+         
             if (_Mode == enMode.AddNew && _CreationMode == enCreationMode.RetakeTestSchedule)
             {
-                //incase the mode is add new and creation mode is retake test we should create a seperate application for it.
-                //then we linke it with the appointment.
+               
 
-                //First Create Applicaiton 
                 ApplicationInfo Application = new ApplicationInfo();
 
                 Application.ApplicantPersonID = _LocalDrivingLicenseApplication.ApplicantPersonID;
@@ -250,7 +242,7 @@ namespace Presentation_Layer.Tests.User_Controls
                 if (!Application.Save())
                 {
                     _TestAppointment.RetakeTestApplicationID = -1;
-                    MessageBox.Show("Faild to Create application", "Faild", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to Create application", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
@@ -295,7 +287,7 @@ namespace Presentation_Layer.Tests.User_Controls
 
             lblFees.Text = _TestAppointment.PaidFees.ToString();
 
-            //we compare the current date with the appointment date to set the min date.
+           
             if (DateTime.Compare(DateTime.Now, _TestAppointment.AppointmentDate) < 0)
                 dtpTestDate.MinDate = DateTime.Now;
             else
@@ -319,8 +311,25 @@ namespace Presentation_Layer.Tests.User_Controls
             return true;
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (!_HandleRetakeApplication())
+                return;
 
+            _TestAppointment.TestTypeID = _TestTypeID;
+            _TestAppointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID;
+            _TestAppointment.AppointmentDate = dtpTestDate.Value;
+            _TestAppointment.PaidFees = Convert.ToDecimal(lblFees.Text);
+            _TestAppointment.CreatedByUserID = Global.CurrentUser.LoggedInUser.UserID;
 
+            if (_TestAppointment.Save())
+            {
+                _Mode = enMode.Update;
+                MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
+            else
+                MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

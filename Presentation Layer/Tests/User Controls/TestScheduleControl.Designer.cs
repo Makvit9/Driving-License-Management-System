@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbTestType = new System.Windows.Forms.GroupBox();
+            this.lblUserMessage = new System.Windows.Forms.Label();
             this.dtpTestDate = new System.Windows.Forms.DateTimePicker();
             this.lblFees = new System.Windows.Forms.Label();
             this.lblTrial = new System.Windows.Forms.Label();
@@ -51,16 +52,15 @@
             this.pbTestTypeImage = new System.Windows.Forms.PictureBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.gbRetakeTestInfo = new System.Windows.Forms.GroupBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblRetakeTestAppID = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblTotalFees = new System.Windows.Forms.Label();
+            this.lblRetakeAppFees = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblRetakeAppFees = new System.Windows.Forms.Label();
-            this.lblTotalFees = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.lblRetakeTestAppID = new System.Windows.Forms.Label();
-            this.lblUserMessage = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.gbTestType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -70,9 +70,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestTypeImage)).BeginInit();
             this.gbRetakeTestInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // gbTestType
@@ -106,6 +106,17 @@
             this.gbTestType.TabIndex = 0;
             this.gbTestType.TabStop = false;
             this.gbTestType.Text = "groupBox1";
+            // 
+            // lblUserMessage
+            // 
+            this.lblUserMessage.AutoSize = true;
+            this.lblUserMessage.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserMessage.ForeColor = System.Drawing.Color.Crimson;
+            this.lblUserMessage.Location = new System.Drawing.Point(204, 236);
+            this.lblUserMessage.Name = "lblUserMessage";
+            this.lblUserMessage.Size = new System.Drawing.Size(39, 30);
+            this.lblUserMessage.TabIndex = 21;
+            this.lblUserMessage.Text = "\" \"";
             // 
             // dtpTestDate
             // 
@@ -303,6 +314,7 @@
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save ";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // gbRetakeTestInfo
             // 
@@ -322,24 +334,51 @@
             this.gbRetakeTestInfo.TabStop = false;
             this.gbRetakeTestInfo.Text = "Retake Test Info";
             // 
-            // pictureBox7
+            // lblRetakeTestAppID
             // 
-            this.pictureBox7.Image = global::Presentation_Layer.Properties.Resources.money_32;
-            this.pictureBox7.Location = new System.Drawing.Point(360, 35);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(21, 17);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 15;
-            this.pictureBox7.TabStop = false;
+            this.lblRetakeTestAppID.AutoSize = true;
+            this.lblRetakeTestAppID.Location = new System.Drawing.Point(209, 82);
+            this.lblRetakeTestAppID.Name = "lblRetakeTestAppID";
+            this.lblRetakeTestAppID.Size = new System.Drawing.Size(34, 17);
+            this.lblRetakeTestAppID.TabIndex = 24;
+            this.lblRetakeTestAppID.Text = "[???]";
             // 
-            // label7
+            // pictureBox9
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(285, 35);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 17);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "TotalFees: ";
+            this.pictureBox9.Image = global::Presentation_Layer.Properties.Resources.Number_32;
+            this.pictureBox9.Location = new System.Drawing.Point(160, 82);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(21, 17);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 21;
+            this.pictureBox9.TabStop = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(15, 82);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(121, 17);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Retake Test App ID:";
+            // 
+            // lblTotalFees
+            // 
+            this.lblTotalFees.AutoSize = true;
+            this.lblTotalFees.Location = new System.Drawing.Point(409, 35);
+            this.lblTotalFees.Name = "lblTotalFees";
+            this.lblTotalFees.Size = new System.Drawing.Size(34, 17);
+            this.lblTotalFees.TabIndex = 22;
+            this.lblTotalFees.Text = "[???]";
+            // 
+            // lblRetakeAppFees
+            // 
+            this.lblRetakeAppFees.AutoSize = true;
+            this.lblRetakeAppFees.Location = new System.Drawing.Point(209, 35);
+            this.lblRetakeAppFees.Name = "lblRetakeAppFees";
+            this.lblRetakeAppFees.Size = new System.Drawing.Size(34, 17);
+            this.lblRetakeAppFees.TabIndex = 21;
+            this.lblRetakeAppFees.Text = "[???]";
             // 
             // pictureBox8
             // 
@@ -360,62 +399,24 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Retake Test App Fees:";
             // 
-            // lblRetakeAppFees
+            // pictureBox7
             // 
-            this.lblRetakeAppFees.AutoSize = true;
-            this.lblRetakeAppFees.Location = new System.Drawing.Point(209, 35);
-            this.lblRetakeAppFees.Name = "lblRetakeAppFees";
-            this.lblRetakeAppFees.Size = new System.Drawing.Size(34, 17);
-            this.lblRetakeAppFees.TabIndex = 21;
-            this.lblRetakeAppFees.Text = "[???]";
+            this.pictureBox7.Image = global::Presentation_Layer.Properties.Resources.money_32;
+            this.pictureBox7.Location = new System.Drawing.Point(360, 35);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(21, 17);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 15;
+            this.pictureBox7.TabStop = false;
             // 
-            // lblTotalFees
+            // label7
             // 
-            this.lblTotalFees.AutoSize = true;
-            this.lblTotalFees.Location = new System.Drawing.Point(409, 35);
-            this.lblTotalFees.Name = "lblTotalFees";
-            this.lblTotalFees.Size = new System.Drawing.Size(34, 17);
-            this.lblTotalFees.TabIndex = 22;
-            this.lblTotalFees.Text = "[???]";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(15, 82);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(121, 17);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "Retake Test App ID:";
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = global::Presentation_Layer.Properties.Resources.Number_32;
-            this.pictureBox9.Location = new System.Drawing.Point(160, 82);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(21, 17);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 21;
-            this.pictureBox9.TabStop = false;
-            // 
-            // lblRetakeTestAppID
-            // 
-            this.lblRetakeTestAppID.AutoSize = true;
-            this.lblRetakeTestAppID.Location = new System.Drawing.Point(209, 82);
-            this.lblRetakeTestAppID.Name = "lblRetakeTestAppID";
-            this.lblRetakeTestAppID.Size = new System.Drawing.Size(34, 17);
-            this.lblRetakeTestAppID.TabIndex = 24;
-            this.lblRetakeTestAppID.Text = "[???]";
-            // 
-            // lblUserMessage
-            // 
-            this.lblUserMessage.AutoSize = true;
-            this.lblUserMessage.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserMessage.ForeColor = System.Drawing.Color.Crimson;
-            this.lblUserMessage.Location = new System.Drawing.Point(204, 236);
-            this.lblUserMessage.Name = "lblUserMessage";
-            this.lblUserMessage.Size = new System.Drawing.Size(39, 30);
-            this.lblUserMessage.TabIndex = 21;
-            this.lblUserMessage.Text = "\" \"";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(285, 35);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 17);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "TotalFees: ";
             // 
             // TestScheduleControl
             // 
@@ -440,9 +441,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbTestTypeImage)).EndInit();
             this.gbRetakeTestInfo.ResumeLayout(false);
             this.gbRetakeTestInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
 
         }
