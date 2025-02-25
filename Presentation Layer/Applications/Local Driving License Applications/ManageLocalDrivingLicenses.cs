@@ -195,6 +195,21 @@ namespace Presentation_Layer.Applications
             }
         }
 
+        private void tsmiVisionTest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiWrittenTest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiStreetTest_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void dgvLDLApplications_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
