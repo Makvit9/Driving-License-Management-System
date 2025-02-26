@@ -224,13 +224,13 @@ namespace Presentation_Layer.Applications
 
         private void tsmiWrittenTest_Click(object sender, EventArgs e)
         {
-            _ScheduleTest(TestType.enTestType.VisionTest);
+            _ScheduleTest(TestType.enTestType.WrittenTest);
         }
 
 
         private void tsmiStreetTest_Click(object sender, EventArgs e)
         {
-            _ScheduleTest(TestType.enTestType.VisionTest);
+            _ScheduleTest(TestType.enTestType.StreetTest);
         }
 
         private void dgvLDLApplications_MouseUp(object sender, MouseEventArgs e)

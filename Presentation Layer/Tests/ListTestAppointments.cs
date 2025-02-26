@@ -114,7 +114,7 @@ namespace Presentation_Layer.Tests
 
             ScheduleTest FirstAppointment= new ScheduleTest(_LocalDrivingLicenseApplicationID,_TestType); //If the first time 
             FirstAppointment.ShowDialog();
-
+            ListTestAppointments_Load(null, null);
 
         }
 
@@ -123,6 +123,16 @@ namespace Presentation_Layer.Tests
             int TestAppointmentID = (int)dgvTestAppointments.CurrentRow.Cells[0].Value;
             ScheduleTest EditAppointment = new ScheduleTest(_LocalDrivingLicenseApplicationID, _TestType, TestAppointmentID);
             EditAppointment.ShowDialog();
+            ListTestAppointments_Load(null, null);
+
+        }
+
+        private void tsmiTakeTest_Click(object sender, EventArgs e)
+        {
+            int TestAppointmentID = (int)dgvTestAppointments.CurrentRow.Cells[0].Value;
+            TakeTest TestToTake = new TakeTest(TestAppointmentID, _TestType);
+            TestToTake.ShowDialog();
+
         }
     }
     }

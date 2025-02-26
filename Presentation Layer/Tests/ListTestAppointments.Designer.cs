@@ -32,17 +32,18 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.dgvTestAppointments = new System.Windows.Forms.DataGridView();
+            this.cmsAppointments = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiEditAppointment = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTakeTest = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.lblAppointments = new System.Windows.Forms.Label();
             this.btnAddNewAppointment = new System.Windows.Forms.Button();
             this.pbTestTypeImage = new System.Windows.Forms.PictureBox();
             this.localApplicationInfo1 = new Presentation_Layer.Applications.LocalApplicationInfo();
-            this.cmsAppointments = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiEditAppointment = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTestTypeImage)).BeginInit();
             this.cmsAppointments.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestTypeImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnExit
@@ -76,6 +77,28 @@
             this.dgvTestAppointments.Name = "dgvTestAppointments";
             this.dgvTestAppointments.Size = new System.Drawing.Size(789, 207);
             this.dgvTestAppointments.TabIndex = 4;
+            // 
+            // cmsAppointments
+            // 
+            this.cmsAppointments.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiEditAppointment,
+            this.tsmiTakeTest});
+            this.cmsAppointments.Name = "cmsAppointments";
+            this.cmsAppointments.Size = new System.Drawing.Size(123, 48);
+            // 
+            // tsmiEditAppointment
+            // 
+            this.tsmiEditAppointment.Name = "tsmiEditAppointment";
+            this.tsmiEditAppointment.Size = new System.Drawing.Size(122, 22);
+            this.tsmiEditAppointment.Text = "Edit";
+            this.tsmiEditAppointment.Click += new System.EventHandler(this.tsmiEditAppointment_Click);
+            // 
+            // tsmiTakeTest
+            // 
+            this.tsmiTakeTest.Name = "tsmiTakeTest";
+            this.tsmiTakeTest.Size = new System.Drawing.Size(122, 22);
+            this.tsmiTakeTest.Text = "Take Test";
+            this.tsmiTakeTest.Click += new System.EventHandler(this.tsmiTakeTest_Click);
             // 
             // label1
             // 
@@ -118,6 +141,7 @@
             this.pbTestTypeImage.Location = new System.Drawing.Point(357, 12);
             this.pbTestTypeImage.Name = "pbTestTypeImage";
             this.pbTestTypeImage.Size = new System.Drawing.Size(123, 109);
+            this.pbTestTypeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbTestTypeImage.TabIndex = 1;
             this.pbTestTypeImage.TabStop = false;
             // 
@@ -129,20 +153,6 @@
             this.localApplicationInfo1.Name = "localApplicationInfo1";
             this.localApplicationInfo1.Size = new System.Drawing.Size(836, 412);
             this.localApplicationInfo1.TabIndex = 9;
-            // 
-            // cmsAppointments
-            // 
-            this.cmsAppointments.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiEditAppointment});
-            this.cmsAppointments.Name = "cmsAppointments";
-            this.cmsAppointments.Size = new System.Drawing.Size(181, 48);
-            // 
-            // tsmiEditAppointment
-            // 
-            this.tsmiEditAppointment.Name = "tsmiEditAppointment";
-            this.tsmiEditAppointment.Size = new System.Drawing.Size(180, 22);
-            this.tsmiEditAppointment.Text = "Edit";
-            this.tsmiEditAppointment.Click += new System.EventHandler(this.tsmiEditAppointment_Click);
             // 
             // ListTestAppointments
             // 
@@ -165,8 +175,8 @@
             this.Text = "ListTestAppointments";
             this.Load += new System.EventHandler(this.ListTestAppointments_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTestTypeImage)).EndInit();
             this.cmsAppointments.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestTypeImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,5 +195,6 @@
         private Applications.LocalApplicationInfo localApplicationInfo1;
         private System.Windows.Forms.ContextMenuStrip cmsAppointments;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditAppointment;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTakeTest;
     }
 }

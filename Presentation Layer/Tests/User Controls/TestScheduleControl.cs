@@ -106,7 +106,7 @@ namespace Presentation_Layer.Tests.User_Controls
             }
 
             lblLocalDrivingLicenseAppID.Text = _LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID.ToString();
-            lblClass.Text = _LocalDrivingLicenseApplication.LicenseClassInfo.ClassName;
+            lblClass.Text = LicenseClass.Find(_LocalDrivingLicenseApplication.LicenseClassID).ClassName;
             lblName.Text = _LocalDrivingLicenseApplication.FullName;
 
             lblTrial.Text = _LocalDrivingLicenseApplication.TotalTrialsPerTest(_TestTypeID).ToString();

@@ -55,7 +55,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Presentation_Layer.Properties.Resources.Notes_32;
+            //this.pictureBox2.Image = global::Presentation_Layer.Properties.Resources.Notes_32;
             this.pictureBox2.Location = new System.Drawing.Point(95, 510);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(21, 17);
