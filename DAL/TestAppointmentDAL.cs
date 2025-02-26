@@ -168,7 +168,7 @@ namespace DAL
         public static bool GetLastTestAppointment(
             int LocalDrivingLicenseApplicationID, int TestTypeID,
            ref int TestAppointmentID, ref DateTime AppointmentDate,
-           ref float PaidFees, ref int CreatedByUserID, ref bool IsLocked, ref int RetakeTestApplicationID)
+           ref decimal PaidFees, ref int CreatedByUserID, ref bool IsLocked, ref int RetakeTestApplicationID)
         {
             bool isFound = false;
 
@@ -199,7 +199,7 @@ namespace DAL
 
                     TestAppointmentID = (int)reader["TestAppointmentID"];
                     AppointmentDate = (DateTime)reader["AppointmentDate"];
-                    PaidFees = Convert.ToSingle(reader["PaidFees"]);
+                    PaidFees = Convert.ToDecimal(reader["PaidFees"]);
                     CreatedByUserID = (int)reader["CreatedByUserID"];
                     IsLocked = (bool)reader["IsLocked"];
 

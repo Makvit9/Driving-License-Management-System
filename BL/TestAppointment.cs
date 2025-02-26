@@ -92,15 +92,16 @@ namespace BL
 
         public DataTable GetApplicationTestAppointmentsPerTestType(TestType.enTestType TestTypeID)
         {
-            return TestAppointment.GetApplicationTestAppointmentsPerTestType(this.LocalDrivingLicenseApplicationID, TestTypeID);
+            return TestAppointmentDAL.GetApplicationTestAppointmentsPerTestType(this.LocalDrivingLicenseApplicationID, (int)TestTypeID);
 
         }
 
         public static DataTable GetApplicationTestAppointmentsPerTestType(int LocalDrivingLicenseApplicationID, TestType.enTestType TestTypeID)
         {
-            return TestAppointment.GetApplicationTestAppointmentsPerTestType(LocalDrivingLicenseApplicationID, TestTypeID);
+            return TestAppointmentDAL.GetApplicationTestAppointmentsPerTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
 
         }
+
 
 
 
@@ -140,6 +141,22 @@ namespace BL
             ref AppointmentDate, ref PaidFees, ref CreatedByUserID, ref IsLocked, ref RetakeTestApplicationID))
 
                 return new TestAppointment(TestAppointmentID, (TestType.enTestType)TestTypeID, LocalDrivingLicenseApplicationID,
+             AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID);
+            else
+                return null;
+
+        }
+
+        public static TestAppointment GetLastTestAppointment(int LocalDrivingLicenseApplicationID, TestType.enTestType TestTypeID)
+        {
+            int TestAppointmentID = -1;
+            DateTime AppointmentDate = DateTime.Now; decimal PaidFees = 0;
+            int CreatedByUserID = -1; bool IsLocked = false; int RetakeTestApplicationID = -1;
+
+            if (TestAppointmentDAL.GetLastTestAppointment(LocalDrivingLicenseApplicationID, (int)TestTypeID,
+                ref TestAppointmentID, ref AppointmentDate, ref PaidFees, ref CreatedByUserID, ref IsLocked, ref RetakeTestApplicationID))
+
+                return new TestAppointment(TestAppointmentID, TestTypeID, LocalDrivingLicenseApplicationID,
              AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID);
             else
                 return null;

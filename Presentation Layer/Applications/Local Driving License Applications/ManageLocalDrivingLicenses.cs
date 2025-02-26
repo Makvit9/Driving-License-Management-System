@@ -1,4 +1,5 @@
 ﻿using BL;
+using Presentation_Layer.Tests;
 using Syncfusion.Windows.Forms.Interop;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ namespace Presentation_Layer.Applications
                 ,"NationalNumber","FullName", "ApplicationDate", "ApplicationStatus");
             dgvLDLApplications.DataSource = dtApplicationsView;
             RenameColumns();
+            dgvLDLApplications.MouseUp += dgvLDLApplications_MouseUp;
 
         }
 
@@ -133,9 +135,28 @@ namespace Presentation_Layer.Applications
             
             LocalDrivingLicenseApplication LocalApp = LocalDrivingLicenseApplication.FindByLocalDrivingAppLicenseID(LocalDrivingLicenseApplicationID);
 
-            tsmiEditLocalApplication.Enabled = (LocalApp.ApplicationStatus != LocalDrivingLicenseApplication.enApplicationStatus.Completed);
+            tsmiEditLocalApplication.Enabled = (LocalApp.ApplicationStatus == LocalDrivingLicenseApplication.enApplicationStatus.New);
             tsmiDeleteLocalApplication.Enabled = (LocalApp.ApplicationStatus == LocalDrivingLicenseApplication.enApplicationStatus.New);
-            tsmiCancelLocalApplication.Enabled = (LocalApp.ApplicationStatus == LocalDrivingLicenseApplication.enApplicationStatus.New);
+            //tsmiCancelLocalApplication.Enabled = (LocalApp.ApplicationStatus == LocalDrivingLicenseApplication.enApplicationStatus.New);
+            
+
+            bool PassedVisionTest = LocalApp.DoesPassTestType(TestType.enTestType.VisionTest);
+            bool PassedWrittenTest = LocalApp.DoesPassTestType(TestType.enTestType.WrittenTest);
+            bool PassedStreetTest = LocalApp.DoesPassTestType(TestType.enTestType.StreetTest);
+
+            tsmiScheduleTest.Enabled = (!PassedVisionTest || !PassedWrittenTest || !PassedStreetTest) && (LocalApp.ApplicationStatus == ApplicationInfo.enApplicationStatus.New);
+
+            if (tsmiScheduleTest.Enabled)
+            {
+                tsmiVisionTest.Enabled = !PassedVisionTest;
+
+                tsmiWrittenTest.Enabled = PassedVisionTest && !PassedWrittenTest;
+
+                tsmiStreetTest.Enabled = PassedVisionTest && PassedWrittenTest && !PassedStreetTest;
+
+            }
+            tsmiShowLicense.Enabled = LocalApp.ApplicationStatus == LocalDrivingLicenseApplication.enApplicationStatus.Completed; //also should have a licnes 
+
 
         }
 
@@ -197,17 +218,19 @@ namespace Presentation_Layer.Applications
 
         private void tsmiVisionTest_Click(object sender, EventArgs e)
         {
+            _ScheduleTest(TestType.enTestType.VisionTest);
 
         }
 
         private void tsmiWrittenTest_Click(object sender, EventArgs e)
         {
-
+            _ScheduleTest(TestType.enTestType.VisionTest);
         }
+
 
         private void tsmiStreetTest_Click(object sender, EventArgs e)
         {
-
+            _ScheduleTest(TestType.enTestType.VisionTest);
         }
 
         private void dgvLDLApplications_MouseUp(object sender, MouseEventArgs e)
@@ -227,6 +250,21 @@ namespace Presentation_Layer.Applications
             }
         }
 
+        private void tsmiShowLicense_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _ScheduleTest(TestType.enTestType TestType)
+        {
+
+            int LocalDrivingLicenseApplicationID = (int)dgvLDLApplications.CurrentRow.Cells[0].Value;
+            ListTestAppointments CurrentTest = new ListTestAppointments(LocalDrivingLicenseApplicationID, TestType);
+            CurrentTest.ShowDialog();
+            
+            ShowAllApplications();
+
+        }
 
 
     }

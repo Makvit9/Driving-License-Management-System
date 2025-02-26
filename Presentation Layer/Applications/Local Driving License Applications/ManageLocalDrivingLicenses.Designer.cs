@@ -36,20 +36,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvLDLApplications = new System.Windows.Forms.DataGridView();
             this.cmsApplicationOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtFilter = new System.Windows.Forms.TextBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnAddNewApplication = new System.Windows.Forms.Button();
             this.tsmiApplicationDescription = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditLocalApplication = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteLocalApplication = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCancelLocalApplication = new System.Windows.Forms.ToolStripMenuItem();
-            this.scheduleTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiScheduleTest = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiVisionTest = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWrittenTest = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiStreetTest = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.issueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.btnAddNewApplication = new System.Windows.Forms.Button();
+            this.tsmiShowLicense = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLDLApplications)).BeginInit();
             this.cmsApplicationOptions.SuspendLayout();
             this.SuspendLayout();
@@ -142,45 +143,21 @@
             this.tsmiDeleteLocalApplication,
             this.tsmiCancelLocalApplication,
             this.toolStripSeparator1,
-            this.scheduleTestToolStripMenuItem,
+            this.tsmiScheduleTest,
             this.toolStripSeparator2,
             this.issueToolStripMenuItem,
-            this.toolStripSeparator3});
+            this.toolStripSeparator3,
+            this.tsmiShowLicense});
             this.cmsApplicationOptions.Name = "cmsApplicationOptions";
-            this.cmsApplicationOptions.Size = new System.Drawing.Size(247, 176);
+            this.cmsApplicationOptions.Size = new System.Drawing.Size(247, 198);
             this.cmsApplicationOptions.Opening += new System.ComponentModel.CancelEventHandler(this.cmsApplicationOptions_Opening);
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.Location = new System.Drawing.Point(302, 159);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(221, 23);
-            this.txtFilter.TabIndex = 16;
-            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_Changed);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
-            // 
-            // btnAddNewApplication
-            // 
-            this.btnAddNewApplication.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAddNewApplication.Image = global::Presentation_Layer.Properties.Resources.New_Application_64;
-            this.btnAddNewApplication.Location = new System.Drawing.Point(1070, 112);
-            this.btnAddNewApplication.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddNewApplication.Name = "btnAddNewApplication";
-            this.btnAddNewApplication.Size = new System.Drawing.Size(75, 77);
-            this.btnAddNewApplication.TabIndex = 10;
-            this.btnAddNewApplication.UseVisualStyleBackColor = true;
-            this.btnAddNewApplication.Click += new System.EventHandler(this.btnAddNewApplication_Click);
             // 
             // tsmiApplicationDescription
             // 
             this.tsmiApplicationDescription.BackColor = System.Drawing.Color.White;
             this.tsmiApplicationDescription.Image = global::Presentation_Layer.Properties.Resources.ApplicationType;
             this.tsmiApplicationDescription.Name = "tsmiApplicationDescription";
-            this.tsmiApplicationDescription.Size = new System.Drawing.Size(176, 22);
+            this.tsmiApplicationDescription.Size = new System.Drawing.Size(246, 22);
             this.tsmiApplicationDescription.Text = "Application Details ";
             this.tsmiApplicationDescription.Click += new System.EventHandler(this.tsmiApplicationDescription_Click);
             // 
@@ -188,7 +165,7 @@
             // 
             this.tsmiEditLocalApplication.Image = global::Presentation_Layer.Properties.Resources.edit_32;
             this.tsmiEditLocalApplication.Name = "tsmiEditLocalApplication";
-            this.tsmiEditLocalApplication.Size = new System.Drawing.Size(176, 22);
+            this.tsmiEditLocalApplication.Size = new System.Drawing.Size(246, 22);
             this.tsmiEditLocalApplication.Text = "Edit Application";
             this.tsmiEditLocalApplication.Click += new System.EventHandler(this.tsmiEditLocalApplication_Click);
             // 
@@ -197,33 +174,35 @@
             this.tsmiDeleteLocalApplication.BackColor = System.Drawing.Color.Transparent;
             this.tsmiDeleteLocalApplication.Image = global::Presentation_Layer.Properties.Resources.Delete_32_2;
             this.tsmiDeleteLocalApplication.Name = "tsmiDeleteLocalApplication";
-            this.tsmiDeleteLocalApplication.Size = new System.Drawing.Size(176, 22);
+            this.tsmiDeleteLocalApplication.Size = new System.Drawing.Size(246, 22);
             this.tsmiDeleteLocalApplication.Text = "Delete Application";
             this.tsmiDeleteLocalApplication.Click += new System.EventHandler(this.tsmiDeleteLocalApplication_Click);
             // 
             // tsmiCancelLocalApplication
             // 
             this.tsmiCancelLocalApplication.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmiCancelLocalApplication.Image = global::Presentation_Layer.Properties.Resources.Delete_32;
             this.tsmiCancelLocalApplication.Name = "tsmiCancelLocalApplication";
-            this.tsmiCancelLocalApplication.Size = new System.Drawing.Size(176, 22);
+            this.tsmiCancelLocalApplication.Size = new System.Drawing.Size(246, 22);
             this.tsmiCancelLocalApplication.Text = "Cancel Application";
             this.tsmiCancelLocalApplication.Click += new System.EventHandler(this.tsmiCancelLocalApplication_Click);
             // 
-            // scheduleTestToolStripMenuItem
+            // toolStripSeparator1
             // 
-            this.scheduleTestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(243, 6);
+            // 
+            // tsmiScheduleTest
+            // 
+            this.tsmiScheduleTest.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiVisionTest,
             this.tsmiWrittenTest,
             this.tsmiStreetTest});
-            this.scheduleTestToolStripMenuItem.Image = global::Presentation_Layer.Properties.Resources.Schedule_Test_32;
-            this.scheduleTestToolStripMenuItem.Name = "scheduleTestToolStripMenuItem";
-            this.scheduleTestToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-            this.scheduleTestToolStripMenuItem.Text = "Schedule Test";
+            this.tsmiScheduleTest.Name = "tsmiScheduleTest";
+            this.tsmiScheduleTest.Size = new System.Drawing.Size(246, 22);
+            this.tsmiScheduleTest.Text = "Schedule Test";
             // 
             // tsmiVisionTest
             // 
-            this.tsmiVisionTest.Image = global::Presentation_Layer.Properties.Resources.Vision_Test_32;
             this.tsmiVisionTest.Name = "tsmiVisionTest";
             this.tsmiVisionTest.Size = new System.Drawing.Size(180, 22);
             this.tsmiVisionTest.Text = "Vision Test";
@@ -231,7 +210,6 @@
             // 
             // tsmiWrittenTest
             // 
-            this.tsmiWrittenTest.Image = global::Presentation_Layer.Properties.Resources.Written_Test_32;
             this.tsmiWrittenTest.Name = "tsmiWrittenTest";
             this.tsmiWrittenTest.Size = new System.Drawing.Size(180, 22);
             this.tsmiWrittenTest.Text = "Written Test";
@@ -239,7 +217,6 @@
             // 
             // tsmiStreetTest
             // 
-            this.tsmiStreetTest.Image = global::Presentation_Layer.Properties.Resources.Street_Test_32;
             this.tsmiStreetTest.Name = "tsmiStreetTest";
             this.tsmiStreetTest.Size = new System.Drawing.Size(180, 22);
             this.tsmiStreetTest.Text = "Street Test";
@@ -260,6 +237,33 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(243, 6);
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Location = new System.Drawing.Point(302, 159);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(221, 23);
+            this.txtFilter.TabIndex = 16;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_Changed);
+            // 
+            // btnAddNewApplication
+            // 
+            this.btnAddNewApplication.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddNewApplication.Image = global::Presentation_Layer.Properties.Resources.New_Application_64;
+            this.btnAddNewApplication.Location = new System.Drawing.Point(1070, 112);
+            this.btnAddNewApplication.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddNewApplication.Name = "btnAddNewApplication";
+            this.btnAddNewApplication.Size = new System.Drawing.Size(75, 77);
+            this.btnAddNewApplication.TabIndex = 10;
+            this.btnAddNewApplication.UseVisualStyleBackColor = true;
+            this.btnAddNewApplication.Click += new System.EventHandler(this.btnAddNewApplication_Click);
+            // 
+            // tsmiShowLicense
+            // 
+            this.tsmiShowLicense.Name = "tsmiShowLicense";
+            this.tsmiShowLicense.Size = new System.Drawing.Size(246, 22);
+            this.tsmiShowLicense.Text = "Show License";
+            this.tsmiShowLicense.Click += new System.EventHandler(this.tsmiShowLicense_Click);
             // 
             // ManageLocalDrivingLicenses
             // 
@@ -303,12 +307,13 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiCancelLocalApplication;
         private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem scheduleTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiScheduleTest;
         private System.Windows.Forms.ToolStripMenuItem tsmiVisionTest;
         private System.Windows.Forms.ToolStripMenuItem tsmiWrittenTest;
         private System.Windows.Forms.ToolStripMenuItem tsmiStreetTest;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem issueToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem tsmiShowLicense;
     }
 }
